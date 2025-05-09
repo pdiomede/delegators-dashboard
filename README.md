@@ -62,7 +62,7 @@ ENS_CACHE_EXPIRY_HOURS=24
 - ENS names are cached locally for performance.
 
 ## 📊 Powered By
-- 🧠 The Graph
+- 🧠 [The Graph](https://thegraph.com)
 - 📛 ENS (Ethereum Name Service)
 - 🧩 Python, HTML5, CSS3, DataTables.js
 - 🌐 GitHub Pages / any static web host
