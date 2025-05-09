@@ -1,6 +1,7 @@
 # Delegators Dashboard – The Graph Network
 
-This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/). It highlights transactions by delegators, indexed by timestamp, indexer, token amount, and transaction hash.
+This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/). 
+It highlights transactions by delegators, indexed by timestamp, indexer, token amount, and transaction hash.
 
 ---
 
@@ -23,8 +24,8 @@ This project generates an interactive HTML dashboard to monitor live **delegatio
 - 📜 .env                               # API keys and config (excluded via .gitignore)
 - 📂 logs/                              # Auto-generated log files
 - 📂 reports/
--- 📜 delegators.csv                  # Generated CSV
--- 📜 index.html                      # Generated dashboard
+  - 📜 delegators.csv                  # Generated CSV
+  - 📜 index.html                      # Generated dashboard
 - 📂 archive/                          # Archived dashboard versions
 ---
 
@@ -52,12 +53,12 @@ python fetch_delegators_metrics.py
 5.	Open reports/index.html in your browser to view the dashboard.
 
 ## 🛡️ Notes
-	•	.env and .DS_Store are excluded via .gitignore.
-	•	API calls use The Graph’s hosted service endpoints.
-	•	ENS names are cached locally for performance.
+- .env and .DS_Store are excluded via .gitignore.
+- API calls use The Graph Network
+- ENS names are cached locally for performance.
 
 ## 📊 Powered By
-	•	🧠 The Graph
-	•	📛 ENS (Ethereum Name Service)
-	•	🧩 Python, HTML5, CSS3, DataTables.js
-	•	🌐 GitHub Pages / any static web host
+- 🧠 The Graph
+- 📛 ENS (Ethereum Name Service)
+- 🧩 Python, HTML5, CSS3, DataTables.js
+- 🌐 GitHub Pages / any static web host
