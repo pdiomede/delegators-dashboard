@@ -1,0 +1,446 @@
+{
+  "0xf92f430dd8567b0d466358c79594ab58d919a6d4": {
+    "ens": "ellipfra-indexer.eth",
+    "timestamp": "2025-05-06T12:55:50.445487+00:00"
+  },
+  "0x1b92e4cba0f82c85c1298af861247849988c788c": {
+    "ens": "vincenttaglia-indexer.eth",
+    "timestamp": "2025-04-17T09:44:09.817463"
+  },
+  "0x054a55e0e723480c2f9c3d0761f57feb51f0aeae": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:49:51.753845+00:00"
+  },
+  "0x01f17c392614c7ea586e7272ed348efee21b90a3": {
+    "ens": "oraclegen-indexer.eth",
+    "timestamp": "2025-04-17T09:50:19.699341+00:00"
+  },
+  "0xd5285e60b8193d3eeb77efaad340b9a0f95b115c": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:20.009031+00:00"
+  },
+  "0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce": {
+    "ens": "p2p-org-arbitrum.eth",
+    "timestamp": "2025-04-17T09:50:20.215031+00:00"
+  },
+  "0x15f72b52cd79928b66fe9887acd20057203a97b1": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:20.542798+00:00"
+  },
+  "0x6d4056a9a61ed9afb478df360bc26e6bfd946481": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:20.866810+00:00"
+  },
+  "0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5": {
+    "ens": "0y.decisionbasis.eth",
+    "timestamp": "2025-04-17T09:50:21.080588+00:00"
+  },
+  "0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:21.400642+00:00"
+  },
+  "0xfeff9093f6b32d0e5cddba743b06a1fedb87c004": {
+    "ens": "p-ops2.eth",
+    "timestamp": "2025-04-17T09:50:21.614905+00:00"
+  },
+  "0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0": {
+    "ens": "graphops.eth",
+    "timestamp": "2025-04-17T09:50:21.999971+00:00"
+  },
+  "0x4e5c87772c29381bcabc58c3f182b6633b5a274a": {
+    "ens": "indexer.datanexus.eth",
+    "timestamp": "2025-04-17T09:50:22.351346+00:00"
+  },
+  "0x3f74870f80ff7449fe4c6ff257da5fa72734c970": {
+    "ens": "stake\ud83e\udd91squid-2.eth",
+    "timestamp": "2025-04-17T09:50:22.736852+00:00"
+  },
+  "0x345c9a221e4caa15f78fb8078c441745de48a225": {
+    "ens": "0xfury.eth",
+    "timestamp": "2025-04-17T09:50:23.110626+00:00"
+  },
+  "0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:23.401757+00:00"
+  },
+  "0xc44ea5de89b58027037deb85b10143c10eb106b0": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:23.725089+00:00"
+  },
+  "0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4": {
+    "ens": "differential-graph.eth",
+    "timestamp": "2025-04-17T09:50:23.932177+00:00"
+  },
+  "0x53f28b920f80a0e95675340dae3e7edfd97c1c21": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:24.231733+00:00"
+  },
+  "0x632a93478230b3723ec4f793f685f7ef2019569a": {
+    "ens": "0xdrb.eth",
+    "timestamp": "2025-04-17T09:50:24.560414+00:00"
+  },
+  "0xdee5cc93a3a32c112cfa7ad2703adbba604c0c3c": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:24.914367+00:00"
+  },
+  "0x269ebeee083ce6f70486a67dc8036a889bf322a9": {
+    "ens": "thomasblock.eth",
+    "timestamp": "2025-04-17T09:50:25.121956+00:00"
+  },
+  "0x9e0c3a2d1ddc81017083409bdd3f9ba07a3191d4": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:25.443700+00:00"
+  },
+  "0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:25.980549+00:00"
+  },
+  "0xb4b4570df6f7fe320f10fdfb702dba7e35244550": {
+    "ens": "nodeify.eth",
+    "timestamp": "2025-04-17T09:50:26.192956+00:00"
+  },
+  "0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:26.506762+00:00"
+  },
+  "0x089f78d8cf0a5ae1b7a581b1910a73f8cb3e4774": {
+    "ens": "darksiders-team.eth",
+    "timestamp": "2025-04-17T09:50:26.711249+00:00"
+  },
+  "0xdbaf92d420b6379ac4e6993a532b2312efd314d3": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:27.238905+00:00"
+  },
+  "0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf": {
+    "ens": "a1.protofire.eth",
+    "timestamp": "2025-04-17T09:50:27.449033+00:00"
+  },
+  "0x51a693d5a35e99c5cc5e089c9fc44da15d46a774": {
+    "ens": "saiseng.eth",
+    "timestamp": "2025-04-17T09:50:27.811708+00:00"
+  },
+  "0x53dbbc9d916b1840a2c4c26b150ba2e13f36e10f": {
+    "ens": "thoalt-indexer.eth",
+    "timestamp": "2025-04-17T09:50:28.267066+00:00"
+  },
+  "0x525ee071454cf9b6d750720bce8d8697ef82f02f": {
+    "ens": "frullino.eth",
+    "timestamp": "2025-04-17T09:50:28.581847+00:00"
+  },
+  "0x920fdeb00ee04dd72f62d8a8f80f13c82ef76c1e": {
+    "ens": "braindexer.eth",
+    "timestamp": "2025-04-17T09:50:28.786111+00:00"
+  },
+  "0xcc1ba3916f5ec9c6e9b73923514ebf6f92a07bd4": {
+    "ens": "mintedlabs.eth",
+    "timestamp": "2025-04-17T09:50:29.128565+00:00"
+  },
+  "0xa64bfdffa2e2255700e4cd69a393194aa0a31b08": {
+    "ens": "maikolete.eth",
+    "timestamp": "2025-04-17T09:50:29.447510+00:00"
+  },
+  "0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:29.770883+00:00"
+  },
+  "0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:30.078524+00:00"
+  },
+  "0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc": {
+    "ens": "graphtronauts-arbitrum.eth",
+    "timestamp": "2025-04-17T09:50:30.545175+00:00"
+  },
+  "0xeab209c749efbb7caea9d9b85823b8ec93ca5b05": {
+    "ens": "garuga.eth",
+    "timestamp": "2025-04-17T09:50:30.905062+00:00"
+  },
+  "0xb5f1fab5832aa0b3f4d2563e684668603504b999": {
+    "ens": "onlydance.eth",
+    "timestamp": "2025-04-17T09:50:31.203722+00:00"
+  },
+  "0x4c9f073c6fe57138347b0c2c39d91e494e8699a0": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:31.561485+00:00"
+  },
+  "0x7bb834017672b1135466661d8dd69c5dd0b3bf51": {
+    "ens": "dataservices.eth",
+    "timestamp": "2025-05-06T12:55:49.892486+00:00"
+  },
+  "0x6c3ae5fb394e86c897800b616ba05fcdad781607": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:32.255532+00:00"
+  },
+  "0xb867ea1af420ef9117c1d73ad535ccb9a17ad287": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:33.148822+00:00"
+  },
+  "0x63c9dc729ba7a22bb8605216b24a34b902e5fe94": {
+    "ens": "infradao.eth",
+    "timestamp": "2025-04-17T09:50:33.471964+00:00"
+  },
+  "0xf66540264de77b811d449c445b2017d5d3b974ec": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:34.212243+00:00"
+  },
+  "0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:34.800102+00:00"
+  },
+  "0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:35.554303+00:00"
+  },
+  "0xe13840a2e92e0cb17a246609b432d0fa2e418774": {
+    "ens": "lunanova-indexer.eth",
+    "timestamp": "2025-04-17T09:50:35.832402+00:00"
+  },
+  "0x1b7e0068ca1d7929c8c56408d766e1510e54d98d": {
+    "ens": "suntzu-indexer-arb.eth",
+    "timestamp": "2025-04-17T09:50:36.552456+00:00"
+  },
+  "0x6b52444351c862286174229f5c0843c3023a5af2": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:37.432101+00:00"
+  },
+  "0x57db9c7c683a67f046acbc4d609687dfb974a6fb": {
+    "ens": "subgr4ph.eth",
+    "timestamp": "2025-04-17T09:50:37.845426+00:00"
+  },
+  "0xe795bda747588a233d9c2b059b99a4de440e733d": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:38.575242+00:00"
+  },
+  "0x5ddee9720e17aad28febb55643cd8ab50c51c60b": {
+    "ens": "maplenodes.eth",
+    "timestamp": "2025-04-17T09:50:39.643726+00:00"
+  },
+  "0xa1761fc95e8b2a1e99dfdee816f6d8f4c47e26ae": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:40.310771+00:00"
+  },
+  "0x59749d1fa9635cd0413aeff5ee295490a7e87f54": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:40.649270+00:00"
+  },
+  "0xf012f03bd16e7c24ae3a8e89a4250440a8c6da36": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:41.069803+00:00"
+  },
+  "0x85ce2963016284dbb2f33f8d712f5505bf47b123": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:41.435712+00:00"
+  },
+  "0xdcbf4cd89e23e2991a45c5ca72298c8669fc075b": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:41.893270+00:00"
+  },
+  "0x8baacf9b7135c8313d583a96dd5623904681a3a7": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:42.425333+00:00"
+  },
+  "0xeccdf8231326a9c5aad32df76a633aaa4c49b104": {
+    "ens": "catapulta.eth",
+    "timestamp": "2025-04-17T09:50:42.645748+00:00"
+  },
+  "0xc55c63563efb36f7cc65ac3060c52987c6694b37": {
+    "ens": "figment-prime.eth",
+    "timestamp": "2025-04-17T09:50:43.031608+00:00"
+  },
+  "0xd89f4da776324a4e7414e0d0ff3e98e15788e3ca": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:43.415736+00:00"
+  },
+  "0xaa988dcb035518bc0e20082a3148a5d3dfd1776d": {
+    "ens": "stake\ud83e\udd91squid-1.eth",
+    "timestamp": "2025-04-17T09:50:43.868583+00:00"
+  },
+  "0xa81ace214b97d4b9c2072a934d0c4de486757538": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:44.195071+00:00"
+  },
+  "0xd84cf058a098dd5aff006d7b45b28c4584bf712a": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:44.534919+00:00"
+  },
+  "0x9da1017766bfeb2835db4f811516eea68996538b": {
+    "ens": "ryabina.eth",
+    "timestamp": "2025-04-17T09:50:44.743025+00:00"
+  },
+  "0x0b2ad341fdfc04d76e1e9ab6a66374e2b70c3398": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:45.081614+00:00"
+  },
+  "0x3214792ded3d4fb6018d139d8fbc719abd62f18a": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:45.629236+00:00"
+  },
+  "0x7ac4784b448f0edfc8874a79d71433f79f904276": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:46.186922+00:00"
+  },
+  "0x74dbb201ecc0b16934e68377bc13013883d9417b": {
+    "ens": "rickydata-indexer.eth",
+    "timestamp": "2025-04-17T09:50:46.613961+00:00"
+  },
+  "0xd61c60ace8d886cb7a35ae10f8e49978b085a10b": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:46.931000+00:00"
+  },
+  "0xd9efe49c066968ac203487a3215f0c064d520050": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:47.285107+00:00"
+  },
+  "0xd4e0180b9a0b0c8c963472f0c9ff02a6fbffa398": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:47.921650+00:00"
+  },
+  "0x3b9ba748691f135b71582dc3292e5e3ed7e13341": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:48.146785+00:00"
+  },
+  "0xbc0e3a344a28ad0ac07e5838af6ecfe8b026e1e1": {
+    "ens": "kangbachen.eth",
+    "timestamp": "2025-04-17T09:50:48.474320+00:00"
+  },
+  "0xc33c77f59baa77a4f81cb6dd7ce98baf270b0ce9": {
+    "ens": "reconnoitrer.eth",
+    "timestamp": "2025-04-17T09:50:48.813886+00:00"
+  },
+  "0x0b9d582b7fdd387ba13ad7f453d49af255a8ed5e": {
+    "ens": "dapplooker-indexer.eth",
+    "timestamp": "2025-04-17T09:50:49.028997+00:00"
+  },
+  "0xa183145cc77028abe5e0c8cf845dc49ce133df0a": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:49.373262+00:00"
+  },
+  "0x52e5f9650266a222395d1079079c24e77f946fff": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:49.804532+00:00"
+  },
+  "0x550c1f4814a85aa10f5f061ca8c45e2ee9620226": {
+    "ens": "experimental.infradao.eth",
+    "timestamp": "2025-04-17T09:50:50.026922+00:00"
+  },
+  "0xf20fda6a5f627dd0d48a2d64ba58d37eaf77d3dd": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:50.413558+00:00"
+  },
+  "0xcb8c9f64cd8ece0fa76fd46302fd1d1db9eb47f0": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:50.753419+00:00"
+  },
+  "0x34fa08a76a9db6f3ea07f2acd4683eca14b1ea82": {
+    "ens": "aliciarandolph.eth",
+    "timestamp": "2025-04-17T09:50:51.082944+00:00"
+  },
+  "0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb": {
+    "ens": "smilemart.eth",
+    "timestamp": "2025-04-17T09:50:51.429189+00:00"
+  },
+  "0xedca8740873152ff30a2696add66d1ab41882beb": {
+    "ens": "pinax.eth",
+    "timestamp": "2025-04-17T09:50:51.650990+00:00"
+  },
+  "0x9a539f692cde873d6b882fc326c8d62d4cea8048": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:52.354529+00:00"
+  },
+  "0x88e7fa06c8ee2c9899ecddb3f4655b5ec8601415": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:52.743174+00:00"
+  },
+  "0x38bc308adf8824a2492493d99881cbd6f73f92c7": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:53.217422+00:00"
+  },
+  "0xe662e888446e5c7ba6a34c4f75287a8bc332ac81": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:53.904102+00:00"
+  },
+  "0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:54.226728+00:00"
+  },
+  "0x362fd4d772c1f4ef764ac4f107243014eedab75d": {
+    "ens": "lorenafabris.eth",
+    "timestamp": "2025-04-17T09:50:54.945846+00:00"
+  },
+  "0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:55.766912+00:00"
+  },
+  "0x5706fc2ba2cba396135d7cf602dc208371a8655b": {
+    "ens": "deli-gator.eth",
+    "timestamp": "2025-04-17T09:50:56.225034+00:00"
+  },
+  "0x155208d080e158a5e091a0ec127fcd923235ad85": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:56.556541+00:00"
+  },
+  "0x1a286b6f7087c8fd5e7caf0d345782d387dfab17": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:56.998508+00:00"
+  },
+  "0x82dbc0ec046ccd99ddb9a7b3507a0cb5bab10f88": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:57.453654+00:00"
+  },
+  "0x5b191f5a2b4a867c4ed71858daccc51fc59c69c0": {
+    "ens": "proofofdegen777.eth",
+    "timestamp": "2025-04-17T09:50:57.804337+00:00"
+  },
+  "0xab9f3a091dd2f067e1e251d4b0adb31d634c19cb": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:58.164534+00:00"
+  },
+  "0x8f9c9020a114bf20f20f054125d882cf45d7f34c": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:50:58.543362+00:00"
+  },
+  "0xfc842f81490dcb37e82d416b2d28327dfb24ba9a": {
+    "ens": "grassets-tech-1.eth",
+    "timestamp": "2025-04-17T09:50:58.761307+00:00"
+  },
+  "0x35917c0eb91d2e21bef40940d028940484230c06": {
+    "ens": "streamingfastindexer.eth",
+    "timestamp": "2025-04-17T09:50:59.258085+00:00"
+  },
+  "0x07aded6ae3a2ec145314994a898d1eda14429be4": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:51:00.174154+00:00"
+  },
+  "0x759cc170f2c64ef25b0d29921ace1f2c50862f5c": {
+    "ens": "bittrepp.eth",
+    "timestamp": "2025-04-17T09:51:00.502654+00:00"
+  },
+  "0x4f45530236e1c6603870301010dcab7b561125b3": {
+    "ens": "deutsche-telekom-indexer.eth",
+    "timestamp": "2025-04-17T09:51:00.716619+00:00"
+  },
+  "0x21f73156d0b58e72fa32a94282e14ca6f7f399ee": {
+    "ens": "",
+    "timestamp": "2025-04-17T09:51:01.055578+00:00"
+  },
+  "0x4a7095c3ff70cb309c17f3c1203c5c095927b795": {
+    "ens": "",
+    "timestamp": "2025-04-18T04:31:23.400643+00:00"
+  },
+  "0xf61a930667fcdf21a89c10c7ff7d6f20031b5cb9": {
+    "ens": "",
+    "timestamp": "2025-04-18T04:31:24.293238+00:00"
+  },
+  "0x1ec77094ba9217ddac4a0a4db326bcf044bb6c50": {
+    "ens": "",
+    "timestamp": "2025-04-18T04:31:25.467369+00:00"
+  },
+  "0x6352c8de30327f2d1d88409aaba5e4aa24103971": {
+    "ens": "",
+    "timestamp": "2025-05-06T12:55:50.306903+00:00"
+  },
+  "0xe759b5d4efd26f7d4f40989b644d986a73d774b2": {
+    "ens": "",
+    "timestamp": "2025-05-06T12:55:50.873060+00:00"
+  }
+}

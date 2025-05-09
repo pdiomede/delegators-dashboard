@@ -1,0 +1,5 @@
+[2025-05-06 12:55:49 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-05-06 12:55:49 UTC] 🔍 Fetched ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-05-06 12:55:50 UTC] 🔍 Fetched ENS for 0x6352c8de30327f2d1d88409aaba5e4aa24103971: no ENS
+[2025-05-06 12:55:50 UTC] 🔍 Fetched ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-05-06 12:55:50 UTC] 🔍 Fetched ENS for 0xe759b5d4efd26f7d4f40989b644d986a73d774b2: no ENS

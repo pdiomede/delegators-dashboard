@@ -1,0 +1,224 @@
+[2025-04-08 00:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 00:30:09 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 00:30:15 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 00:30:25 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 00:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 00:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 00:30:46 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 00:30:47 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 00:31:02 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 01:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 01:30:10 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 01:30:16 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 01:30:26 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 01:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 01:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 01:30:46 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 01:30:47 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 01:31:03 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 02:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 02:30:11 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 02:30:14 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 02:30:20 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 02:30:30 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 02:30:30 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 02:30:30 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 02:30:31 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 02:30:41 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 03:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 03:30:11 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 03:30:16 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 03:30:26 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 03:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 03:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 03:30:47 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 03:30:48 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 03:31:05 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 04:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 04:30:02 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 04:30:14 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 04:30:20 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 04:30:31 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 04:30:49 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 04:30:49 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 04:30:50 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 04:30:50 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 04:31:08 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 05:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 05:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 05:30:18 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 05:30:27 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 05:30:39 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 05:30:59 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 05:30:59 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 05:31:00 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 05:31:01 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 05:31:19 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 06:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 06:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 06:30:15 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 06:30:22 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 06:30:32 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 06:30:52 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 06:30:53 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 06:30:54 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 06:30:55 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 06:31:13 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 07:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 07:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 07:30:22 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 07:30:26 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 07:30:34 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 07:30:50 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 07:30:50 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 07:30:51 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 07:30:52 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 07:31:05 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 08:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 08:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 08:30:16 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 08:30:23 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 08:30:32 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 08:30:50 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 08:30:51 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 08:30:52 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 08:30:52 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 08:31:10 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 09:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 09:30:06 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 09:30:22 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 09:30:28 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 09:30:41 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 09:31:05 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 09:31:05 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 09:31:06 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 09:31:07 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 09:31:24 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 10:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 10:30:06 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 10:30:23 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 10:30:29 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 10:30:39 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 10:30:59 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 10:31:00 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 10:31:01 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 10:31:01 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 10:31:19 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 11:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 11:30:03 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 11:30:09 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 11:30:12 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 11:30:21 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 11:30:38 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 11:30:39 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 11:30:39 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 11:30:39 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 11:30:48 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 12:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 12:30:05 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 12:30:16 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 12:30:23 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 12:30:31 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 12:30:43 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 12:30:43 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 12:30:44 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 12:30:44 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 12:30:54 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 13:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 13:30:10 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 13:30:23 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 13:30:32 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 13:30:44 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 13:31:07 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 13:31:08 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 13:31:09 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 13:31:10 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 13:31:25 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 14:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 14:30:10 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 14:30:21 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 14:30:28 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 14:30:36 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 14:30:54 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 14:30:54 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 14:30:55 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 14:30:56 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 14:31:10 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 15:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 15:30:06 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 15:30:13 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 15:30:16 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 15:30:24 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 15:30:36 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 15:30:36 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 15:30:37 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 15:30:37 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 15:30:46 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 15:35:56 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 15:36:00 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 15:36:05 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-08 15:36:08 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-08 15:36:12 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-08 15:36:21 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 15:36:21 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 15:36:21 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-08 15:36:21 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-08 15:36:29 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-08 15:36:54 UTC] ℹ️ No metadata found for address 0xa01b06b0e9feb016d5ab669ce89d059bc666e569
+[2025-04-08 15:37:04 UTC] ℹ️ No metadata found for address 0x2121bc6437100fc21d19a9eea30898419e020afa
+[2025-04-08 15:37:19 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 15:45:10 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 15:45:12 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 15:45:23 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 15:45:23 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 15:45:55 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 16:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 16:30:05 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 16:30:22 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 16:30:22 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 16:31:11 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 17:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 17:30:05 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 17:30:20 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 17:30:21 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 17:31:06 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 17:57:51 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 17:57:54 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 17:58:02 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 17:58:03 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 17:58:30 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 18:00:28 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 18:00:30 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 18:00:39 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 18:00:39 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 18:01:06 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 18:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 18:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 18:30:11 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 18:30:11 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 18:30:37 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 19:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 19:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 19:30:13 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 19:30:13 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 19:30:41 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 20:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 20:30:03 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 20:30:09 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 20:30:09 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 20:30:27 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 21:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 21:30:05 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 21:30:14 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 21:30:14 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 21:30:46 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 22:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 22:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 22:30:12 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 22:30:13 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 22:30:38 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-08 23:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-08 23:30:04 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-08 23:30:13 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 23:30:13 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-08 23:30:40 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3

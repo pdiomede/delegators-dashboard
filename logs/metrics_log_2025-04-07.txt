@@ -1,0 +1,210 @@
+[2025-04-07 08:55:16 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_105516.csv
+[2025-04-07 08:55:16 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_105516.html
+[2025-04-07 08:56:55 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_105655.csv
+[2025-04-07 08:56:55 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_105655.html
+[2025-04-07 08:58:23 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_105823.csv
+[2025-04-07 08:58:23 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_105823.html
+[2025-04-07 08:58:55 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_105855.csv
+[2025-04-07 08:58:55 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_105855.html
+[2025-04-07 08:59:20 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_105920.csv
+[2025-04-07 08:59:20 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_105920.html
+[2025-04-07 09:02:17 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_110217.csv
+[2025-04-07 09:02:17 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_110217.html
+[2025-04-07 09:03:51 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_110351.csv
+[2025-04-07 09:03:51 UTC] ✅ Saved HTML file: reports/delegators_metrics_20250407_110351.html
+[2025-04-07 09:07:08 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_110708.csv
+[2025-04-07 09:07:08 UTC] ✅ Saved HTML file: reports/index.html
+[2025-04-07 09:09:13 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_110913.csv
+[2025-04-07 09:09:13 UTC] ✅ Saved HTML file: reports/index.html
+[2025-04-07 09:09:50 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_110950.csv
+[2025-04-07 09:13:22 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_111322.csv
+[2025-04-07 09:14:49 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_111449.csv
+[2025-04-07 09:15:14 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_111514.csv
+[2025-04-07 09:15:57 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_111557.csv
+[2025-04-07 09:18:18 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_111818.csv
+[2025-04-07 09:20:11 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_112011.csv
+[2025-04-07 09:24:10 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_112410.csv
+[2025-04-07 09:27:03 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_112703.csv
+[2025-04-07 09:28:41 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_112841.csv
+[2025-04-07 09:30:27 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113027.csv
+[2025-04-07 09:32:17 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113217.csv
+[2025-04-07 09:35:59 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113559.csv
+[2025-04-07 09:35:59 UTC] ⚠️ Failed to fetch indexer avatars: 404 Client Error: Not Found for url: https://gateway.thegraph.com/api/%7BAPI_KEY%7D/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp
+[2025-04-07 09:36:19 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113619.csv
+[2025-04-07 09:36:19 UTC] ⚠️ Failed to fetch indexer avatars: 404 Client Error: Not Found for url: https://gateway.thegraph.com/api/f87ff616bf7abafe9028ca4b4e69096e/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp
+[2025-04-07 09:36:36 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113636.csv
+[2025-04-07 09:36:36 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:38:17 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113817.csv
+[2025-04-07 09:38:18 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:39:42 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_113942.csv
+[2025-04-07 09:39:42 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:46:31 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_114631.csv
+[2025-04-07 09:46:31 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:47:30 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_114730.csv
+[2025-04-07 09:47:30 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:48:32 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_114832.csv
+[2025-04-07 09:48:33 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:48:54 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_114854.csv
+[2025-04-07 09:48:54 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:54:16 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_115416.csv
+[2025-04-07 09:54:16 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:55:54 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_115554.csv
+[2025-04-07 09:55:54 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:57:58 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_115758.csv
+[2025-04-07 09:57:59 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 09:59:20 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_115920.csv
+[2025-04-07 09:59:21 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 10:03:26 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_120326.csv
+[2025-04-07 10:03:27 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 10:06:08 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_120608.csv
+[2025-04-07 10:06:09 UTC] ⚠️ Failed to fetch indexer avatars: 'NoneType' object has no attribute 'get'
+[2025-04-07 12:37:45 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_143745.csv
+[2025-04-07 12:43:02 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_144302.csv
+[2025-04-07 12:43:03 UTC] ⚠️ Failed to fetch indexer avatar: 'NoneType' object has no attribute 'get'
+[2025-04-07 12:46:46 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_144646.csv
+[2025-04-07 12:46:48 UTC] ⚠️ Failed to fetch indexer avatar for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea: 'NoneType' object has no attribute 'get'
+[2025-04-07 12:46:48 UTC] Query was:
+
+    {
+        indexers(where: { id: "0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea" }) {
+            account {
+                metadata {
+                    image
+                }
+            }
+        }
+    }
+    
+[2025-04-07 12:50:55 UTC] ✅ Saved CSV file: reports/delegators_metrics_20250407_145055.csv
+[2025-04-07 12:50:57 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 12:53:43 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 12:53:46 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 12:54:26 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 12:54:28 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 12:56:38 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 12:56:39 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 12:57:07 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 12:57:09 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:02:07 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:02:09 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:04:31 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:05:45 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:05:47 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:09:40 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:09:42 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:13:43 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:13:45 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:15:11 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:15:13 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:23:03 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:23:05 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:25:57 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:25:59 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:27:29 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:27:31 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:27:50 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:27:51 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:27:55 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 13:28:00 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 13:28:11 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 13:28:11 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 13:28:11 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 13:33:54 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 13:33:56 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 13:33:59 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 13:34:06 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 13:34:17 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 13:34:18 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 13:34:18 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 13:34:19 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 13:34:29 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 14:25:18 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 14:25:22 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 14:25:28 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 14:25:39 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 14:26:00 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 14:26:00 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 14:26:01 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 14:26:02 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 14:26:20 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 14:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 14:30:05 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 14:30:10 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 14:30:21 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 14:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 14:30:47 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 14:30:48 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 14:30:49 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 14:31:10 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 16:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 16:30:06 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 16:30:12 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 16:30:23 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 16:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 16:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 16:30:46 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 16:30:47 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 16:31:03 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 17:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 17:30:06 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 17:30:13 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 17:30:24 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 17:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 17:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 17:30:47 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 17:30:48 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 17:31:04 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 18:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 18:30:06 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 18:30:12 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 18:30:23 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 18:30:44 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 18:30:44 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 18:30:45 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 18:30:46 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 18:31:04 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 19:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 19:30:09 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 19:30:15 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 19:30:26 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 19:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 19:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 19:30:47 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 19:30:48 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 19:31:06 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 20:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 20:30:06 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 20:30:10 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 20:30:17 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 20:30:30 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 20:30:31 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 20:30:31 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 20:30:32 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 20:30:44 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 21:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 21:30:09 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 21:30:15 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 21:30:25 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 21:30:44 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 21:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 21:30:46 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 21:30:47 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 21:31:04 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 22:30:01 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 22:30:06 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 22:30:11 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 22:30:20 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 22:30:39 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 22:30:40 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 22:30:41 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 22:30:41 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 22:30:58 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092
+[2025-04-07 23:30:02 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-07 23:30:08 UTC] ℹ️ No metadata found for address 0x863e1fc588651c432a1bbb7c8afdf2c3d34921ea
+[2025-04-07 23:30:12 UTC] ℹ️ No metadata found for address 0xdeb712db301285ed483ef9e02dd08a1980f273f1
+[2025-04-07 23:30:23 UTC] ℹ️ No metadata found for address 0xf7793bf9561c32ffbac603ce572fa55643f9cf72
+[2025-04-07 23:30:45 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 23:30:46 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-07 23:30:47 UTC] ℹ️ No metadata found for address 0xbb31364ed8192494371d94a6c1cab02351ebfcbb
+[2025-04-07 23:30:48 UTC] ℹ️ No metadata found for address 0x6f9bb7e454f5b3eb2310343f0e99269dc2bb8a1d
+[2025-04-07 23:31:07 UTC] ℹ️ No metadata found for address 0x066636093e6c3417a0b46c3ecfbd34b5bda00092

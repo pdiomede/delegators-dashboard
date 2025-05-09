@@ -1,0 +1,822 @@
+[2025-04-17 09:44:08 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:45:05 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:46:11 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:47:17 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:49:51 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:49:51 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:49:51 UTC] 🔍 Fetched ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 09:49:51 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:49:51 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 09:50:19 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:50:19 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:19 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 09:50:19 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:50:19 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 09:50:19 UTC] 🔍 Fetched ENS for 0x01f17c392614c7ea586e7272ed348efee21b90a3: oraclegen-indexer.eth
+[2025-04-17 09:50:20 UTC] 🔍 Fetched ENS for 0xd5285e60b8193d3eeb77efaad340b9a0f95b115c: no ENS
+[2025-04-17 09:50:20 UTC] 🔍 Fetched ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:20 UTC] 🔍 Fetched ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:20 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:20 UTC] 🔍 Fetched ENS for 0x6d4056a9a61ed9afb478df360bc26e6bfd946481: no ENS
+[2025-04-17 09:50:21 UTC] 🔍 Fetched ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:50:21 UTC] 🔍 Fetched ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:50:21 UTC] 🔍 Fetched ENS for 0xfeff9093f6b32d0e5cddba743b06a1fedb87c004: p-ops2.eth
+[2025-04-17 09:50:21 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:50:22 UTC] 🔍 Fetched ENS for 0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0: graphops.eth
+[2025-04-17 09:50:22 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:50:22 UTC] 🔍 Fetched ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:50:22 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:50:22 UTC] 🔍 Fetched ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 09:50:22 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:50:23 UTC] 🔍 Fetched ENS for 0x345c9a221e4caa15f78fb8078c441745de48a225: 0xfury.eth
+[2025-04-17 09:50:23 UTC] 🔍 Fetched ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-04-17 09:50:23 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:23 UTC] 🔍 Fetched ENS for 0xc44ea5de89b58027037deb85b10143c10eb106b0: no ENS
+[2025-04-17 09:50:23 UTC] 🔍 Fetched ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 09:50:24 UTC] 🔍 Fetched ENS for 0x53f28b920f80a0e95675340dae3e7edfd97c1c21: no ENS
+[2025-04-17 09:50:24 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:24 UTC] 🔍 Fetched ENS for 0x632a93478230b3723ec4f793f685f7ef2019569a: 0xdrb.eth
+[2025-04-17 09:50:24 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:24 UTC] 🔍 Fetched ENS for 0xdee5cc93a3a32c112cfa7ad2703adbba604c0c3c: no ENS
+[2025-04-17 09:50:25 UTC] 🔍 Fetched ENS for 0x269ebeee083ce6f70486a67dc8036a889bf322a9: thomasblock.eth
+[2025-04-17 09:50:25 UTC] 🔍 Fetched ENS for 0x9e0c3a2d1ddc81017083409bdd3f9ba07a3191d4: no ENS
+[2025-04-17 09:50:25 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:25 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:25 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:25 UTC] 🔍 Fetched ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:26 UTC] 🔍 Fetched ENS for 0xb4b4570df6f7fe320f10fdfb702dba7e35244550: nodeify.eth
+[2025-04-17 09:50:26 UTC] 🔍 Fetched ENS for 0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a: no ENS
+[2025-04-17 09:50:26 UTC] 🔍 Fetched ENS for 0x089f78d8cf0a5ae1b7a581b1910a73f8cb3e4774: darksiders-team.eth
+[2025-04-17 09:50:26 UTC] 🧠 Using cached ENS for 0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a: no ENS
+[2025-04-17 09:50:26 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:27 UTC] 🔍 Fetched ENS for 0xdbaf92d420b6379ac4e6993a532b2312efd314d3: no ENS
+[2025-04-17 09:50:27 UTC] 🔍 Fetched ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:50:27 UTC] 🔍 Fetched ENS for 0x51a693d5a35e99c5cc5e089c9fc44da15d46a774: saiseng.eth
+[2025-04-17 09:50:27 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:27 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:27 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:28 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:28 UTC] 🔍 Fetched ENS for 0x53dbbc9d916b1840a2c4c26b150ba2e13f36e10f: thoalt-indexer.eth
+[2025-04-17 09:50:28 UTC] 🔍 Fetched ENS for 0x525ee071454cf9b6d750720bce8d8697ef82f02f: frullino.eth
+[2025-04-17 09:50:28 UTC] 🔍 Fetched ENS for 0x920fdeb00ee04dd72f62d8a8f80f13c82ef76c1e: braindexer.eth
+[2025-04-17 09:50:29 UTC] 🔍 Fetched ENS for 0xcc1ba3916f5ec9c6e9b73923514ebf6f92a07bd4: mintedlabs.eth
+[2025-04-17 09:50:29 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:29 UTC] 🔍 Fetched ENS for 0xa64bfdffa2e2255700e4cd69a393194aa0a31b08: maikolete.eth
+[2025-04-17 09:50:29 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:29 UTC] 🔍 Fetched ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 09:50:29 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 09:50:30 UTC] 🔍 Fetched ENS for 0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24: no ENS
+[2025-04-17 09:50:30 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:30 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:30 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:30 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:30 UTC] 🔍 Fetched ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:50:30 UTC] 🔍 Fetched ENS for 0xeab209c749efbb7caea9d9b85823b8ec93ca5b05: garuga.eth
+[2025-04-17 09:50:30 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:31 UTC] 🔍 Fetched ENS for 0xb5f1fab5832aa0b3f4d2563e684668603504b999: onlydance.eth
+[2025-04-17 09:50:31 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:31 UTC] 🔍 Fetched ENS for 0x4c9f073c6fe57138347b0c2c39d91e494e8699a0: no ENS
+[2025-04-17 09:50:31 UTC] 🔍 Fetched ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:31 UTC] 🧠 Using cached ENS for 0x4c9f073c6fe57138347b0c2c39d91e494e8699a0: no ENS
+[2025-04-17 09:50:31 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:32 UTC] 🔍 Fetched ENS for 0x6c3ae5fb394e86c897800b616ba05fcdad781607: no ENS
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:32 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:33 UTC] 🔍 Fetched ENS for 0xb867ea1af420ef9117c1d73ad535ccb9a17ad287: no ENS
+[2025-04-17 09:50:33 UTC] 🔍 Fetched ENS for 0x63c9dc729ba7a22bb8605216b24a34b902e5fe94: infradao.eth
+[2025-04-17 09:50:33 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 09:50:33 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:33 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 09:50:33 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:34 UTC] 🔍 Fetched ENS for 0xf66540264de77b811d449c445b2017d5d3b974ec: no ENS
+[2025-04-17 09:50:34 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:34 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:34 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:34 UTC] 🔍 Fetched ENS for 0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016: no ENS
+[2025-04-17 09:50:34 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:35 UTC] 🧠 Using cached ENS for 0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016: no ENS
+[2025-04-17 09:50:35 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:50:35 UTC] 🔍 Fetched ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:50:35 UTC] 🔍 Fetched ENS for 0xe13840a2e92e0cb17a246609b432d0fa2e418774: lunanova-indexer.eth
+[2025-04-17 09:50:36 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:50:36 UTC] 🔍 Fetched ENS for 0x1b7e0068ca1d7929c8c56408d766e1510e54d98d: suntzu-indexer-arb.eth
+[2025-04-17 09:50:36 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:50:36 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:36 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:50:36 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:37 UTC] 🔍 Fetched ENS for 0x6b52444351c862286174229f5c0843c3023a5af2: no ENS
+[2025-04-17 09:50:37 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:50:37 UTC] 🔍 Fetched ENS for 0x57db9c7c683a67f046acbc4d609687dfb974a6fb: subgr4ph.eth
+[2025-04-17 09:50:37 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:50:38 UTC] 🔍 Fetched ENS for 0xe795bda747588a233d9c2b059b99a4de440e733d: no ENS
+[2025-04-17 09:50:38 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:39 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:39 UTC] 🔍 Fetched ENS for 0x5ddee9720e17aad28febb55643cd8ab50c51c60b: maplenodes.eth
+[2025-04-17 09:50:40 UTC] 🔍 Fetched ENS for 0xa1761fc95e8b2a1e99dfdee816f6d8f4c47e26ae: no ENS
+[2025-04-17 09:50:40 UTC] 🔍 Fetched ENS for 0x59749d1fa9635cd0413aeff5ee295490a7e87f54: no ENS
+[2025-04-17 09:50:41 UTC] 🔍 Fetched ENS for 0xf012f03bd16e7c24ae3a8e89a4250440a8c6da36: no ENS
+[2025-04-17 09:50:41 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:41 UTC] 🔍 Fetched ENS for 0x85ce2963016284dbb2f33f8d712f5505bf47b123: no ENS
+[2025-04-17 09:50:41 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:41 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:41 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:41 UTC] 🔍 Fetched ENS for 0xdcbf4cd89e23e2991a45c5ca72298c8669fc075b: no ENS
+[2025-04-17 09:50:41 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:42 UTC] 🧠 Using cached ENS for 0x57db9c7c683a67f046acbc4d609687dfb974a6fb: subgr4ph.eth
+[2025-04-17 09:50:42 UTC] 🧠 Using cached ENS for 0xe13840a2e92e0cb17a246609b432d0fa2e418774: lunanova-indexer.eth
+[2025-04-17 09:50:42 UTC] 🔍 Fetched ENS for 0x8baacf9b7135c8313d583a96dd5623904681a3a7: no ENS
+[2025-04-17 09:50:42 UTC] 🔍 Fetched ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:50:42 UTC] 🧠 Using cached ENS for 0x8baacf9b7135c8313d583a96dd5623904681a3a7: no ENS
+[2025-04-17 09:50:43 UTC] 🔍 Fetched ENS for 0xc55c63563efb36f7cc65ac3060c52987c6694b37: figment-prime.eth
+[2025-04-17 09:50:43 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-17 09:50:43 UTC] 🔍 Fetched ENS for 0xd89f4da776324a4e7414e0d0ff3e98e15788e3ca: no ENS
+[2025-04-17 09:50:43 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:43 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:43 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:43 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:43 UTC] 🔍 Fetched ENS for 0xaa988dcb035518bc0e20082a3148a5d3dfd1776d: stake🦑squid-1.eth
+[2025-04-17 09:50:44 UTC] 🔍 Fetched ENS for 0xa81ace214b97d4b9c2072a934d0c4de486757538: no ENS
+[2025-04-17 09:50:44 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:44 UTC] 🔍 Fetched ENS for 0xd84cf058a098dd5aff006d7b45b28c4584bf712a: no ENS
+[2025-04-17 09:50:44 UTC] 🔍 Fetched ENS for 0x9da1017766bfeb2835db4f811516eea68996538b: ryabina.eth
+[2025-04-17 09:50:45 UTC] 🔍 Fetched ENS for 0x0b2ad341fdfc04d76e1e9ab6a66374e2b70c3398: no ENS
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:50:45 UTC] 🔍 Fetched ENS for 0x3214792ded3d4fb6018d139d8fbc719abd62f18a: no ENS
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x3214792ded3d4fb6018d139d8fbc719abd62f18a: no ENS
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x6c3ae5fb394e86c897800b616ba05fcdad781607: no ENS
+[2025-04-17 09:50:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:46 UTC] 🔍 Fetched ENS for 0x7ac4784b448f0edfc8874a79d71433f79f904276: no ENS
+[2025-04-17 09:50:46 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:46 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:46 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:46 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:46 UTC] 🔍 Fetched ENS for 0x74dbb201ecc0b16934e68377bc13013883d9417b: rickydata-indexer.eth
+[2025-04-17 09:50:46 UTC] 🔍 Fetched ENS for 0xd61c60ace8d886cb7a35ae10f8e49978b085a10b: no ENS
+[2025-04-17 09:50:46 UTC] 🧠 Using cached ENS for 0xb4b4570df6f7fe320f10fdfb702dba7e35244550: nodeify.eth
+[2025-04-17 09:50:47 UTC] 🔍 Fetched ENS for 0xd9efe49c066968ac203487a3215f0c064d520050: no ENS
+[2025-04-17 09:50:47 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:50:47 UTC] 🧠 Using cached ENS for 0xd9efe49c066968ac203487a3215f0c064d520050: no ENS
+[2025-04-17 09:50:47 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:47 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:47 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:47 UTC] 🔍 Fetched ENS for 0xd4e0180b9a0b0c8c963472f0c9ff02a6fbffa398: no ENS
+[2025-04-17 09:50:48 UTC] 🔍 Fetched ENS for 0x3b9ba748691f135b71582dc3292e5e3ed7e13341: no ENS
+[2025-04-17 09:50:48 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-17 09:50:48 UTC] 🔍 Fetched ENS for 0xbc0e3a344a28ad0ac07e5838af6ecfe8b026e1e1: kangbachen.eth
+[2025-04-17 09:50:48 UTC] 🧠 Using cached ENS for 0x3b9ba748691f135b71582dc3292e5e3ed7e13341: no ENS
+[2025-04-17 09:50:48 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-17 09:50:48 UTC] 🔍 Fetched ENS for 0xc33c77f59baa77a4f81cb6dd7ce98baf270b0ce9: reconnoitrer.eth
+[2025-04-17 09:50:49 UTC] 🔍 Fetched ENS for 0x0b9d582b7fdd387ba13ad7f453d49af255a8ed5e: dapplooker-indexer.eth
+[2025-04-17 09:50:49 UTC] 🔍 Fetched ENS for 0xa183145cc77028abe5e0c8cf845dc49ce133df0a: no ENS
+[2025-04-17 09:50:49 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 09:50:49 UTC] 🧠 Using cached ENS for 0xa183145cc77028abe5e0c8cf845dc49ce133df0a: no ENS
+[2025-04-17 09:50:49 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:50:49 UTC] 🔍 Fetched ENS for 0x52e5f9650266a222395d1079079c24e77f946fff: no ENS
+[2025-04-17 09:50:50 UTC] 🔍 Fetched ENS for 0x550c1f4814a85aa10f5f061ca8c45e2ee9620226: experimental.infradao.eth
+[2025-04-17 09:50:50 UTC] 🔍 Fetched ENS for 0xf20fda6a5f627dd0d48a2d64ba58d37eaf77d3dd: no ENS
+[2025-04-17 09:50:50 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:50 UTC] 🔍 Fetched ENS for 0xcb8c9f64cd8ece0fa76fd46302fd1d1db9eb47f0: no ENS
+[2025-04-17 09:50:50 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:50:51 UTC] 🔍 Fetched ENS for 0x34fa08a76a9db6f3ea07f2acd4683eca14b1ea82: aliciarandolph.eth
+[2025-04-17 09:50:51 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:51 UTC] 🔍 Fetched ENS for 0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb: smilemart.eth
+[2025-04-17 09:50:51 UTC] 🔍 Fetched ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:50:51 UTC] 🧠 Using cached ENS for 0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb: smilemart.eth
+[2025-04-17 09:50:51 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:51 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:51 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:52 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:52 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:52 UTC] 🔍 Fetched ENS for 0x9a539f692cde873d6b882fc326c8d62d4cea8048: no ENS
+[2025-04-17 09:50:52 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:50:52 UTC] 🔍 Fetched ENS for 0x88e7fa06c8ee2c9899ecddb3f4655b5ec8601415: no ENS
+[2025-04-17 09:50:52 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:52 UTC] 🧠 Using cached ENS for 0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24: no ENS
+[2025-04-17 09:50:52 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:53 UTC] 🔍 Fetched ENS for 0x38bc308adf8824a2492493d99881cbd6f73f92c7: no ENS
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0x38bc308adf8824a2492493d99881cbd6f73f92c7: no ENS
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:50:53 UTC] 🔍 Fetched ENS for 0xe662e888446e5c7ba6a34c4f75287a8bc332ac81: no ENS
+[2025-04-17 09:50:53 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:54 UTC] 🔍 Fetched ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:54 UTC] 🔍 Fetched ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:50:54 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x1b7e0068ca1d7929c8c56408d766e1510e54d98d: suntzu-indexer-arb.eth
+[2025-04-17 09:50:55 UTC] 🔍 Fetched ENS for 0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d: no ENS
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d: no ENS
+[2025-04-17 09:50:55 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:50:56 UTC] 🔍 Fetched ENS for 0x5706fc2ba2cba396135d7cf602dc208371a8655b: deli-gator.eth
+[2025-04-17 09:50:56 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:50:56 UTC] 🔍 Fetched ENS for 0x155208d080e158a5e091a0ec127fcd923235ad85: no ENS
+[2025-04-17 09:50:56 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:50:56 UTC] 🧠 Using cached ENS for 0x155208d080e158a5e091a0ec127fcd923235ad85: no ENS
+[2025-04-17 09:50:56 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:57 UTC] 🔍 Fetched ENS for 0x1a286b6f7087c8fd5e7caf0d345782d387dfab17: no ENS
+[2025-04-17 09:50:57 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:50:57 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:50:57 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:50:57 UTC] 🔍 Fetched ENS for 0x82dbc0ec046ccd99ddb9a7b3507a0cb5bab10f88: no ENS
+[2025-04-17 09:50:57 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:50:57 UTC] 🔍 Fetched ENS for 0x5b191f5a2b4a867c4ed71858daccc51fc59c69c0: proofofdegen777.eth
+[2025-04-17 09:50:57 UTC] 🧠 Using cached ENS for 0x74dbb201ecc0b16934e68377bc13013883d9417b: rickydata-indexer.eth
+[2025-04-17 09:50:58 UTC] 🔍 Fetched ENS for 0xab9f3a091dd2f067e1e251d4b0adb31d634c19cb: no ENS
+[2025-04-17 09:50:58 UTC] 🧠 Using cached ENS for 0xfeff9093f6b32d0e5cddba743b06a1fedb87c004: p-ops2.eth
+[2025-04-17 09:50:58 UTC] 🔍 Fetched ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:58 UTC] 🔍 Fetched ENS for 0xfc842f81490dcb37e82d416b2d28327dfb24ba9a: grassets-tech-1.eth
+[2025-04-17 09:50:58 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:58 UTC] 🧠 Using cached ENS for 0x5ddee9720e17aad28febb55643cd8ab50c51c60b: maplenodes.eth
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:59 UTC] 🔍 Fetched ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0: graphops.eth
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x01f17c392614c7ea586e7272ed348efee21b90a3: oraclegen-indexer.eth
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:50:59 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:51:00 UTC] 🔍 Fetched ENS for 0x07aded6ae3a2ec145314994a898d1eda14429be4: no ENS
+[2025-04-17 09:51:00 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:51:00 UTC] 🔍 Fetched ENS for 0x759cc170f2c64ef25b0d29921ace1f2c50862f5c: bittrepp.eth
+[2025-04-17 09:51:00 UTC] 🔍 Fetched ENS for 0x4f45530236e1c6603870301010dcab7b561125b3: deutsche-telekom-indexer.eth
+[2025-04-17 09:51:00 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-17 09:51:01 UTC] 🔍 Fetched ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 09:51:01 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:51:01 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 09:51:01 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:51:01 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 09:58:40 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0x01f17c392614c7ea586e7272ed348efee21b90a3: oraclegen-indexer.eth
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0xd5285e60b8193d3eeb77efaad340b9a0f95b115c: no ENS
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:40 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x6d4056a9a61ed9afb478df360bc26e6bfd946481: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0xfeff9093f6b32d0e5cddba743b06a1fedb87c004: p-ops2.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0: graphops.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0x345c9a221e4caa15f78fb8078c441745de48a225: 0xfury.eth
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-04-17 09:58:41 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0xc44ea5de89b58027037deb85b10143c10eb106b0: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x53f28b920f80a0e95675340dae3e7edfd97c1c21: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x632a93478230b3723ec4f793f685f7ef2019569a: 0xdrb.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0xdee5cc93a3a32c112cfa7ad2703adbba604c0c3c: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x269ebeee083ce6f70486a67dc8036a889bf322a9: thomasblock.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x9e0c3a2d1ddc81017083409bdd3f9ba07a3191d4: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0xb4b4570df6f7fe320f10fdfb702dba7e35244550: nodeify.eth
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a: no ENS
+[2025-04-17 09:58:42 UTC] 🧠 Using cached ENS for 0x089f78d8cf0a5ae1b7a581b1910a73f8cb3e4774: darksiders-team.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a: no ENS
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0xdbaf92d420b6379ac4e6993a532b2312efd314d3: no ENS
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x51a693d5a35e99c5cc5e089c9fc44da15d46a774: saiseng.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x53dbbc9d916b1840a2c4c26b150ba2e13f36e10f: thoalt-indexer.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x525ee071454cf9b6d750720bce8d8697ef82f02f: frullino.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x920fdeb00ee04dd72f62d8a8f80f13c82ef76c1e: braindexer.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0xcc1ba3916f5ec9c6e9b73923514ebf6f92a07bd4: mintedlabs.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0xa64bfdffa2e2255700e4cd69a393194aa0a31b08: maikolete.eth
+[2025-04-17 09:58:43 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24: no ENS
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0xeab209c749efbb7caea9d9b85823b8ec93ca5b05: garuga.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0xb5f1fab5832aa0b3f4d2563e684668603504b999: onlydance.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x4c9f073c6fe57138347b0c2c39d91e494e8699a0: no ENS
+[2025-04-17 09:58:44 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x4c9f073c6fe57138347b0c2c39d91e494e8699a0: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x6c3ae5fb394e86c897800b616ba05fcdad781607: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0xb867ea1af420ef9117c1d73ad535ccb9a17ad287: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x63c9dc729ba7a22bb8605216b24a34b902e5fe94: infradao.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 09:58:45 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xf66540264de77b811d449c445b2017d5d3b974ec: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xe13840a2e92e0cb17a246609b432d0fa2e418774: lunanova-indexer.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x1b7e0068ca1d7929c8c56408d766e1510e54d98d: suntzu-indexer-arb.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 09:58:46 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x6b52444351c862286174229f5c0843c3023a5af2: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x57db9c7c683a67f046acbc4d609687dfb974a6fb: subgr4ph.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0xe795bda747588a233d9c2b059b99a4de440e733d: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x5ddee9720e17aad28febb55643cd8ab50c51c60b: maplenodes.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0xa1761fc95e8b2a1e99dfdee816f6d8f4c47e26ae: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x59749d1fa9635cd0413aeff5ee295490a7e87f54: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0xf012f03bd16e7c24ae3a8e89a4250440a8c6da36: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x85ce2963016284dbb2f33f8d712f5505bf47b123: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:47 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xdcbf4cd89e23e2991a45c5ca72298c8669fc075b: no ENS
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x57db9c7c683a67f046acbc4d609687dfb974a6fb: subgr4ph.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xe13840a2e92e0cb17a246609b432d0fa2e418774: lunanova-indexer.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x8baacf9b7135c8313d583a96dd5623904681a3a7: no ENS
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x8baacf9b7135c8313d583a96dd5623904681a3a7: no ENS
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xc55c63563efb36f7cc65ac3060c52987c6694b37: figment-prime.eth
+[2025-04-17 09:58:48 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xd89f4da776324a4e7414e0d0ff3e98e15788e3ca: no ENS
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:48 UTC] 🧠 Using cached ENS for 0xaa988dcb035518bc0e20082a3148a5d3dfd1776d: stake🦑squid-1.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0xa81ace214b97d4b9c2072a934d0c4de486757538: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0xd84cf058a098dd5aff006d7b45b28c4584bf712a: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x9da1017766bfeb2835db4f811516eea68996538b: ryabina.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x0b2ad341fdfc04d76e1e9ab6a66374e2b70c3398: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x3214792ded3d4fb6018d139d8fbc719abd62f18a: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x3214792ded3d4fb6018d139d8fbc719abd62f18a: no ENS
+[2025-04-17 09:58:49 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x6c3ae5fb394e86c897800b616ba05fcdad781607: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x7ac4784b448f0edfc8874a79d71433f79f904276: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x74dbb201ecc0b16934e68377bc13013883d9417b: rickydata-indexer.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0xd61c60ace8d886cb7a35ae10f8e49978b085a10b: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0xb4b4570df6f7fe320f10fdfb702dba7e35244550: nodeify.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0xd9efe49c066968ac203487a3215f0c064d520050: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0xd9efe49c066968ac203487a3215f0c064d520050: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:50 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xd4e0180b9a0b0c8c963472f0c9ff02a6fbffa398: no ENS
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x3b9ba748691f135b71582dc3292e5e3ed7e13341: no ENS
+[2025-04-17 09:58:51 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xbc0e3a344a28ad0ac07e5838af6ecfe8b026e1e1: kangbachen.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x3b9ba748691f135b71582dc3292e5e3ed7e13341: no ENS
+[2025-04-17 09:58:51 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xc33c77f59baa77a4f81cb6dd7ce98baf270b0ce9: reconnoitrer.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x0b9d582b7fdd387ba13ad7f453d49af255a8ed5e: dapplooker-indexer.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xa183145cc77028abe5e0c8cf845dc49ce133df0a: no ENS
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xa183145cc77028abe5e0c8cf845dc49ce133df0a: no ENS
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x52e5f9650266a222395d1079079c24e77f946fff: no ENS
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x550c1f4814a85aa10f5f061ca8c45e2ee9620226: experimental.infradao.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xf20fda6a5f627dd0d48a2d64ba58d37eaf77d3dd: no ENS
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0xcb8c9f64cd8ece0fa76fd46302fd1d1db9eb47f0: no ENS
+[2025-04-17 09:58:51 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x34fa08a76a9db6f3ea07f2acd4683eca14b1ea82: aliciarandolph.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb: smilemart.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb: smilemart.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x9a539f692cde873d6b882fc326c8d62d4cea8048: no ENS
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0x88e7fa06c8ee2c9899ecddb3f4655b5ec8601415: no ENS
+[2025-04-17 09:58:52 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x38bc308adf8824a2492493d99881cbd6f73f92c7: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x38bc308adf8824a2492493d99881cbd6f73f92c7: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xe662e888446e5c7ba6a34c4f75287a8bc332ac81: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:58:53 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x1b7e0068ca1d7929c8c56408d766e1510e54d98d: suntzu-indexer-arb.eth
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d: no ENS
+[2025-04-17 09:58:54 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d: no ENS
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x5706fc2ba2cba396135d7cf602dc208371a8655b: deli-gator.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x155208d080e158a5e091a0ec127fcd923235ad85: no ENS
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x155208d080e158a5e091a0ec127fcd923235ad85: no ENS
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x1a286b6f7087c8fd5e7caf0d345782d387dfab17: no ENS
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x82dbc0ec046ccd99ddb9a7b3507a0cb5bab10f88: no ENS
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x5b191f5a2b4a867c4ed71858daccc51fc59c69c0: proofofdegen777.eth
+[2025-04-17 09:58:55 UTC] 🧠 Using cached ENS for 0x74dbb201ecc0b16934e68377bc13013883d9417b: rickydata-indexer.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0xab9f3a091dd2f067e1e251d4b0adb31d634c19cb: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0xfeff9093f6b32d0e5cddba743b06a1fedb87c004: p-ops2.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0xfc842f81490dcb37e82d416b2d28327dfb24ba9a: grassets-tech-1.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x5ddee9720e17aad28febb55643cd8ab50c51c60b: maplenodes.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0: graphops.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x01f17c392614c7ea586e7272ed348efee21b90a3: oraclegen-indexer.eth
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:56 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x07aded6ae3a2ec145314994a898d1eda14429be4: no ENS
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x759cc170f2c64ef25b0d29921ace1f2c50862f5c: bittrepp.eth
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x4f45530236e1c6603870301010dcab7b561125b3: deutsche-telekom-indexer.eth
+[2025-04-17 09:58:57 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 09:58:57 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 10:00:14 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-04-17 10:00:14 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:14 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 10:00:14 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x054a55e0e723480c2f9c3d0761f57feb51f0aeae: no ENS
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x01f17c392614c7ea586e7272ed348efee21b90a3: oraclegen-indexer.eth
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0xd5285e60b8193d3eeb77efaad340b9a0f95b115c: no ENS
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x6d4056a9a61ed9afb478df360bc26e6bfd946481: no ENS
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0xfeff9093f6b32d0e5cddba743b06a1fedb87c004: p-ops2.eth
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 10:00:15 UTC] 🧠 Using cached ENS for 0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0: graphops.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x345c9a221e4caa15f78fb8078c441745de48a225: 0xfury.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0xc44ea5de89b58027037deb85b10143c10eb106b0: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x53f28b920f80a0e95675340dae3e7edfd97c1c21: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x632a93478230b3723ec4f793f685f7ef2019569a: 0xdrb.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0xdee5cc93a3a32c112cfa7ad2703adbba604c0c3c: no ENS
+[2025-04-17 10:00:16 UTC] 🧠 Using cached ENS for 0x269ebeee083ce6f70486a67dc8036a889bf322a9: thomasblock.eth
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x9e0c3a2d1ddc81017083409bdd3f9ba07a3191d4: no ENS
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0xb4b4570df6f7fe320f10fdfb702dba7e35244550: nodeify.eth
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a: no ENS
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x089f78d8cf0a5ae1b7a581b1910a73f8cb3e4774: darksiders-team.eth
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x64ef6c5b0925f4a121db30aaed02cb0c1884df9a: no ENS
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0xdbaf92d420b6379ac4e6993a532b2312efd314d3: no ENS
+[2025-04-17 10:00:17 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x51a693d5a35e99c5cc5e089c9fc44da15d46a774: saiseng.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x53dbbc9d916b1840a2c4c26b150ba2e13f36e10f: thoalt-indexer.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x525ee071454cf9b6d750720bce8d8697ef82f02f: frullino.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x920fdeb00ee04dd72f62d8a8f80f13c82ef76c1e: braindexer.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0xcc1ba3916f5ec9c6e9b73923514ebf6f92a07bd4: mintedlabs.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0xa64bfdffa2e2255700e4cd69a393194aa0a31b08: maikolete.eth
+[2025-04-17 10:00:18 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24: no ENS
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0xeab209c749efbb7caea9d9b85823b8ec93ca5b05: garuga.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0xb5f1fab5832aa0b3f4d2563e684668603504b999: onlydance.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x4c9f073c6fe57138347b0c2c39d91e494e8699a0: no ENS
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x4c9f073c6fe57138347b0c2c39d91e494e8699a0: no ENS
+[2025-04-17 10:00:19 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x6c3ae5fb394e86c897800b616ba05fcdad781607: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0xb867ea1af420ef9117c1d73ad535ccb9a17ad287: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x63c9dc729ba7a22bb8605216b24a34b902e5fe94: infradao.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0xe1076ff8b7d61b2084054c238860ec7aa9a9f9b3: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0xf66540264de77b811d449c445b2017d5d3b974ec: no ENS
+[2025-04-17 10:00:20 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x7ff1499b03c0d3aae87e28bdd0264cdd6379b016: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xe13840a2e92e0cb17a246609b432d0fa2e418774: lunanova-indexer.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x1b7e0068ca1d7929c8c56408d766e1510e54d98d: suntzu-indexer-arb.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0xd410e2f7d0c8471b8fa03801d6e0c1e8bb91eb4f: no ENS
+[2025-04-17 10:00:21 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x6b52444351c862286174229f5c0843c3023a5af2: no ENS
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x57db9c7c683a67f046acbc4d609687dfb974a6fb: subgr4ph.eth
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0xe795bda747588a233d9c2b059b99a4de440e733d: no ENS
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x5ddee9720e17aad28febb55643cd8ab50c51c60b: maplenodes.eth
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0xa1761fc95e8b2a1e99dfdee816f6d8f4c47e26ae: no ENS
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0x59749d1fa9635cd0413aeff5ee295490a7e87f54: no ENS
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0xf012f03bd16e7c24ae3a8e89a4250440a8c6da36: no ENS
+[2025-04-17 10:00:22 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x85ce2963016284dbb2f33f8d712f5505bf47b123: no ENS
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xdcbf4cd89e23e2991a45c5ca72298c8669fc075b: no ENS
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x57db9c7c683a67f046acbc4d609687dfb974a6fb: subgr4ph.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xe13840a2e92e0cb17a246609b432d0fa2e418774: lunanova-indexer.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x8baacf9b7135c8313d583a96dd5623904681a3a7: no ENS
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x8baacf9b7135c8313d583a96dd5623904681a3a7: no ENS
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xc55c63563efb36f7cc65ac3060c52987c6694b37: figment-prime.eth
+[2025-04-17 10:00:23 UTC] ℹ️ No metadata found for address 0xc55c63563efb36f7cc65ac3060c52987c6694b37
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0xd89f4da776324a4e7414e0d0ff3e98e15788e3ca: no ENS
+[2025-04-17 10:00:23 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0xaa988dcb035518bc0e20082a3148a5d3dfd1776d: stake🦑squid-1.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0xa81ace214b97d4b9c2072a934d0c4de486757538: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0xd84cf058a098dd5aff006d7b45b28c4584bf712a: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x9da1017766bfeb2835db4f811516eea68996538b: ryabina.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x0b2ad341fdfc04d76e1e9ab6a66374e2b70c3398: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0x3214792ded3d4fb6018d139d8fbc719abd62f18a: no ENS
+[2025-04-17 10:00:24 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x3214792ded3d4fb6018d139d8fbc719abd62f18a: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x6c3ae5fb394e86c897800b616ba05fcdad781607: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x7ac4784b448f0edfc8874a79d71433f79f904276: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x74dbb201ecc0b16934e68377bc13013883d9417b: rickydata-indexer.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0xd61c60ace8d886cb7a35ae10f8e49978b085a10b: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0xb4b4570df6f7fe320f10fdfb702dba7e35244550: nodeify.eth
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0xd9efe49c066968ac203487a3215f0c064d520050: no ENS
+[2025-04-17 10:00:25 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xd9efe49c066968ac203487a3215f0c064d520050: no ENS
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xd4e0180b9a0b0c8c963472f0c9ff02a6fbffa398: no ENS
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x3b9ba748691f135b71582dc3292e5e3ed7e13341: no ENS
+[2025-04-17 10:00:26 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xbc0e3a344a28ad0ac07e5838af6ecfe8b026e1e1: kangbachen.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x3b9ba748691f135b71582dc3292e5e3ed7e13341: no ENS
+[2025-04-17 10:00:26 UTC] ℹ️ No metadata found for address 0x3b9ba748691f135b71582dc3292e5e3ed7e13341
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xc33c77f59baa77a4f81cb6dd7ce98baf270b0ce9: reconnoitrer.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x0b9d582b7fdd387ba13ad7f453d49af255a8ed5e: dapplooker-indexer.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xa183145cc77028abe5e0c8cf845dc49ce133df0a: no ENS
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xa183145cc77028abe5e0c8cf845dc49ce133df0a: no ENS
+[2025-04-17 10:00:26 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0x52e5f9650266a222395d1079079c24e77f946fff: no ENS
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0x550c1f4814a85aa10f5f061ca8c45e2ee9620226: experimental.infradao.eth
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0xf20fda6a5f627dd0d48a2d64ba58d37eaf77d3dd: no ENS
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0xcb8c9f64cd8ece0fa76fd46302fd1d1db9eb47f0: no ENS
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0x34fa08a76a9db6f3ea07f2acd4683eca14b1ea82: aliciarandolph.eth
+[2025-04-17 10:00:27 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb: smilemart.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0xe6273b8d7cca96d6bec4f4ccc0f9e000587c8fcb: smilemart.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x9a539f692cde873d6b882fc326c8d62d4cea8048: no ENS
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0x88e7fa06c8ee2c9899ecddb3f4655b5ec8601415: no ENS
+[2025-04-17 10:00:28 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xf5fe716288dc4abf4dc0cef29d9d8b5bcc9bba24: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x38bc308adf8824a2492493d99881cbd6f73f92c7: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x38bc308adf8824a2492493d99881cbd6f73f92c7: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x15f72b52cd79928b66fe9887acd20057203a97b1: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xe662e888446e5c7ba6a34c4f75287a8bc332ac81: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 10:00:29 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0xe2a7a4819092320f0ef87fe2588c2f4dba137c4e: no ENS
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x3f74870f80ff7449fe4c6ff257da5fa72734c970: stake🦑squid-2.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 10:00:30 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x362fd4d772c1f4ef764ac4f107243014eedab75d: lorenafabris.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x1b7e0068ca1d7929c8c56408d766e1510e54d98d: suntzu-indexer-arb.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d: no ENS
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x4e5c87772c29381bcabc58c3f182b6633b5a274a: indexer.datanexus.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0xf21f4f3a5551dcfc518bcdd6e07ebd35fa7d972d: no ENS
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x1b92e4cba0f82c85c1298af861247849988c788c: vincenttaglia-indexer.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x5706fc2ba2cba396135d7cf602dc208371a8655b: deli-gator.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x326c584e0f0eab1f1f83c93cc6ae1acc0feba0bc: graphtronauts-arbitrum.eth
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0x155208d080e158a5e091a0ec127fcd923235ad85: no ENS
+[2025-04-17 10:00:31 UTC] 🧠 Using cached ENS for 0xedca8740873152ff30a2696add66d1ab41882beb: pinax.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x155208d080e158a5e091a0ec127fcd923235ad85: no ENS
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x1a286b6f7087c8fd5e7caf0d345782d387dfab17: no ENS
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x7587dc4f599e40b89cdc31fb13373e5d62cb85c6: no ENS
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x0fd8fd1dc8162148cb9413062fe6c6b144335dbf: a1.protofire.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x82dbc0ec046ccd99ddb9a7b3507a0cb5bab10f88: no ENS
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0xeccdf8231326a9c5aad32df76a633aaa4c49b104: catapulta.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x5b191f5a2b4a867c4ed71858daccc51fc59c69c0: proofofdegen777.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x74dbb201ecc0b16934e68377bc13013883d9417b: rickydata-indexer.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0xab9f3a091dd2f067e1e251d4b0adb31d634c19cb: no ENS
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0xfeff9093f6b32d0e5cddba743b06a1fedb87c004: p-ops2.eth
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:32 UTC] 🧠 Using cached ENS for 0xfc842f81490dcb37e82d416b2d28327dfb24ba9a: grassets-tech-1.eth
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x5ddee9720e17aad28febb55643cd8ab50c51c60b: maplenodes.eth
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x38f412c8d6346a17a53ff9ceecd2e01acecd27c0: graphops.eth
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x01f17c392614c7ea586e7272ed348efee21b90a3: oraclegen-indexer.eth
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:33 UTC] 🧠 Using cached ENS for 0x7bb834017672b1135466661d8dd69c5dd0b3bf51: dataservices.eth
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x8f9c9020a114bf20f20f054125d882cf45d7f34c: no ENS
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x07aded6ae3a2ec145314994a898d1eda14429be4: no ENS
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x2f09092aacd80196fc984908c5a9a7ab3ee4f1ce: p2p-org-arbitrum.eth
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x759cc170f2c64ef25b0d29921ace1f2c50862f5c: bittrepp.eth
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x4f45530236e1c6603870301010dcab7b561125b3: deutsche-telekom-indexer.eth
+[2025-04-17 10:00:34 UTC] ℹ️ No metadata found for address 0x4f45530236e1c6603870301010dcab7b561125b3
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-04-17 10:00:34 UTC] 🧠 Using cached ENS for 0x21f73156d0b58e72fa32a94282e14ca6f7f399ee: no ENS

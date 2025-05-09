@@ -1,1 +1,3 @@
+# Ignore environment variables and macOS system files
 .env
+.DS_Store
