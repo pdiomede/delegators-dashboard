@@ -33,24 +33,26 @@ It highlights transactions by delegators, indexed by timestamp, indexer, token a
 
 1. Clone the repo:
 
-'git clone https://github.com/pdiomede/delegators-dashboard.git'
-'cd delegators-dashboard'
+git clone https://github.com/pdiomede/delegators-dashboard.git
+cd delegators-dashboard
 
 2.	Create a .env file with the following variables:
-'GRAPH_API_KEY=your_graph_key
+```
+GRAPH_API_KEY=your_graph_key
 ENS_API_KEY=your_ens_key
 TRANSACTION_COUNT=100
 GRT_SIZE=10000
 ENS_CACHE_FILE=ens_cache.json
-ENS_CACHE_EXPIRY_HOURS=24'
+ENS_CACHE_EXPIRY_HOURS=24
+```
 
 3.	Install dependencies:
-'pip install python-dotenv requests'
+pip install python-dotenv requests
 
 4.	Run the script:
-'python fetch_delegators_metrics.py'
+python fetch_delegators_metrics.py
 
-5.	Open 'reports/index.html' in your browser to view the dashboard.
+5.	Open reports/index.html in your browser to view the dashboard.
 
 ## 🛡️ Notes
 - .env and .DS_Store are excluded via .gitignore.
