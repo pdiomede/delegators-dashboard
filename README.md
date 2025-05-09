@@ -1,7 +1,11 @@
 # Delegators Dashboard – The Graph Network
-
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/). 
 It highlights transactions by delegators, indexed by timestamp, indexer, token amount, and transaction hash.
+
+**Live Dashboard:**  
+🔗 [graphtools.pro/delegators/](https://graphtools.pro/delegators/)
+
+🧪 This dashboard is part of [**Graph Tools Pro**](https://graphtools.pro), a community-driven initiative to provide useful, independent analytics tools for The Graph ecosystem.
 
 ---
 
