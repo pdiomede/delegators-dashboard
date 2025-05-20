@@ -24,6 +24,13 @@
                 <link rel="icon" type="image/png" href="https://graphtools.pro/favicon.ico">
               
                 <style>
+                    .filter-button.active-filter {
+                        background-color: #ffeb3b;
+                        padding: 2px 6px;
+                        border-radius: 4px;
+                        color: black;
+                        font-weight: bold;
+                    }
                     :root {
                         --bg-color: #111;
                         --text-color: #fff;
@@ -259,25 +266,25 @@
             </div>
             
             <hr class="divider">
-            <div style="text-align: center;">    
-            <h1 style="margin-bottom: 4px;">Delegators Activity Log</h1>
-            <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 0; margin-bottom: 30px;">
-                Generated on: 2025-05-06 12:55 UTC - (updated every hour) - v1.0.6
-            </div>
+                <div style="text-align: center;">    
+                <h1 style="margin-bottom: 4px;">Delegators Activity Log</h1>
+                <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 0; margin-bottom: 30px;">
+                    Generated on: 2025-05-20 10:59 UTC - (updated every hour) - v1.0.8
+                </div>
             </div>
         
             <div style="display: flex; gap: 20px; margin-bottom: 30px;">
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Total Delegated</div>
-                    <div style="font-size: 2em; font-weight: bold; color: limegreen;">46,941 GRT</div>
+                    <div style="font-size: 2em; font-weight: bold; color: limegreen;">175,707 GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Total Undelegated</div>
-                    <div style="font-size: 2em; font-weight: bold; color: crimson;">1,501,588 GRT</div>
+                    <div style="font-size: 2em; font-weight: bold; color: crimson;">71,804 GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Net</div>
-                    <div style="font-size: 2em; font-weight: bold; color: crimson;">-1,454,647 GRT</div>
+                    <div style="font-size: 2em; font-weight: bold; color: limegreen;">103,903 GRT</div>
                 </div>
             </div>
         
@@ -289,24 +296,26 @@
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a href="#" onclick="filterByFlag('Delegations')">✅ Delegations</a>
-                        | <a href="#" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
-                        | <a href="#" onclick="filterByFlag('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="#" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ Delegations</a>
+                        | <a class="filter-button" href="#" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
+                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a href="#" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
-                        | <a href="#" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
-                        | <a href="#" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
-                        | <a href="#" onclick="filterByGRT('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="#" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
+                        | <a class="filter-button" href="#" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
+                        | <a class="filter-button" href="#" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
+                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByGRT('All')">🧹 Clear Filter</a>
                     </div>
                 </div>
             </div>
         
             <table>
         <th>Event</th><th>GRT</th><th>Date</th><th>Indexer</th><th>Delegator</th><th>Tx</th></tr>
-<tr><td><span style="font-size: 0.85em;">❌ Undelegation</span></td><td>1,500,000</td><td><span style="font-size: 0.85em;">2025-05-05 22:04</span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0x7bb834017672b1135466661d8dd69c5dd0b3bf51" target="_blank"><img src="https://api.thegraph.com/ipfs/api/v0/cat?arg=QmNzC3uz1MBGRaQXCp42QW4TZbRy4U1bfZKLmcWGSBeSZz" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">dataservices.eth</a></span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0x6352c8de30327f2d1d88409aaba5e4aa24103971" target="_blank">0x6352c8de30327f2d1d88409aaba5e4aa24103971</a></span></td><td><a href="https://arbiscan.io/tx/0x533e0e955aac7d0d6b494dad14a1654a42291bfa6b780394e4f6958eea97710b" target="_blank"><span style="font-size: 0.85em;">view</span></a></td></tr>
-<tr><td><span style="font-size: 0.85em;">✅ Delegation</span></td><td>17,021</td><td><span style="font-size: 0.85em;">2025-05-05 15:56</span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xf92f430dd8567b0d466358c79594ab58d919a6d4" target="_blank"><img src="https://api.thegraph.com/ipfs/api/v0/cat?arg=QmeyxSkxpgCRVvKB8R5NcdqrgkukPFDKYhChx8dUYkqgaB" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">ellipfra-indexer.eth</a></span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xe759b5d4efd26f7d4f40989b644d986a73d774b2" target="_blank">0xe759b5d4efd26f7d4f40989b644d986a73d774b2</a></span></td><td><a href="https://arbiscan.io/tx/0xf17ea964afe89e06e31f3907952a1f87895c158497f1081d968fc32d2b76c6a8" target="_blank"><span style="font-size: 0.85em;">view</span></a></td></tr>
+<tr><td><span style="font-size: 0.85em;">❌ Undelegation</span></td><td>56,863</td><td><span style="font-size: 0.85em;">2025-05-20 07:44</span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0x35917c0eb91d2e21bef40940d028940484230c06" target="_blank"><img src="https://api.thegraph.com/ipfs/api/v0/cat?arg=QmcEaBoxbdXD2ogUQZJfdbPMEiWRDChqfHziroYaFzXWjJ" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">streamingfastindexer.eth</a></span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0x910943514c097fba7273fb17b2ad9c3797eadd1b" target="_blank">0x910943514c097fba7273fb17b2ad9c3797eadd1b</a></span></td><td><a href="https://arbiscan.io/tx/0xef86d78a499b75c78c87583d953747f1f424289762c100cc4f074fd25fc51b87" target="_blank"><span style="font-size: 0.85em;">view</span></a></td></tr>
+<tr><td><span style="font-size: 0.85em;">❌ Undelegation</span></td><td>10,000</td><td><span style="font-size: 0.85em;">2025-05-20 06:24</span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5" target="_blank"><img src="https://api.thegraph.com/ipfs/api/v0/cat?arg=Qmd2XkA6A2YGvmboe5ywYZ8caQToG8ubQfZyURoPuNw8wk" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">0y.decisionbasis.eth</a></span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xb85abe3f491ca6523e2595e756987b158704cf05" target="_blank">0xb85abe3f491ca6523e2595e756987b158704cf05</a></span></td><td><a href="https://arbiscan.io/tx/0x61db03b8b671ba4493ef6d07ca726f70f03bc0cf828c70156fe9c18860912c7d" target="_blank"><span style="font-size: 0.85em;">view</span></a></td></tr>
+<tr><td><span style="font-size: 0.85em;">✅ Delegation</span></td><td>109,391</td><td><span style="font-size: 0.85em;">2025-05-20 06:02</span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4" target="_blank"><img src="https://api.thegraph.com/ipfs/api/v0/cat?arg=QmSQ7DQvFhqNP8SkzmyinWucumzFE6ivRhg4jP8WMTsyu3" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">differential-graph.eth</a></span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1" target="_blank">0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1</a></span></td><td><a href="https://arbiscan.io/tx/0x2a5748bac9f1f1cd9af95d1c369f19c869f5d66044587b94dc92d14e4e9526df" target="_blank"><span style="font-size: 0.85em;">view</span></a></td></tr>
+<tr><td><span style="font-size: 0.85em;">✅ Delegation</span></td><td>63,839</td><td><span style="font-size: 0.85em;">2025-05-20 02:05</span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xf92f430dd8567b0d466358c79594ab58d919a6d4" target="_blank"><img src="https://api.thegraph.com/ipfs/api/v0/cat?arg=QmeyxSkxpgCRVvKB8R5NcdqrgkukPFDKYhChx8dUYkqgaB" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">ellipfra-indexer.eth</a></span></td><td><span style="font-size: 0.85em;"><a href="https://thegraph.com/explorer/profile/0xd2d281a66855977a337ca1bb9bf0ac07249538c7" target="_blank">0xd2d281a66855977a337ca1bb9bf0ac07249538c7</a></span></td><td><a href="https://arbiscan.io/tx/0x8596be6f86d624455734e8c9fb2ca38a5284c54524a758b777a6774d9184328f" target="_blank"><span style="font-size: 0.85em;">view</span></a></td></tr>
 </table>
                     
                 <hr class="footer-divider">
@@ -321,12 +330,16 @@
                 </div>
                 
                 <script>
+                    // Global filter state
+                    let currentFlagFilter = "All";
+                    let currentGRTFilter = "All";
+
                     function toggleTheme() {
                         document.body.classList.toggle('light-mode');
                         const icon = document.getElementById('toggle-icon');
                         icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
                     }
-                
+
                     function downloadCSV() {
                         const link = document.createElement('a');
                         link.href = 'delegators.csv';
@@ -335,58 +348,65 @@
                         link.click();
                         document.body.removeChild(link);
                     }
-                
+
                     function filterByFlag(flag) {
+                        currentFlagFilter = flag;
+                        applyCombinedFilters();
+                    }
+
+                    function filterByGRT(flag) {
+                        currentGRTFilter = flag;
+                        applyCombinedFilters();
+                    }
+
+                    function applyCombinedFilters() {
                         const rows = document.querySelectorAll("table tr");
                         rows.forEach((row, index) => {
                             if (index === 0) return; // skip header
                             const eventCell = row.cells[0];
-                            if (!eventCell) return;
+                            const grtCell = row.cells[1];
+                            if (!eventCell || !grtCell) return;
+
                             const isDelegation = eventCell.textContent.includes("Delegation");
                             const isUndelegation = eventCell.textContent.includes("Undelegation");
-                            
-                            if (flag === "Delegations" && !isDelegation) {
-                                row.style.display = "none";
-                            } else if (flag === "Undelegations" && !isUndelegation) {
-                                row.style.display = "none";
-                            } else {
-                                row.style.display = "";
-                            }
-                        });        
-                    }
-                                        
-                    function filterByGRT(flag) {
-                        const rows = document.querySelectorAll("table tr");
-                        rows.forEach((row, index) => {
-                            if (index === 0) return; // skip header
-                            const grtCell = row.cells[1];
-                            if (!grtCell) return;
-                        
                             const grtAmount = parseInt(grtCell.textContent.replace(/,/g, ""));
-                        
-                            if (flag === "All") {
-                                row.style.display = "";
-                            } else {
-                                const threshold = parseInt(flag);
-                                row.style.display = grtAmount > threshold ? "" : "none";
-                            }
+
+                            let flagMatch = (currentFlagFilter === "All") ||
+                                            (currentFlagFilter === "Delegations" && isDelegation) ||
+                                            (currentFlagFilter === "Undelegations" && isUndelegation);
+
+                            let grtMatch = (currentGRTFilter === "All") || (grtAmount > parseInt(currentGRTFilter));
+
+                            row.style.display = (flagMatch && grtMatch) ? "" : "none";
+                        });
+
+                        // Highlight active flag filter
+                        document.querySelectorAll('.filter-bar:first-of-type .filter-button').forEach(btn => {
+                            const isClear = btn.dataset.filter === "All";
+                            btn.classList.toggle('active-filter', !isClear && btn.dataset.filter === currentFlagFilter);
+                        });
+
+                        // Highlight active GRT filter
+                        document.querySelectorAll('.filter-bar:last-of-type .filter-button').forEach(btn => {
+                            const isClear = btn.dataset.filter === "All";
+                            btn.classList.toggle('active-filter', !isClear && btn.dataset.filter === currentGRTFilter);
                         });
                     }
-                
+
                     document.getElementById("searchBox").addEventListener("input", function () {
                         const query = this.value.toLowerCase();
                         const rows = document.querySelectorAll("table tr");
-                        
+
                         rows.forEach((row, index) => {
                             if (index === 0) return; // Skip header
                             const indexerCell = row.cells[3];
                             if (!indexerCell) return;
-                        
+
                             const text = indexerCell.textContent.toLowerCase();
                             row.style.display = text.includes(query) ? "" : "none";
                         });
                     });
-                
+
                 </script>
             </body>
             </html>

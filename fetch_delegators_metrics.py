@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v1.0.7 / 6-May-2025
+# v1.0.8 / 20-May-2025
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.0.7"
+DASHBOARD_VERSION = "1.0.8"
 
 
 # Function that writes in the log file
@@ -340,6 +340,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <link rel="icon" type="image/png" href="https://graphtools.pro/favicon.ico">
               
                 <style>
+                    .filter-button.active-filter {
+                        background-color: #ffeb3b;
+                        padding: 2px 6px;
+                        border-radius: 4px;
+                        color: black;
+                        font-weight: bold;
+                    }
                     :root {
                         --bg-color: #111;
                         --text-color: #fff;
@@ -620,16 +627,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a href="#" onclick="filterByFlag('Delegations')">✅ Delegations</a>
-                        | <a href="#" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
-                        | <a href="#" onclick="filterByFlag('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="#" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ Delegations</a>
+                        | <a class="filter-button" href="#" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
+                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a href="#" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
-                        | <a href="#" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
-                        | <a href="#" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
-                        | <a href="#" onclick="filterByGRT('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="#" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
+                        | <a class="filter-button" href="#" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
+                        | <a class="filter-button" href="#" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
+                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByGRT('All')">🧹 Clear Filter</a>
                     </div>
                 </div>
             </div>
@@ -696,12 +703,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 </div>
                 
                 <script>
+                    // Global filter state
+                    let currentFlagFilter = "All";
+                    let currentGRTFilter = "All";
+
                     function toggleTheme() {
                         document.body.classList.toggle('light-mode');
                         const icon = document.getElementById('toggle-icon');
                         icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
                     }
-                
+
                     function downloadCSV() {
                         const link = document.createElement('a');
                         link.href = 'delegators.csv';
@@ -710,58 +721,65 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         link.click();
                         document.body.removeChild(link);
                     }
-                
+
                     function filterByFlag(flag) {
+                        currentFlagFilter = flag;
+                        applyCombinedFilters();
+                    }
+
+                    function filterByGRT(flag) {
+                        currentGRTFilter = flag;
+                        applyCombinedFilters();
+                    }
+
+                    function applyCombinedFilters() {
                         const rows = document.querySelectorAll("table tr");
                         rows.forEach((row, index) => {
                             if (index === 0) return; // skip header
                             const eventCell = row.cells[0];
-                            if (!eventCell) return;
+                            const grtCell = row.cells[1];
+                            if (!eventCell || !grtCell) return;
+
                             const isDelegation = eventCell.textContent.includes("Delegation");
                             const isUndelegation = eventCell.textContent.includes("Undelegation");
-                            
-                            if (flag === "Delegations" && !isDelegation) {
-                                row.style.display = "none";
-                            } else if (flag === "Undelegations" && !isUndelegation) {
-                                row.style.display = "none";
-                            } else {
-                                row.style.display = "";
-                            }
-                        });        
-                    }
-                                        
-                    function filterByGRT(flag) {
-                        const rows = document.querySelectorAll("table tr");
-                        rows.forEach((row, index) => {
-                            if (index === 0) return; // skip header
-                            const grtCell = row.cells[1];
-                            if (!grtCell) return;
-                        
                             const grtAmount = parseInt(grtCell.textContent.replace(/,/g, ""));
-                        
-                            if (flag === "All") {
-                                row.style.display = "";
-                            } else {
-                                const threshold = parseInt(flag);
-                                row.style.display = grtAmount > threshold ? "" : "none";
-                            }
+
+                            let flagMatch = (currentFlagFilter === "All") ||
+                                            (currentFlagFilter === "Delegations" && isDelegation) ||
+                                            (currentFlagFilter === "Undelegations" && isUndelegation);
+
+                            let grtMatch = (currentGRTFilter === "All") || (grtAmount > parseInt(currentGRTFilter));
+
+                            row.style.display = (flagMatch && grtMatch) ? "" : "none";
+                        });
+
+                        // Highlight active flag filter
+                        document.querySelectorAll('.filter-bar:first-of-type .filter-button').forEach(btn => {
+                            const isClear = btn.dataset.filter === "All";
+                            btn.classList.toggle('active-filter', !isClear && btn.dataset.filter === currentFlagFilter);
+                        });
+
+                        // Highlight active GRT filter
+                        document.querySelectorAll('.filter-bar:last-of-type .filter-button').forEach(btn => {
+                            const isClear = btn.dataset.filter === "All";
+                            btn.classList.toggle('active-filter', !isClear && btn.dataset.filter === currentGRTFilter);
                         });
                     }
-                
+
                     document.getElementById("searchBox").addEventListener("input", function () {
                         const query = this.value.toLowerCase();
                         const rows = document.querySelectorAll("table tr");
-                        
+
                         rows.forEach((row, index) => {
                             if (index === 0) return; // Skip header
                             const indexerCell = row.cells[3];
                             if (!indexerCell) return;
-                        
+
                             const text = indexerCell.textContent.toLowerCase();
                             row.style.display = text.includes(query) ? "" : "none";
                         });
                     });
-                
+
                 </script>
             </body>
             </html>

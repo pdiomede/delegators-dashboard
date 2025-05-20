@@ -1,7 +1,7 @@
 {
   "0xf92f430dd8567b0d466358c79594ab58d919a6d4": {
     "ens": "ellipfra-indexer.eth",
-    "timestamp": "2025-05-06T12:55:50.445487+00:00"
+    "timestamp": "2025-05-20T10:51:11.072751+00:00"
   },
   "0x1b92e4cba0f82c85c1298af861247849988c788c": {
     "ens": "vincenttaglia-indexer.eth",
@@ -33,7 +33,7 @@
   },
   "0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5": {
     "ens": "0y.decisionbasis.eth",
-    "timestamp": "2025-04-17T09:50:21.080588+00:00"
+    "timestamp": "2025-05-20T10:51:09.810670+00:00"
   },
   "0x5e0f9b3364d0e7a8582ee37ff62bf6ac6ea093cc": {
     "ens": "",
@@ -61,7 +61,7 @@
   },
   "0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1": {
     "ens": "",
-    "timestamp": "2025-04-17T09:50:23.401757+00:00"
+    "timestamp": "2025-05-20T10:51:10.848179+00:00"
   },
   "0xc44ea5de89b58027037deb85b10143c10eb106b0": {
     "ens": "",
@@ -69,7 +69,7 @@
   },
   "0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4": {
     "ens": "differential-graph.eth",
-    "timestamp": "2025-04-17T09:50:23.932177+00:00"
+    "timestamp": "2025-05-20T10:51:10.481528+00:00"
   },
   "0x53f28b920f80a0e95675340dae3e7edfd97c1c21": {
     "ens": "",
@@ -405,7 +405,7 @@
   },
   "0x35917c0eb91d2e21bef40940d028940484230c06": {
     "ens": "streamingfastindexer.eth",
-    "timestamp": "2025-04-17T09:50:59.258085+00:00"
+    "timestamp": "2025-05-20T10:51:09.128963+00:00"
   },
   "0x07aded6ae3a2ec145314994a898d1eda14429be4": {
     "ens": "",
@@ -442,5 +442,17 @@
   "0xe759b5d4efd26f7d4f40989b644d986a73d774b2": {
     "ens": "",
     "timestamp": "2025-05-06T12:55:50.873060+00:00"
+  },
+  "0x910943514c097fba7273fb17b2ad9c3797eadd1b": {
+    "ens": "",
+    "timestamp": "2025-05-20T10:51:09.575672+00:00"
+  },
+  "0xb85abe3f491ca6523e2595e756987b158704cf05": {
+    "ens": "",
+    "timestamp": "2025-05-20T10:51:10.217197+00:00"
+  },
+  "0xd2d281a66855977a337ca1bb9bf0ac07249538c7": {
+    "ens": "",
+    "timestamp": "2025-05-20T10:51:11.408467+00:00"
   }
 }

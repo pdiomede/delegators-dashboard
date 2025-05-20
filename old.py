@@ -2,13 +2,23 @@ import os
 import json
 import csv
 import requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v1.0.3 - 9-Apr-2025
+# v1.0.8 / 20-May-2025
 # Author: Paolo Diomede
+DASHBOARD_VERSION = "1.0.8"
+
+
+# Function that writes in the log file
+def log_message(message):
+    timestamped = f"[{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}] {message}"
+    print(timestamped)
+    with open(log_file, "a") as log:
+        log.write(timestamped + "\n")
+# End Function 'log_message'
 
 
 # Load environment variables from the .env file
@@ -17,8 +27,21 @@ API_KEY = os.getenv("GRAPH_API_KEY")
 ENS_API_KEY = os.getenv("ENS_API_KEY")
 TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 100)) # Default number of transaction to return
 GRT_SIZE = int(os.getenv("GRT_SIZE", 10000)) # Excluding GRT under 10000
-DASHBOARD_VERSION = "1.0.3"
-  
+
+
+# Load ENS cache file path
+ENS_CACHE_FILE = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
+if not os.getenv("ENS_CACHE_FILE"):
+    log_message("⚠️ ENS_CACHE_FILE not set in .env — using default: 'ens_cache.json'")
+
+# Load ENS cache expiry duration
+try:
+    ENS_CACHE_EXPIRY_HOURS = int(os.getenv("ENS_CACHE_EXPIRY_HOURS", 24))
+    if not os.getenv("ENS_CACHE_EXPIRY_HOURS"):
+        log_message("⚠️ ENS_CACHE_EXPIRY_HOURS not set in .env — using default: 24h")
+except ValueError:
+    ENS_CACHE_EXPIRY_HOURS = 24
+    log_message("⚠️ ENS_CACHE_EXPIRY_HOURS is not a valid integer — using default: 24h")
 
 # List of all used subgraphs
 SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/9wzatP4KXm4WinEhB31MdKST949wCH8ZnkGe8o3DLTwp"
@@ -49,6 +72,57 @@ queryENS = """
       }
     }
 """
+
+
+def fetch_ens_name(address: str) -> str:
+    global ENS_SUBGRAPH_URL
+    headers = {"Content-Type": "application/json"}
+    address = address.lower()
+
+    # Load cache from file
+    if os.path.exists(ENS_CACHE_FILE):
+        with open(ENS_CACHE_FILE, "r") as f:
+            ens_cache = json.load(f)
+    else:
+        ens_cache = {}
+
+    # Check cache and freshness (24h)
+    record = ens_cache.get(address)
+    if record:
+        last_updated = datetime.fromisoformat(record["timestamp"]).replace(tzinfo=timezone.utc)
+        if datetime.now(timezone.utc) - last_updated < timedelta(hours=ENS_CACHE_EXPIRY_HOURS):
+            log_message(f"🧠 Using cached ENS for {address}: {record['ens'] or 'no ENS'}")
+            return record["ens"]
+
+    # Build GraphQL query
+    payload = {
+        "query": queryENS,
+        "variables": { "address": address }
+    }
+
+    try:
+        response = requests.post(ENS_SUBGRAPH_URL, headers=headers, json=payload)
+        response.raise_for_status()
+        result = response.json()
+        domains = result.get("data", {}).get("domains", [])
+
+        # Get ENS if available, else store empty string
+        ens_name = domains[0]["name"] if domains and "name" in domains[0] else ""
+        ens_cache[address] = {
+            "ens": ens_name,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+
+        # Save updated cache
+        with open(ENS_CACHE_FILE, "w") as f:
+            json.dump(ens_cache, f, indent=2)
+
+        log_message(f"🔍 Fetched ENS for {address}: {ens_name or 'no ENS'}")
+        return ens_name
+
+    except requests.RequestException as e:
+        log_message(f"⚠️ ENS lookup failed for {address}: {e}")
+        return ""
 
 
 @dataclass
@@ -201,7 +275,7 @@ def generate_delegators_to_csv(events: List[DelegationEvent]):
 
 
 # Function that fetches ENS names
-def fetch_ens_name(address: str) -> str:
+def fetch_ens_name2(address: str) -> str:
 
     global ENS_SUBGRAPH_URL
 
@@ -244,10 +318,35 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             <!DOCTYPE html>
             <html lang="en">
             <head>
+
                 <meta charset="UTF-8">
-                <title>Delegators Activity Log</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="description" content="Track real-time delegation and undelegation activity on The Graph Network with Graph Tools Pro's Delegators Activity Log, featuring detailed transaction data.">
+                <meta name="robots" content="index, follow">
+
+                <meta property="og:title" content="Graph Tools Pro :: Delegators Activity Log">
+                <meta property="og:description" content="Monitor real-time delegation activity on The Graph Network, including indexer and delegator transactions.">
+                <meta property="og:url" content="https://graphtools.pro/delegators/">
+                <meta property="og:type" content="website">
+                <meta property="og:image" content="https://graphtools.pro/graphtoolsprologo.jpg">
+                
+                <meta name="twitter:card" content="summary_large_image">
+                <meta name="twitter:title" content="Graph Tools Pro :: Delegators Activity Log">
+                <meta name="twitter:description" content="Monitor real-time delegation activity on The Graph Network, including indexer and delegator transactions.">
+                <meta name="twitter:image" content="https://graphtools.pro/graphtoolsprologo.jpg">
+                
+                <title>Graph Tools Pro: Delegators Activity Log & Analytics</title>
+                <link rel="canonical" href="https://graphtools.pro/delegators/">
+                <link rel="icon" type="image/png" href="https://graphtools.pro/favicon.ico">
               
                 <style>
+                    .filter-button.active-filter {
+                        background-color: #ffeb3b;
+                        padding: 2px 6px;
+                        border-radius: 4px;
+                        color: black;
+                        font-weight: bold;
+                    }
                     :root {
                         --bg-color: #111;
                         --text-color: #fff;
@@ -428,7 +527,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     }
                     .footer {
                         text-align: center;
-                        margin: 40px 0;
+                        margin: 10px 0 40px;
                         font-size: 0.9rem;
                         opacity: 0.9;
                     }
@@ -439,6 +538,18 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     }
                     .footer a:hover {
                         color: #4d94ff;
+                    }
+                    .light-mode .footer a {
+                        color: #0066cc;
+                    }
+                    .light-mode .footer a:hover {
+                        color: #0033ff;
+                    }
+                    .footer-divider {
+                        border: none;
+                        border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+                        margin: 40px 0 10px;
+                        opacity: 0.8;
                     }
                     .current-page-title {
                         color: #00bcd4;
@@ -473,11 +584,14 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     <span id="toggle-icon">🌙</span>
                 </div>
             </div>
+            
             <hr class="divider">
-            <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 10px; margin-bottom: 30px;">
-                Generated on: {timestamp} - (updated every hour) - v{DASHBOARD_VERSION}
+                <div style="text-align: center;">    
+                <h1 style="margin-bottom: 4px;">Delegators Activity Log</h1>
+                <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 0; margin-bottom: 30px;">
+                    Generated on: {timestamp} - (updated every hour) - v{DASHBOARD_VERSION}
+                </div>
             </div>
-                
         """)
 
         
@@ -513,16 +627,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a href="#" onclick="filterByFlag('Delegations')">✅ Delegations</a>
-                        | <a href="#" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
-                        | <a href="#" onclick="filterByFlag('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="#" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ Delegations</a>
+                        | <a class="filter-button" href="#" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
+                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a href="#" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
-                        | <a href="#" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
-                        | <a href="#" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
-                        | <a href="#" onclick="filterByGRT('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="#" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
+                        | <a class="filter-button" href="#" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
+                        | <a class="filter-button" href="#" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
+                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByGRT('All')">🧹 Clear Filter</a>
                     </div>
                 </div>
             </div>
@@ -577,10 +691,15 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         
         f.write("""</table>
                     
+                <hr class="footer-divider">
                 <div class="footer">
-                    ©2025 <a href="https://graphtools.pro">Graph Tools Pro</a> :: Made with ❤️ by 
+                    ©<script>document.write(new Date().getFullYear())</script> 
+                    <a href="https://graphtools.pro">Graph Tools Pro</a> :: Made with ❤️ by 
                     <a href="https://x.com/graphtronauts_c" target="_blank">Graphtronauts</a>
                     for <a href="https://x.com/graphprotocol" target="_blank">The Graph</a> ecosystem 👨‍🚀
+                    <div style="margin-top: 8px;">
+                        <span style="font-size: 0.8rem;">For Info: <a href="https://x.com/pdiomede" target="_blank">@pdiomede</a> & <a href="https://x.com/PaulBarba12" target="_blank">@PaulBarba12</a></span>
+                    </div>
                 </div>
                 
                 <script>
@@ -615,7 +734,18 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                             } else {
                                 row.style.display = "";
                             }
-                        });        
+                        });
+                        // Update active class on buttons
+                        document.querySelectorAll('.filter-button').forEach(btn => {
+                            btn.classList.remove('active-filter');
+                        });
+                        if (flag !== 'All') {
+                            document.querySelectorAll('.filter-button').forEach(btn => {
+                                if (btn.dataset.filter === flag) {
+                                    btn.classList.add('active-filter');
+                                }
+                            });
+                        }
                     }
                                         
                     function filterByGRT(flag) {
@@ -634,6 +764,17 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                                 row.style.display = grtAmount > threshold ? "" : "none";
                             }
                         });
+                        // Update active class on buttons
+                        document.querySelectorAll('.filter-button').forEach(btn => {
+                            btn.classList.remove('active-filter');
+                        });
+                        if (flag !== 'All') {
+                            document.querySelectorAll('.filter-button').forEach(btn => {
+                                if (btn.dataset.filter === flag) {
+                                    btn.classList.add('active-filter');
+                                }
+                            });
+                        }
                     }
                 
                     document.getElementById("searchBox").addEventListener("input", function () {
@@ -654,14 +795,6 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             </body>
             </html>
         """)
-
-# Function that writes in the log file
-def log_message(message):
-    timestamped = f"[{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}] {message}"
-    print(timestamped)
-    with open(log_file, "a") as log:
-        log.write(timestamped + "\n")
-# End Function 'log_message'
 
 
 if __name__ == "__main__":

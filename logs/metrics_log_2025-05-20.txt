@@ -1,0 +1,36 @@
+[2025-05-20 10:51:08 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-05-20 10:51:09 UTC] 🔍 Fetched ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-05-20 10:51:09 UTC] 🔍 Fetched ENS for 0x910943514c097fba7273fb17b2ad9c3797eadd1b: no ENS
+[2025-05-20 10:51:09 UTC] 🔍 Fetched ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-05-20 10:51:10 UTC] 🔍 Fetched ENS for 0xb85abe3f491ca6523e2595e756987b158704cf05: no ENS
+[2025-05-20 10:51:10 UTC] 🔍 Fetched ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-05-20 10:51:10 UTC] 🔍 Fetched ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-05-20 10:51:11 UTC] 🔍 Fetched ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-05-20 10:51:11 UTC] 🔍 Fetched ENS for 0xd2d281a66855977a337ca1bb9bf0ac07249538c7: no ENS
+[2025-05-20 10:55:33 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-05-20 10:55:33 UTC] 🧠 Using cached ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0x910943514c097fba7273fb17b2ad9c3797eadd1b: no ENS
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0xb85abe3f491ca6523e2595e756987b158704cf05: no ENS
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-05-20 10:55:34 UTC] 🧠 Using cached ENS for 0xd2d281a66855977a337ca1bb9bf0ac07249538c7: no ENS
+[2025-05-20 10:57:45 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0x910943514c097fba7273fb17b2ad9c3797eadd1b: no ENS
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0xb85abe3f491ca6523e2595e756987b158704cf05: no ENS
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-05-20 10:57:45 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-05-20 10:57:46 UTC] 🧠 Using cached ENS for 0xd2d281a66855977a337ca1bb9bf0ac07249538c7: no ENS
+[2025-05-20 10:59:18 UTC] ✅ Saved CSV file: reports/delegators.csv
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0x35917c0eb91d2e21bef40940d028940484230c06: streamingfastindexer.eth
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0x910943514c097fba7273fb17b2ad9c3797eadd1b: no ENS
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0xdecba5154aab37ae5e381a19f804f3af4d1bcbb5: 0y.decisionbasis.eth
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0xb85abe3f491ca6523e2595e756987b158704cf05: no ENS
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0x3e1536fc83cd5bed83a521a26034ff3e59c6a7c4: differential-graph.eth
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0xadf7d986760c4199ff8bfde5a1fe6d57822ce7a1: no ENS
+[2025-05-20 10:59:18 UTC] 🧠 Using cached ENS for 0xf92f430dd8567b0d466358c79594ab58d919a6d4: ellipfra-indexer.eth
+[2025-05-20 10:59:19 UTC] 🧠 Using cached ENS for 0xd2d281a66855977a337ca1bb9bf0ac07249538c7: no ENS
