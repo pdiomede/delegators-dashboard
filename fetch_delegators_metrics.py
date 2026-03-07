@@ -579,6 +579,56 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     .light-mode .current-page-title {
                         color: #1a73e8;
                     }
+                    .pagination-bar {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin: 16px 0 8px;
+                        font-size: 0.85em;
+                    }
+                    .page-info {
+                        color: var(--text-color);
+                        opacity: 0.75;
+                    }
+                    .page-buttons {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                    }
+                    .page-buttons button {
+                        background: var(--table-bg);
+                        color: var(--text-color);
+                        border: 1px solid #555;
+                        border-radius: 4px;
+                        padding: 4px 10px;
+                        cursor: pointer;
+                        font-size: 0.9em;
+                        transition: background 0.2s;
+                    }
+                    .page-buttons button:hover:not(:disabled) {
+                        background: #00bcd4;
+                        color: #000;
+                        border-color: #00bcd4;
+                    }
+                    .page-buttons button.active-page {
+                        background: #00bcd4;
+                        color: #000;
+                        border-color: #00bcd4;
+                        font-weight: bold;
+                    }
+                    .page-buttons button:disabled {
+                        opacity: 0.3;
+                        cursor: default;
+                    }
+                    .page-buttons .ellipsis {
+                        padding: 0 4px;
+                        opacity: 0.5;
+                    }
+                    .light-mode .page-buttons button {
+                        border-color: #aaa;
+                    }
                 </style>
 
                 <script defer data-domain="graphtools.pro/delegators" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"></script>
@@ -715,7 +765,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             f.write("</tr>\n")
         
         f.write("""</table>
-                    
+
+                <div id="pagination" class="pagination-bar"></div>
+
                 <hr class="footer-divider">
                 <div class="footer">
                     ©<script>document.write(new Date().getFullYear())</script> 
@@ -728,14 +780,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 </div>
                 
                 <script>
-                    // Global filter state
+                    const ROWS_PER_PAGE = 50;
+                    let currentPage = 1;
                     let currentFlagFilter = "All";
                     let currentGRTFilter = "All";
+                    let currentSearch = "";
 
                     function toggleTheme() {
                         document.body.classList.toggle('light-mode');
-                        const icon = document.getElementById('toggle-icon');
-                        icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+                        document.getElementById('toggle-icon').textContent =
+                            document.body.classList.contains('light-mode') ? '☀️' : '🌙';
                     }
 
                     function downloadCSV() {
@@ -747,64 +801,102 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         document.body.removeChild(link);
                     }
 
-                    function filterByFlag(flag) {
-                        currentFlagFilter = flag;
-                        applyCombinedFilters();
+                    function getAllRows() {
+                        return Array.from(document.querySelectorAll("table tr")).slice(1);
                     }
 
-                    function filterByGRT(flag) {
-                        currentGRTFilter = flag;
-                        applyCombinedFilters();
-                    }
-
-                    function applyCombinedFilters() {
-                        const rows = document.querySelectorAll("table tr");
-                        rows.forEach((row, index) => {
-                            if (index === 0) return; // skip header
+                    function getFilteredRows() {
+                        return getAllRows().filter(row => {
                             const eventCell = row.cells[0];
-                            const grtCell = row.cells[1];
-                            if (!eventCell || !grtCell) return;
+                            const grtCell   = row.cells[1];
+                            const idxCell   = row.cells[3];
+                            if (!eventCell || !grtCell) return false;
 
-                            const isDelegation = eventCell.textContent.includes("✅ Delegation");
+                            const isDelegation   = eventCell.textContent.includes("✅ Delegation");
                             const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
-                            const grtAmount = parseInt(grtCell.textContent.replace(/,/g, ""));
+                            const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""));
+                            const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
 
-                            let flagMatch = (currentFlagFilter === "All") ||
-                                            (currentFlagFilter === "Delegations" && isDelegation) ||
-                                            (currentFlagFilter === "Undelegations" && isUndelegation);
+                            const flagMatch   = currentFlagFilter === "All" ||
+                                                (currentFlagFilter === "Delegations"   && isDelegation) ||
+                                                (currentFlagFilter === "Undelegations" && isUndelegation);
+                            const grtMatch    = currentGRTFilter === "All" || grtAmount > parseInt(currentGRTFilter);
+                            const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
 
-                            let grtMatch = (currentGRTFilter === "All") || (grtAmount > parseInt(currentGRTFilter));
-
-                            row.style.display = (flagMatch && grtMatch) ? "" : "none";
-                        });
-
-                        // Highlight active flag filter
-                        document.querySelectorAll('.filter-bar:first-of-type .filter-button').forEach(btn => {
-                            const isClear = btn.dataset.filter === "All";
-                            btn.classList.toggle('active-filter', !isClear && btn.dataset.filter === currentFlagFilter);
-                        });
-
-                        // Highlight active GRT filter
-                        document.querySelectorAll('.filter-bar:last-of-type .filter-button').forEach(btn => {
-                            const isClear = btn.dataset.filter === "All";
-                            btn.classList.toggle('active-filter', !isClear && btn.dataset.filter === currentGRTFilter);
+                            return flagMatch && grtMatch && searchMatch;
                         });
                     }
+
+                    function renderPage(page) {
+                        const filtered   = getFilteredRows();
+                        const total      = filtered.length;
+                        const totalPages = Math.max(1, Math.ceil(total / ROWS_PER_PAGE));
+                        currentPage      = Math.min(Math.max(1, page), totalPages);
+                        const start      = (currentPage - 1) * ROWS_PER_PAGE;
+                        const end        = start + ROWS_PER_PAGE;
+
+                        getAllRows().forEach(r => r.style.display = "none");
+                        filtered.forEach((r, i) => { r.style.display = (i >= start && i < end) ? "" : "none"; });
+
+                        updatePaginationControls(currentPage, totalPages, total);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+
+                    function updatePaginationControls(page, totalPages, total) {
+                        const container = document.getElementById("pagination");
+                        if (!container) return;
+
+                        const start = total === 0 ? 0 : (page - 1) * ROWS_PER_PAGE + 1;
+                        const end   = Math.min(page * ROWS_PER_PAGE, total);
+
+                        let html = `<span class="page-info">Showing ${start}–${end} of ${total} results</span>`;
+                        html += `<div class="page-buttons">`;
+                        html += `<button onclick="renderPage(1)" ${page===1?"disabled":""}>«</button>`;
+                        html += `<button onclick="renderPage(${page-1})" ${page===1?"disabled":""}>‹</button>`;
+
+                        const delta = 2;
+                        const range = [];
+                        for (let i = Math.max(1, page-delta); i <= Math.min(totalPages, page+delta); i++) range.push(i);
+
+                        if (range[0] > 1) {
+                            html += `<button onclick="renderPage(1)">1</button>`;
+                            if (range[0] > 2) html += `<span class="ellipsis">…</span>`;
+                        }
+                        range.forEach(p => {
+                            html += `<button onclick="renderPage(${p})" class="${p===page?'active-page':''}">${p}</button>`;
+                        });
+                        if (range[range.length-1] < totalPages) {
+                            if (range[range.length-1] < totalPages-1) html += `<span class="ellipsis">…</span>`;
+                            html += `<button onclick="renderPage(${totalPages})">${totalPages}</button>`;
+                        }
+
+                        html += `<button onclick="renderPage(${page+1})" ${page===totalPages?"disabled":""}>›</button>`;
+                        html += `<button onclick="renderPage(${totalPages})" ${page===totalPages?"disabled":""}>»</button>`;
+                        html += `</div>`;
+
+                        container.innerHTML = html;
+                    }
+
+                    function applyFiltersAndRender() {
+                        renderPage(1);
+                        document.querySelectorAll('.filter-bar:first-of-type .filter-button').forEach(btn => {
+                            btn.classList.toggle('active-filter', btn.dataset.filter !== "All" && btn.dataset.filter === currentFlagFilter);
+                        });
+                        document.querySelectorAll('.filter-bar:last-of-type .filter-button').forEach(btn => {
+                            btn.classList.toggle('active-filter', btn.dataset.filter !== "All" && btn.dataset.filter === currentGRTFilter);
+                        });
+                    }
+
+                    function filterByFlag(flag) { currentFlagFilter = flag; applyFiltersAndRender(); }
+                    function filterByGRT(flag)  { currentGRTFilter  = flag; applyFiltersAndRender(); }
 
                     document.getElementById("searchBox").addEventListener("input", function () {
-                        const query = this.value.toLowerCase();
-                        const rows = document.querySelectorAll("table tr");
-
-                        rows.forEach((row, index) => {
-                            if (index === 0) return; // Skip header
-                            const indexerCell = row.cells[3];
-                            if (!indexerCell) return;
-
-                            const text = indexerCell.textContent.toLowerCase();
-                            row.style.display = text.includes(query) ? "" : "none";
-                        });
+                        currentSearch = this.value.toLowerCase();
+                        applyFiltersAndRender();
                     });
 
+                    // Initial render
+                    renderPage(1);
                 </script>
             </body>
             </html>
