@@ -30,11 +30,12 @@ if [ $? -eq 0 ]; then
     # Copy reports to nginx folder
     echo "Copying reports to ${NGINX_DIR} ..."
     cp reports/index.html "${NGINX_DIR}/index.html" && \
-    cp reports/delegators.csv "${NGINX_DIR}/delegators.csv"
+    cp reports/delegators.csv "${NGINX_DIR}/delegators.csv" && \
+    cp reports/social-card.jpeg "${NGINX_DIR}/social-card.jpeg"
 
     if [ $? -eq 0 ]; then
         # Ensure nginx can read the files regardless of who ran the script
-        chmod 644 "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv"
+        chmod 644 "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv" "${NGINX_DIR}/social-card.jpeg"
         echo "Reports deployed to ${NGINX_DIR}"
     else
         echo "Error: failed to copy reports to ${NGINX_DIR}"
