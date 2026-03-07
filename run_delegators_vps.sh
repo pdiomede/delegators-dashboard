@@ -30,13 +30,21 @@ if [ $? -eq 0 ]; then
     # Copy reports to nginx folder
     echo "Copying reports to ${NGINX_DIR} ..."
     cp reports/index.html "${NGINX_DIR}/index.html" && \
-    cp reports/delegators.csv "${NGINX_DIR}/delegators.csv" && \
-    cp reports/social-card.jpeg "${NGINX_DIR}/social-card.jpeg"
+    cp reports/delegators.csv "${NGINX_DIR}/delegators.csv"
 
     if [ $? -eq 0 ]; then
         # Ensure consistent ownership and nginx-readable permissions
-        chown paolo:www-data "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv" "${NGINX_DIR}/social-card.jpeg"
-        chmod 644 "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv" "${NGINX_DIR}/social-card.jpeg"
+        chown paolo:www-data "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv"
+        chmod 644 "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv"
+
+        # Copy social card only if not already present in nginx folder
+        if [ ! -f "${NGINX_DIR}/social-card.jpeg" ]; then
+            echo "Deploying social-card.jpeg (first time) ..."
+            cp reports/social-card.jpeg "${NGINX_DIR}/social-card.jpeg"
+            chown paolo:www-data "${NGINX_DIR}/social-card.jpeg"
+            chmod 644 "${NGINX_DIR}/social-card.jpeg"
+        fi
+
         echo "Reports deployed to ${NGINX_DIR}"
     else
         echo "Error: failed to copy reports to ${NGINX_DIR}"
