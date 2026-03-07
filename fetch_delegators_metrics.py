@@ -715,12 +715,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <hr class="footer-divider">
                 <div class="footer">
                     ©<script>document.write(new Date().getFullYear())</script> 
-                    <a href="https://graphtools.pro">Graph Tools Pro</a> :: Made with ❤️ by 
-                    <a href="https://x.com/graphtronauts_c" target="_blank">Graphtronauts</a>
-                    for <a href="https://x.com/graphprotocol" target="_blank">The Graph</a> ecosystem 👨‍🚀
-                    <div style="margin-top: 8px;">
-                        <span style="font-size: 0.8rem;">For Info: <a href="https://x.com/pdiomede" target="_blank">@pdiomede</a> & <a href="https://x.com/PaulBarba12" target="_blank">@PaulBarba12</a></span>
-                    </div>
+                    <a href="https://graphtools.pro">Graph Tools Pro</a> — Author: <a href="https://x.com/pdiomede" target="_blank">Paolo Diomede</a>
                 </div>
                 
                 <script>
