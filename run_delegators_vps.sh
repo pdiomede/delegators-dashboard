@@ -34,7 +34,8 @@ if [ $? -eq 0 ]; then
     cp reports/social-card.jpeg "${NGINX_DIR}/social-card.jpeg"
 
     if [ $? -eq 0 ]; then
-        # Ensure nginx can read the files regardless of who ran the script
+        # Ensure consistent ownership and nginx-readable permissions
+        chown paolo:www-data "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv" "${NGINX_DIR}/social-card.jpeg"
         chmod 644 "${NGINX_DIR}/index.html" "${NGINX_DIR}/delegators.csv" "${NGINX_DIR}/social-card.jpeg"
         echo "Reports deployed to ${NGINX_DIR}"
     else
