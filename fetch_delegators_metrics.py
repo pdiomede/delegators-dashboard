@@ -47,7 +47,7 @@ except ValueError:
 
 # List of all used subgraphs
 SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz"       # Graph Analytics Arbitrum
-ENS_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH"
+ENS_SUBGRAPH_URL = ENS_API_KEY
 AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"   # Graph Network Arbitrum
 
 

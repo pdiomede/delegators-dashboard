@@ -43,11 +43,11 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 
 ## 🔗 Subgraphs Used
 
-| Role | Subgraph | ID |
-|---|---|---|
-| Delegation events | Graph Analytics Arbitrum | `AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz` |
-| Indexer metadata/avatars | Graph Network Arbitrum | `DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp` |
-| ENS names | ENS Subgraph | `5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH` |
+| Role | Subgraph | ID | Auth |
+|---|---|---|---|
+| Delegation events | Graph Analytics Arbitrum | `AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz` | `GRAPH_API_KEY` |
+| Indexer metadata/avatars | Graph Network Arbitrum | `DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp` | `GRAPH_API_KEY` |
+| ENS names | ENS Subgraph | `5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH` | `ENS_API_KEY` (full URL) |
 
 ---
 
@@ -74,11 +74,12 @@ cd delegators-dashboard
 
 2. Create a `.env` file:
 ```bash
-# API key for The Graph gateway — https://thegraph.com/studio/apikeys/
-GRAPH_API_KEY=your_graph_api_key
+# API key for The Graph gateway (used for delegation + avatar subgraphs)
+# Get yours at: https://thegraph.com/studio/apikeys/
+GRAPH_API_KEY=[api-key]
 
-# Full ENS subgraph URL (API key embedded)
-ENS_API_KEY=https://gateway.thegraph.com/api/<your-key>/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH
+# Full ENS subgraph URL with its own dedicated API key embedded
+ENS_API_KEY=https://gateway.thegraph.com/api/[api-key]/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH
 
 # Records to fetch (gateway caps each page at 1000; pagination is automatic)
 TRANSACTION_COUNT=5000
@@ -86,10 +87,10 @@ TRANSACTION_COUNT=5000
 # Filter out delegations below this GRT amount
 GRT_SIZE=10000
 
-# ENS cache file path (relative to script dir); delete to force full refresh
+# ENS cache file path (relative to script dir); delete to force a full refresh
 ENS_CACHE_FILE=ens_cache.json
 
-# Hours before a cached ENS name is re-fetched (0 = always refresh)
+# Hours before a cached ENS name is re-fetched (0 = always refresh; 168 = weekly)
 ENS_CACHE_EXPIRY_HOURS=48
 ```
 
