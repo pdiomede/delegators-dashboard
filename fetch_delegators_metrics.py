@@ -360,12 +360,12 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <meta property="og:description" content="Monitor real-time delegation activity on The Graph Network, including indexer and delegator transactions.">
                 <meta property="og:url" content="https://graphtools.pro/delegators/">
                 <meta property="og:type" content="website">
-                <meta property="og:image" content="https://graphtools.pro/delegators/social-card.png">
+                <meta property="og:image" content="https://graphtools.pro/delegators/social-card.jpeg">
                 
                 <meta name="twitter:card" content="summary_large_image">
                 <meta name="twitter:title" content="Graph Tools Pro :: Delegators Activity Log">
                 <meta name="twitter:description" content="Monitor real-time delegation activity on The Graph Network, including indexer and delegator transactions.">
-                <meta name="twitter:image" content="https://graphtools.pro/delegators/social-card.png">
+                <meta name="twitter:image" content="https://graphtools.pro/delegators/social-card.jpeg">
                 
                 <title>Graph Tools Pro: Delegators Activity Log & Analytics</title>
                 <link rel="canonical" href="https://graphtools.pro/delegators/">
