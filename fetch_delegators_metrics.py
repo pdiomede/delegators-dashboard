@@ -356,15 +356,15 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <meta name="description" content="Track real-time delegation and undelegation activity on The Graph Network with Graph Tools Pro's Delegators Activity Log, featuring detailed transaction data.">
                 <meta name="robots" content="index, follow">
 
-                <meta property="og:title" content="Graph Tools Pro :: Delegators Activity Log">
-                <meta property="og:description" content="Monitor real-time delegation activity on The Graph Network, including indexer and delegator transactions.">
+                <meta property="og:title" content="Graph Tools Pro: Delegators Activity Log & Analytics">
+                <meta property="og:description" content="Track live delegation and undelegation activity on The Graph Network (Arbitrum). ENS names, indexer avatars, filters, CSV export and more.">
                 <meta property="og:url" content="https://graphtools.pro/delegators/">
                 <meta property="og:type" content="website">
                 <meta property="og:image" content="https://graphtools.pro/delegators/social-card.jpeg">
                 
                 <meta name="twitter:card" content="summary_large_image">
-                <meta name="twitter:title" content="Graph Tools Pro :: Delegators Activity Log">
-                <meta name="twitter:description" content="Monitor real-time delegation activity on The Graph Network, including indexer and delegator transactions.">
+                <meta name="twitter:title" content="Graph Tools Pro: Delegators Activity Log & Analytics">
+                <meta name="twitter:description" content="Track live delegation and undelegation activity on The Graph Network (Arbitrum). ENS names, indexer avatars, filters, CSV export and more.">
                 <meta name="twitter:image" content="https://graphtools.pro/delegators/social-card.jpeg">
                 
                 <title>Graph Tools Pro: Delegators Activity Log & Analytics</title>
