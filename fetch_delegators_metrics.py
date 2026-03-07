@@ -777,7 +777,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="footer" style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;">
                     <span>©<script>document.write(new Date().getFullYear())</script>&nbsp;<a href="https://graphtools.pro">Graph Tools Pro</a></span>
                     <span style="opacity:0.4;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <span>Delegators Dashboard v{DASHBOARD_VERSION}</span>
+                    <span>Delegators Dashboard v""" + DASHBOARD_VERSION + """</span>
                     <span style="opacity:0.4;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                     <span>Author: <a href="https://x.com/pdiomede" target="_blank">Paolo Diomede</a></span>
                     <span style="opacity:0.4;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
