@@ -44,9 +44,9 @@ except ValueError:
     log_message("⚠️ ENS_CACHE_EXPIRY_HOURS is not a valid integer — using default: 24h")
 
 # List of all used subgraphs
-SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/9wzatP4KXm4WinEhB31MdKST949wCH8ZnkGe8o3DLTwp"
+SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz"       # Graph Analytics Arbitrum
 ENS_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH"
-AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"
+AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"   # Graph Network Arbitrum
 
 
 # Create REPORTS directory if it doesn't exist
@@ -156,24 +156,31 @@ class DelegationFetcher:
         return response.json()["data"]
 
     def fetch_events(self) -> List[DelegationEvent]:
-        
+
         global TRANSACTION_COUNT
 
         query = f'''
         {{
-          stakeDelegateds(orderBy: blockTimestamp, orderDirection: desc, first: {TRANSACTION_COUNT}) {{
-            indexer
-            tokens
-            delegator
-            blockTimestamp
-            transactionHash
+          delegations: delegatedStakes(
+            orderBy: lastDelegatedAt,
+            orderDirection: desc,
+            first: {TRANSACTION_COUNT}
+          ) {{
+            indexer {{ id }}
+            delegator {{ id }}
+            stakedTokens
+            lastDelegatedAt
           }}
-          stakeDelegatedLockeds(orderBy: blockTimestamp, orderDirection: desc, first: {TRANSACTION_COUNT}) {{
-            indexer
-            tokens
-            delegator
-            blockTimestamp
-            transactionHash
+          undelegations: delegatedStakes(
+            orderBy: lastUndelegatedAt,
+            orderDirection: desc,
+            first: {TRANSACTION_COUNT},
+            where: {{ lastUndelegatedAt_gt: 0 }}
+          ) {{
+            indexer {{ id }}
+            delegator {{ id }}
+            lockedTokens
+            lastUndelegatedAt
           }}
         }}
         '''
@@ -182,23 +189,23 @@ class DelegationFetcher:
 
         events = []
 
-        for d in data["stakeDelegateds"]:
+        for d in data["delegations"]:
             events.append(DelegationEvent(
-                indexer=d["indexer"],
-                tokens=int(d["tokens"]),
-                delegator=d["delegator"],
-                block_timestamp=int(d["blockTimestamp"]),
-                transaction_hash=d["transactionHash"],
+                indexer=d["indexer"]["id"],
+                tokens=int(d["stakedTokens"]),
+                delegator=d["delegator"]["id"],
+                block_timestamp=int(d["lastDelegatedAt"]),
+                transaction_hash="",
                 event_type="delegation"
             ))
 
-        for u in data["stakeDelegatedLockeds"]:
+        for u in data["undelegations"]:
             events.append(DelegationEvent(
-                indexer=u["indexer"],
-                tokens=int(u["tokens"]),
-                delegator=u["delegator"],
-                block_timestamp=int(u["blockTimestamp"]),
-                transaction_hash=u["transactionHash"],
+                indexer=u["indexer"]["id"],
+                tokens=int(u["lockedTokens"]),
+                delegator=u["delegator"]["id"],
+                block_timestamp=int(u["lastUndelegatedAt"]),
+                transaction_hash="",
                 event_type="undelegation"
             ))
 
@@ -683,7 +690,10 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     value = f'<span style="font-size: 0.85em;">{link}</span>'
                 
                 if key == "transaction_hash":
-                    value = f'<a href="https://arbiscan.io/tx/{value}" target="_blank"><span style="font-size: 0.85em;">view</span></a>'
+                    if value:
+                        value = f'<a href="https://arbiscan.io/tx/{value}" target="_blank"><span style="font-size: 0.85em;">view</span></a>'
+                    else:
+                        value = '<span style="font-size: 0.85em; color: #888;">N/A</span>'
                 
                 f.write(f"<td>{value}</td>")
 

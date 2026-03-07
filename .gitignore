@@ -1,3 +1,10 @@
-# Ignore environment variables and macOS system files
+# Environment and system
 .env
 .DS_Store
+
+# Virtual environment
+venv/
+
+# Auto-generated logs and reports
+logs/
+ens_cache.json
