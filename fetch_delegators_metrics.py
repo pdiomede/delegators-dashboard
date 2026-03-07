@@ -24,8 +24,10 @@ def log_message(message):
 # Load environment variables from the .env file
 load_dotenv()
 API_KEY = os.getenv("GRAPH_API_KEY")
+if not API_KEY:
+    raise EnvironmentError("GRAPH_API_KEY is not set. Add it to your .env file.")
 ENS_API_KEY = os.getenv("ENS_API_KEY")
-TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 100)) # Default number of transaction to return
+TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 5000)) # Default number of transaction to return
 GRT_SIZE = int(os.getenv("GRT_SIZE", 10000)) # Excluding GRT under 10000
 
 
@@ -153,43 +155,75 @@ class DelegationFetcher:
     def run_query(self, query: str) -> dict:
         response = requests.post(self.subgraph_url, json={"query": query})
         response.raise_for_status()
-        return response.json()["data"]
+        payload = response.json()
+        if "data" not in payload:
+            errors = payload.get("errors", payload)
+            raise RuntimeError(f"Subgraph query failed: {errors}")
+        return payload["data"]
+
+    def _paginate(self, entity: str, order_by: str, extra_where: str, fields: str, limit: int) -> list:
+        """Fetch up to `limit` records using id_gt cursor pagination (max 1000 per page)."""
+        PAGE_SIZE = 1000
+        results = []
+        last_id = ""
+
+        while len(results) < limit:
+            batch = min(PAGE_SIZE, limit - len(results))
+            where_parts = [f'id_gt: "{last_id}"']
+            if extra_where:
+                where_parts.append(extra_where)
+            where_clause = ", ".join(where_parts)
+
+            query = f'''
+            {{
+              items: {entity}(
+                orderBy: id,
+                orderDirection: asc,
+                first: {batch},
+                where: {{ {where_clause} }}
+              ) {{
+                id
+                {fields}
+              }}
+            }}
+            '''
+            data = self.run_query(query)
+            page = data["items"]
+            if not page:
+                break
+            results.extend(page)
+            last_id = page[-1]["id"]
+            if len(page) < batch:
+                break
+
+        return results
 
     def fetch_events(self) -> List[DelegationEvent]:
 
         global TRANSACTION_COUNT
 
-        query = f'''
-        {{
-          delegations: delegatedStakes(
-            orderBy: lastDelegatedAt,
-            orderDirection: desc,
-            first: {TRANSACTION_COUNT}
-          ) {{
-            indexer {{ id }}
-            delegator {{ id }}
-            stakedTokens
-            lastDelegatedAt
-          }}
-          undelegations: delegatedStakes(
-            orderBy: lastUndelegatedAt,
-            orderDirection: desc,
-            first: {TRANSACTION_COUNT},
-            where: {{ lastUndelegatedAt_gt: 0 }}
-          ) {{
-            indexer {{ id }}
-            delegator {{ id }}
-            lockedTokens
-            lastUndelegatedAt
-          }}
-        }}
-        '''
+        delegation_fields = "indexer { id } delegator { id } stakedTokens lastDelegatedAt"
+        undelegation_fields = "indexer { id } delegator { id } lockedTokens lastUndelegatedAt"
 
-        data = self.run_query(query)
+        raw_delegations = self._paginate(
+            entity="delegatedStakes",
+            order_by="id",
+            extra_where="lastDelegatedAt_gt: 0",
+            fields=delegation_fields,
+            limit=TRANSACTION_COUNT,
+        )
+
+        raw_undelegations = self._paginate(
+            entity="delegatedStakes",
+            order_by="id",
+            extra_where="lastUndelegatedAt_gt: 0",
+            fields=undelegation_fields,
+            limit=TRANSACTION_COUNT,
+        )
 
         events = []
 
-        for d in data["delegations"]:
+        for d in raw_delegations:
             events.append(DelegationEvent(
                 indexer=d["indexer"]["id"],
                 tokens=int(d["stakedTokens"]),
@@ -199,7 +233,7 @@ class DelegationFetcher:
                 event_type="delegation"
             ))
 
-        for u in data["undelegations"]:
+        for u in raw_undelegations:
             events.append(DelegationEvent(
                 indexer=u["indexer"]["id"],
                 tokens=int(u["lockedTokens"]),
