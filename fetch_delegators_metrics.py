@@ -162,26 +162,28 @@ class DelegationFetcher:
             raise RuntimeError(f"Subgraph query failed: {errors}")
         return payload["data"]
 
-    def _paginate(self, entity: str, extra_where: str, fields: str, limit: int) -> list:
-        """Fetch up to `limit` records using id_gt cursor pagination (max 1000 per page)."""
+    def _paginate(self, entity: str, order_field: str, extra_where: str, fields: str, limit: int) -> list:
+        """Fetch up to `limit` records ordered by `order_field` DESC (most recent first),
+        paginating via a timestamp cursor so we always surface the latest activity."""
         PAGE_SIZE = 1000
         results = []
-        last_id = ""
+        last_ts = None  # cursor: fetch records older than this timestamp
 
         while len(results) < limit:
             batch = min(PAGE_SIZE, limit - len(results))
-            where_parts = [f'id_gt: "{last_id}"']
-            if extra_where:
-                where_parts.append(extra_where)
+            where_parts = [extra_where] if extra_where else []
+            if last_ts is not None:
+                where_parts.append(f"{order_field}_lt: {last_ts}")
             where_clause = ", ".join(where_parts)
+            where_block = f"where: {{ {where_clause} }}" if where_clause else ""
 
             query = f'''
             {{
               items: {entity}(
-                orderBy: id,
-                orderDirection: asc,
+                orderBy: {order_field},
+                orderDirection: desc,
                 first: {batch},
-                where: {{ {where_clause} }}
+                {where_block}
               ) {{
                 id
                 {fields}
@@ -193,7 +195,7 @@ class DelegationFetcher:
             if not page:
                 break
             results.extend(page)
-            last_id = page[-1]["id"]
+            last_ts = page[-1][order_field]
             if len(page) < batch:
                 break
 
@@ -208,6 +210,7 @@ class DelegationFetcher:
 
         raw_delegations = self._paginate(
             entity="delegatedStakes",
+            order_field="lastDelegatedAt",
             extra_where="lastDelegatedAt_gt: 0",
             fields=delegation_fields,
             limit=TRANSACTION_COUNT,
@@ -215,6 +218,7 @@ class DelegationFetcher:
 
         raw_undelegations = self._paginate(
             entity="delegatedStakes",
+            order_field="lastUndelegatedAt",
             extra_where="lastUndelegatedAt_gt: 0",
             fields=undelegation_fields,
             limit=TRANSACTION_COUNT,
