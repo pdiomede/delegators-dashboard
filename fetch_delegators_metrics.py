@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v1.2.0 / 07-Mar-2026
+# v1.2.1 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.2.0"
+DASHBOARD_VERSION = "1.2.1"
 
 
 # Function that writes in the log file

@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.2.0** — 10 more bug fixes, Tx column removed, footer refactored with version number, ENS in-memory cache.
+> **v1.2.1** — Social sharing card (og:image), VPS deploy fixes, footer version resolved, nginx permissions guide.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -22,6 +22,7 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 - CSV download of all listed events
 - Clean, responsive layout with semantic HTML5
 - Fully client-side (static file based, no backend needed)
+- Social sharing card (og:image / twitter:card) for X, LinkedIn and other platforms
 
 ---
 
@@ -37,7 +38,8 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 ├── 📂 logs/                         # Auto-generated log files
 └── 📂 reports/
     ├── 📜 delegators.csv            # Generated CSV export
-    └── 📜 index.html                # Generated HTML dashboard
+    ├── 📜 index.html                # Generated HTML dashboard
+    └── 📜 social-card.jpeg          # Social sharing card (og:image) — deployed once
 ```
 
 ---
@@ -122,6 +124,13 @@ python3 fetch_delegators_metrics.py
 ---
 
 ## 📋 Changelog
+
+### v1.2.1
+- Added `social-card.jpeg` (1200×630) for rich social sharing previews on X, LinkedIn, etc.
+- Updated `og:image` and `twitter:image` meta tags to point to the new card
+- Fixed footer version not rendering (`{DASHBOARD_VERSION}` was inside a non-f-string)
+- Fixed `run_delegators_vps.sh`: `social-card.jpeg` now only copied on first deploy (skipped if already present)
+- Fixed `run_delegators_vps.sh`: `chown paolo:www-data` applied consistently to all deployed files
 
 ### v1.2.0
 - Removed Tx column (transaction hashes unavailable from the Analytics subgraph)
