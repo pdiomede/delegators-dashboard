@@ -75,6 +75,29 @@ queryENS = """
 """
 
 
+_ens_cache: dict = {}  # in-memory cache — loaded once, saved after each new lookup
+
+def _load_ens_cache() -> dict:
+    """Load ENS cache from disk once into the module-level dict."""
+    global _ens_cache
+    if _ens_cache:
+        return _ens_cache
+    if os.path.exists(ENS_CACHE_FILE):
+        try:
+            with open(ENS_CACHE_FILE, "r") as f:
+                _ens_cache = json.load(f)
+        except (json.JSONDecodeError, IOError):
+            log_message("⚠️ ENS cache file is corrupt or unreadable — starting with empty cache.")
+            _ens_cache = {}
+    return _ens_cache
+
+def _save_ens_cache() -> None:
+    try:
+        with open(ENS_CACHE_FILE, "w") as f:
+            json.dump(_ens_cache, f, indent=2)
+    except IOError as e:
+        log_message(f"⚠️ Failed to save ENS cache: {e}")
+
 def fetch_ens_name(address: str) -> str:
     global ENS_SUBGRAPH_URL
     if not ENS_SUBGRAPH_URL:
@@ -82,14 +105,9 @@ def fetch_ens_name(address: str) -> str:
     headers = {"Content-Type": "application/json"}
     address = address.lower()
 
-    # Load cache from file
-    if os.path.exists(ENS_CACHE_FILE):
-        with open(ENS_CACHE_FILE, "r") as f:
-            ens_cache = json.load(f)
-    else:
-        ens_cache = {}
+    ens_cache = _load_ens_cache()
 
-    # Check cache and freshness (24h)
+    # Check cache and freshness
     record = ens_cache.get(address)
     if record:
         last_updated = datetime.fromisoformat(record["timestamp"]).astimezone(timezone.utc)
@@ -97,7 +115,6 @@ def fetch_ens_name(address: str) -> str:
             log_message(f"🧠 Using cached ENS for {address}: {record['ens'] or 'no ENS'}")
             return record["ens"]
 
-    # Build GraphQL query
     payload = {
         "query": queryENS,
         "variables": { "address": address }
@@ -109,16 +126,12 @@ def fetch_ens_name(address: str) -> str:
         result = response.json()
         domains = result.get("data", {}).get("domains", [])
 
-        # Get ENS if available, else store empty string
         ens_name = domains[0]["name"] if domains and "name" in domains[0] else ""
         ens_cache[address] = {
             "ens": ens_name,
             "timestamp": datetime.now(timezone.utc).isoformat()
         }
-
-        # Save updated cache
-        with open(ENS_CACHE_FILE, "w") as f:
-            json.dump(ens_cache, f, indent=2)
+        _save_ens_cache()
 
         log_message(f"🔍 Fetched ENS for {address}: {ens_name or 'no ENS'}")
         return ens_name
@@ -131,7 +144,7 @@ def fetch_ens_name(address: str) -> str:
 @dataclass
 class DelegationEvent:
     indexer: str
-    tokens: float
+    tokens: int
     delegator: str
     block_timestamp: int
     transaction_hash: str
@@ -157,23 +170,26 @@ class DelegationFetcher:
         response = requests.post(self.subgraph_url, json={"query": query})
         response.raise_for_status()
         payload = response.json()
-        if "data" not in payload:
+        if "data" not in payload or payload["data"] is None:
             errors = payload.get("errors", payload)
             raise RuntimeError(f"Subgraph query failed: {errors}")
         return payload["data"]
 
     def _paginate(self, entity: str, order_field: str, extra_where: str, fields: str, limit: int) -> list:
-        """Fetch up to `limit` records ordered by `order_field` DESC (most recent first),
-        paginating via a timestamp cursor so we always surface the latest activity."""
+        """Fetch up to `limit` records ordered by `order_field` DESC (most recent first).
+        Uses a composite cursor (timestamp_lte + id_lt) to avoid skipping records that
+        share the same timestamp at a page boundary."""
         PAGE_SIZE = 1000
         results = []
-        last_ts = None  # cursor: fetch records older than this timestamp
+        last_ts = None
+        last_id = None
 
         while len(results) < limit:
             batch = min(PAGE_SIZE, limit - len(results))
             where_parts = [extra_where] if extra_where else []
             if last_ts is not None:
-                where_parts.append(f"{order_field}_lt: {last_ts}")
+                where_parts.append(f"{order_field}_lte: {last_ts}")
+                where_parts.append(f'id_lt: "{last_id}"')
             where_clause = ", ".join(where_parts)
             where_block = f"where: {{ {where_clause} }}" if where_clause else ""
 
@@ -196,6 +212,7 @@ class DelegationFetcher:
                 break
             results.extend(page)
             last_ts = page[-1][order_field]
+            last_id = page[-1]["id"]
             if len(page) < batch:
                 break
 
@@ -288,7 +305,7 @@ def fetch_indexer_avatar(address):
         image = metadata.get("image", "")
         return image if image else ""
 
-    except Exception as e:
+    except requests.RequestException as e:
         log_message(f"⚠️ Failed to fetch indexer avatar for address {address}: {e}")
         return ""
     
@@ -304,7 +321,6 @@ def fetch_metrics():
 
 # Returns all the data in a CSV file
 def generate_delegators_to_csv(events: List[DelegationEvent]):
-    global report_dir, log_file
     filename = "delegators.csv"
     csv_path = os.path.join(report_dir, filename)
 
@@ -325,7 +341,6 @@ def generate_delegators_to_csv(events: List[DelegationEvent]):
 
 
 def generate_delegators_to_html(events: List[DelegationEvent]):
-    global report_dir, log_file, TRANSACTION_COUNT, GRT_SIZE
 
     if not events:
         log_message("⚠️ No events to render in HTML dashboard.")
@@ -358,7 +373,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 
                 <title>Graph Tools Pro: Delegators Activity Log & Analytics</title>
                 <link rel="canonical" href="https://graphtools.pro/delegators/">
-                <link rel="icon" type="image/png" href="https://graphtools.pro/favicon.ico">
+                <link rel="icon" type="image/x-icon" href="https://graphtools.pro/favicon.ico">
               
                 <style>
                     .filter-button.active-filter {
@@ -698,16 +713,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a class="filter-button" href="#" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ Delegations</a>
-                        | <a class="filter-button" href="#" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
-                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ Delegations</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a class="filter-button" href="#" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
-                        | <a class="filter-button" href="#" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
-                        | <a class="filter-button" href="#" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
-                        | <a class="filter-button" href="#" data-filter="All" onclick="filterByGRT('All')">🧹 Clear Filter</a>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByGRT('All')">🧹 Clear Filter</a>
                     </div>
                 </div>
             </div>
@@ -769,12 +784,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div id="pagination" class="pagination-bar"></div>
 
                 <hr class="footer-divider">
-                <div class="footer" style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;">
-                    <span>©<script>document.write(new Date().getFullYear())</script></span>
-                    <a href="https://graphtools.pro">Graph Tools Pro</a>
-                    <span>— Author:</span>
-                    <a href="https://x.com/pdiomede" target="_blank">Paolo Diomede</a>
-                    <span style="opacity:0.4;">|</span>
+                <div class="footer" style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;">
+                    <span>©<script>document.write(new Date().getFullYear())</script>&nbsp;<a href="https://graphtools.pro">Graph Tools Pro</a></span>
+                    <span style="opacity:0.4;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span>Delegators Dashboard v{DASHBOARD_VERSION}</span>
+                    <span style="opacity:0.4;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span>Author: <a href="https://x.com/pdiomede" target="_blank">Paolo Diomede</a></span>
+                    <span style="opacity:0.4;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                     <a href="https://github.com/pdiomede/delegators-dashboard" target="_blank" style="display:inline-flex;align-items:center;gap:4px;">
                         <svg height="14" width="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:middle;" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                         View on GitHub
@@ -829,6 +845,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         });
                     }
 
+                    let _initialLoad = true;
+
                     function renderPage(page) {
                         const filtered   = getFilteredRows();
                         const total      = filtered.length;
@@ -841,7 +859,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         filtered.forEach((r, i) => { r.style.display = (i >= start && i < end) ? "" : "none"; });
 
                         updatePaginationControls(currentPage, totalPages, total);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        if (!_initialLoad) window.scrollTo({ top: 0, behavior: 'smooth' });
+                        _initialLoad = false;
                     }
 
                     function updatePaginationControls(page, totalPages, total) {
