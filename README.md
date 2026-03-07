@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.0.9** — Bug fixes: ENS key wiring, JS filter, HTML table structure, empty-event guards, timezone handling, dead code removal, and more.
+> **v1.1.0** — Table pagination (50 rows/page), fixed data freshness (most recent records first), GitHub link in footer, author credit.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -18,6 +18,7 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 - Avatar integration for indexers (via subgraph metadata)
 - Light/dark mode with theme toggle
 - Filtering by event type and GRT thresholds
+- **Paginated table** — 50 rows per page, integrated with all filters and search
 - CSV download of all listed events
 - Clean, responsive layout with semantic HTML5
 - Fully client-side (static file based, no backend needed)
@@ -113,13 +114,20 @@ python3 fetch_delegators_metrics.py
 - `.env` and `.DS_Store` are excluded via `.gitignore`
 - ENS names are cached locally in `ens_cache.json` for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`). Delete the file to force a full refresh.
 - The dashboard uses the **Graph Analytics Arbitrum** subgraph for delegation data — individual transaction hashes are not available in this subgraph; the tx column shows "N/A"
-- The Graph gateway caps `first` at **1000 per query**; the script automatically paginates using `id_gt` cursor pagination, so `TRANSACTION_COUNT` can safely be set above 1000
+- The Graph gateway caps `first` at **1000 per query**; the script automatically paginates using a timestamp cursor, always fetching the most recently active records first
 - `run_delegators_vps.sh` is a VPS-specific variant that also copies the generated reports into the nginx web root (`/var/www/graphtools.pro/delegators/`)
 - If `ENS_API_KEY` is missing from `.env`, ENS lookups are silently skipped (addresses shown as-is) rather than crashing
 
 ---
 
 ## 📋 Changelog
+
+### v1.1.0
+- Added table pagination: 50 rows per page with first/prev/page-numbers/next/last controls
+- Pagination is fully integrated with event type filter, GRT filter, and search box
+- Fixed data freshness: records now fetched ordered by `lastDelegatedAt`/`lastUndelegatedAt` DESC so the most recent activity always appears first (previously oldest records were shown)
+- Updated footer: author credit for Paolo Diomede with link, GitHub repo link with icon
+- Bumped version to 1.1.0
 
 ### v1.0.9
 - Fixed `log_message` being called before `log_file` was defined (latent `NameError`)
