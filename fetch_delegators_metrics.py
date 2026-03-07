@@ -9,7 +9,7 @@ from typing import List
 
 # v1.2.1 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.2.1"
+DASHBOARD_VERSION = "1.3.0"
 
 
 # Function that writes in the log file
