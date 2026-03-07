@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.1.0** — Table pagination (50 rows/page), fixed data freshness (most recent records first), GitHub link in footer, author credit.
+> **v1.2.0** — 10 more bug fixes, Tx column removed, footer refactored with version number, ENS in-memory cache.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -113,7 +113,8 @@ python3 fetch_delegators_metrics.py
 
 - `.env` and `.DS_Store` are excluded via `.gitignore`
 - ENS names are cached locally in `ens_cache.json` for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`). Delete the file to force a full refresh.
-- The dashboard uses the **Graph Analytics Arbitrum** subgraph for delegation data — individual transaction hashes are not available in this subgraph; the tx column shows "N/A"
+- The dashboard uses the **Graph Analytics Arbitrum** subgraph for delegation data — individual transaction hashes are not available in this subgraph (Tx column removed)
+- ENS names are cached in memory during a run and persisted to `ens_cache.json`; a corrupt cache file is handled gracefully (auto-reset to empty)
 - The Graph gateway caps `first` at **1000 per query**; the script automatically paginates using a timestamp cursor, always fetching the most recently active records first
 - `run_delegators_vps.sh` is a VPS-specific variant that also copies the generated reports into the nginx web root (`/var/www/graphtools.pro/delegators/`)
 - If `ENS_API_KEY` is missing from `.env`, ENS lookups are silently skipped (addresses shown as-is) rather than crashing
@@ -121,6 +122,21 @@ python3 fetch_delegators_metrics.py
 ---
 
 ## 📋 Changelog
+
+### v1.2.0
+- Removed Tx column (transaction hashes unavailable from the Analytics subgraph)
+- Refactored footer: `©Year Graph Tools Pro  |  Delegators Dashboard vX.X.X  |  Author: Paolo Diomede  |  View on GitHub`; version pulled dynamically from `DASHBOARD_VERSION`
+- Fixed `tokens: float` → `int` in `DelegationEvent` (float loses precision on large wei values)
+- Fixed favicon MIME type: `image/png` → `image/x-icon` for `.ico` file
+- Fixed filter link `href="#"` causing page-top scroll on click → `javascript:void(0)`
+- Fixed `run_query` not guarding against `payload["data"]` being `None`
+- Replaced per-call cache file I/O in `fetch_ens_name` with a module-level in-memory dict (loaded once, saved on update)
+- Protected ENS cache JSON load against corrupt/empty file (`JSONDecodeError` → graceful reset)
+- Narrowed `fetch_indexer_avatar` exception catch from bare `Exception` to `requests.RequestException`
+- Removed unnecessary `global` declarations in `generate_delegators_to_csv` and `generate_delegators_to_html`
+- Fixed `window.scrollTo` firing on initial page load (added `_initialLoad` flag)
+- Fixed `_paginate` timestamp boundary — switched from `_lt` to composite `_lte + id_lt` cursor to avoid skipping records that share a boundary timestamp
+- Bumped version to 1.2.0
 
 ### v1.1.0
 - Added table pagination: 50 rows per page with first/prev/page-numbers/next/last controls
