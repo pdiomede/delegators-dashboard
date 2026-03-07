@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.0.8** — Arbitrum subgraphs, paginated fetching (up to 5 000 records), ENS caching, avatar integration.
+> **v1.0.9** — Bug fixes: ENS key wiring, JS filter, HTML table structure, empty-event guards, timezone handling, dead code removal, and more.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -115,6 +115,32 @@ python3 fetch_delegators_metrics.py
 - The dashboard uses the **Graph Analytics Arbitrum** subgraph for delegation data — individual transaction hashes are not available in this subgraph; the tx column shows "N/A"
 - The Graph gateway caps `first` at **1000 per query**; the script automatically paginates using `id_gt` cursor pagination, so `TRANSACTION_COUNT` can safely be set above 1000
 - `run_delegators_vps.sh` is a VPS-specific variant that also copies the generated reports into the nginx web root (`/var/www/graphtools.pro/delegators/`)
+- If `ENS_API_KEY` is missing from `.env`, ENS lookups are silently skipped (addresses shown as-is) rather than crashing
+
+---
+
+## 📋 Changelog
+
+### v1.0.9
+- Fixed `log_message` being called before `log_file` was defined (latent `NameError`)
+- Fixed typo `TRANSCATION_COUNT` → `TRANSACTION_COUNT` in `fetch_metrics()`
+- Fixed missing `<tr>` opening tag in HTML table header (malformed HTML)
+- Fixed `ENS_SUBGRAPH_URL` being `None` when `ENS_API_KEY` is missing — now skips gracefully
+- Fixed `generate_delegators_to_csv` crashing with `IndexError` on empty event list
+- Fixed JS filter: `"Delegation"` was incorrectly matching rows labelled `"Undelegation"`
+- Removed dead code: `fetch_ens_name2` (duplicate of `fetch_ens_name`, never called)
+- Fixed ENS cache timestamp comparison using `.astimezone()` instead of `.replace(tzinfo=)`
+- Added empty-event guard in `generate_delegators_to_html`
+- Removed unused `order_by` parameter from `_paginate()`
+
+### v1.0.8
+- Migrated to Arbitrum subgraphs (Graph Analytics + Graph Network)
+- Added `id_gt` cursor pagination — `TRANSACTION_COUNT` can safely exceed 1000
+- Added explicit `RuntimeError` when subgraph returns errors instead of data
+- Added `EnvironmentError` guard if `GRAPH_API_KEY` is missing
+- Added `run_delegators_vps.sh` for VPS deployment to nginx
+- ENS lookup now uses dedicated `ENS_API_KEY` URL from `.env`
+- Thousands separator on transaction count in dashboard header
 
 ---
 

@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v1.0.8 / 20-May-2025
+# v1.0.9 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.0.8"
+DASHBOARD_VERSION = "1.0.9"
 
 
 # Function that writes in the log file
@@ -21,15 +21,25 @@ def log_message(message):
 # End Function 'log_message'
 
 
+# Create REPORTS directory if it doesn't exist
+report_dir = "reports"
+os.makedirs(report_dir, exist_ok=True)
+
+# Create LOGS directory if it doesn't exist (must be before any log_message calls)
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+log_file = os.path.join(log_dir, f"metrics_log_{datetime.now(timezone.utc).strftime('%Y-%m-%d')}.txt")
+
 # Load environment variables from the .env file
 load_dotenv()
 API_KEY = os.getenv("GRAPH_API_KEY")
 if not API_KEY:
     raise EnvironmentError("GRAPH_API_KEY is not set. Add it to your .env file.")
 ENS_API_KEY = os.getenv("ENS_API_KEY")
+if not ENS_API_KEY:
+    log_message("⚠️ ENS_API_KEY is not set. ENS lookups will be disabled.")
 TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 5000)) # Default number of transaction to return
 GRT_SIZE = int(os.getenv("GRT_SIZE", 10000)) # Excluding GRT under 10000
-
 
 # Load ENS cache file path
 ENS_CACHE_FILE = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
@@ -51,17 +61,6 @@ ENS_SUBGRAPH_URL = ENS_API_KEY
 AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"   # Graph Network Arbitrum
 
 
-# Create REPORTS directory if it doesn't exist
-report_dir = "reports"
-os.makedirs(report_dir, exist_ok=True)
-
-
-# Create LOGS directory if it doesn't exist
-log_dir = "logs"
-os.makedirs(log_dir, exist_ok=True)
-log_file = os.path.join(log_dir, f"metrics_log_{datetime.now(timezone.utc).strftime('%Y-%m-%d')}.txt")
-
-
 # Get data to be used in the log and report files
 timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
@@ -78,6 +77,8 @@ queryENS = """
 
 def fetch_ens_name(address: str) -> str:
     global ENS_SUBGRAPH_URL
+    if not ENS_SUBGRAPH_URL:
+        return ""
     headers = {"Content-Type": "application/json"}
     address = address.lower()
 
@@ -91,7 +92,7 @@ def fetch_ens_name(address: str) -> str:
     # Check cache and freshness (24h)
     record = ens_cache.get(address)
     if record:
-        last_updated = datetime.fromisoformat(record["timestamp"]).replace(tzinfo=timezone.utc)
+        last_updated = datetime.fromisoformat(record["timestamp"]).astimezone(timezone.utc)
         if datetime.now(timezone.utc) - last_updated < timedelta(hours=ENS_CACHE_EXPIRY_HOURS):
             log_message(f"🧠 Using cached ENS for {address}: {record['ens'] or 'no ENS'}")
             return record["ens"]
@@ -161,7 +162,7 @@ class DelegationFetcher:
             raise RuntimeError(f"Subgraph query failed: {errors}")
         return payload["data"]
 
-    def _paginate(self, entity: str, order_by: str, extra_where: str, fields: str, limit: int) -> list:
+    def _paginate(self, entity: str, extra_where: str, fields: str, limit: int) -> list:
         """Fetch up to `limit` records using id_gt cursor pagination (max 1000 per page)."""
         PAGE_SIZE = 1000
         results = []
@@ -207,7 +208,6 @@ class DelegationFetcher:
 
         raw_delegations = self._paginate(
             entity="delegatedStakes",
-            order_by="id",
             extra_where="lastDelegatedAt_gt: 0",
             fields=delegation_fields,
             limit=TRANSACTION_COUNT,
@@ -215,7 +215,6 @@ class DelegationFetcher:
 
         raw_undelegations = self._paginate(
             entity="delegatedStakes",
-            order_by="id",
             extra_where="lastUndelegatedAt_gt: 0",
             fields=undelegation_fields,
             limit=TRANSACTION_COUNT,
@@ -292,7 +291,7 @@ def fetch_indexer_avatar(address):
     
 # Returns all the data about last delegations and undelegations
 def fetch_metrics():
-    global SUBGRAPH_URL, TRANSCATION_COUNT
+    global SUBGRAPH_URL, TRANSACTION_COUNT
     fetcher = DelegationFetcher(SUBGRAPH_URL)
     events = fetcher.fetch_events()
     return events
@@ -305,6 +304,10 @@ def generate_delegators_to_csv(events: List[DelegationEvent]):
     filename = "delegators.csv"
     csv_path = os.path.join(report_dir, filename)
 
+    if not events:
+        log_message("⚠️ No events to write to CSV.")
+        return
+
     with open(csv_path, mode='w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=events[0].to_dict().keys())
         writer.writeheader()
@@ -315,42 +318,15 @@ def generate_delegators_to_csv(events: List[DelegationEvent]):
 # End Function 'generate_delegators_to_csv'
 
 
-# Function that fetches ENS names
-def fetch_ens_name2(address: str) -> str:
-
-    global ENS_SUBGRAPH_URL
-
-    headers = {
-        "Content-Type": "application/json"
-    }
-
-    # Ensure address is lowercase and prefixed correctly
-    address = address.lower()
-
-    payload = {
-        "query": queryENS,
-        "variables": {
-            "address": address
-        }
-    }
-
-    try:
-        response = requests.post(ENS_SUBGRAPH_URL, headers=headers, json=payload)
-        response.raise_for_status()
-        result = response.json()
-        domains = result.get("data", {}).get("domains", [])
-        if domains and isinstance(domains, list) and "name" in domains[0]:
-            return domains[0]["name"]
-    except requests.RequestException as e:
-        log_message(f"⚠️ ENS lookup failed for {address}: {e}")
-
-    return ""
-# End Function 'fetch_ens_name'
 
 
 def generate_delegators_to_html(events: List[DelegationEvent]):
     global report_dir, log_file, TRANSACTION_COUNT, GRT_SIZE
-    
+
+    if not events:
+        log_message("⚠️ No events to render in HTML dashboard.")
+        return
+
     filename = "index.html"
     html_path = os.path.join(report_dir, filename)
 
@@ -615,7 +591,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             <div class="header-container">
                 <div class="breadcrumb" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; font-size: 0.85em; letter-spacing: 0.3px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">
                     <a href="https://graphtools.pro" class="home-link" style="text-decoration: none;">🏠 Home</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;
-                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[last {TRANSACTION_COUNT * 2} transactions, excluding under {GRT_SIZE:,} GRT]</span></span>    
+                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[last {TRANSACTION_COUNT * 2:,} transactions, excluding under {GRT_SIZE:,} GRT]</span></span>    
                 </div>
                 <div class="toggle-container">
                     <label class="toggle-switch">
@@ -688,6 +664,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         """)
         
         headers = ["Event", "GRT", "Date", "Indexer", "Delegator", "Tx"]
+        f.write("<tr>")
         for header in headers:
             f.write(f"<th>{header}</th>")
         f.write("</tr>\n")
@@ -784,8 +761,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                             const grtCell = row.cells[1];
                             if (!eventCell || !grtCell) return;
 
-                            const isDelegation = eventCell.textContent.includes("Delegation");
-                            const isUndelegation = eventCell.textContent.includes("Undelegation");
+                            const isDelegation = eventCell.textContent.includes("✅ Delegation");
+                            const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
                             const grtAmount = parseInt(grtCell.textContent.replace(/,/g, ""));
 
                             let flagMatch = (currentFlagFilter === "All") ||
