@@ -147,7 +147,6 @@ class DelegationEvent:
     tokens: int
     delegator: str
     block_timestamp: int
-    transaction_hash: str
     event_type: str  # 'delegation' or 'undelegation'
 
     def to_dict(self):
@@ -157,7 +156,6 @@ class DelegationEvent:
             "delegator": self.delegator,
             "block_timestamp": self.block_timestamp,
             "block_datetime": datetime.fromtimestamp(self.block_timestamp, tz=timezone.utc),
-            "transaction_hash": self.transaction_hash,
             "event_type": self.event_type,
         }
 
@@ -249,7 +247,6 @@ class DelegationFetcher:
                 tokens=int(d["stakedTokens"]),
                 delegator=d["delegator"]["id"],
                 block_timestamp=int(d["lastDelegatedAt"]),
-                transaction_hash="",
                 event_type="delegation"
             ))
 
@@ -259,7 +256,6 @@ class DelegationFetcher:
                 tokens=int(u["lockedTokens"]),
                 delegator=u["delegator"]["id"],
                 block_timestamp=int(u["lastUndelegatedAt"]),
-                transaction_hash="",
                 event_type="undelegation"
             ))
 
@@ -732,13 +728,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             <table>
         """)
         
-        headers = ["Event", "GRT", "Date", "Indexer", "Delegator", "Tx"]
+        headers = ["Event", "GRT", "Date", "Indexer", "Delegator"]
         f.write("<tr>")
         for header in headers:
             f.write(f"<th>{header}</th>")
         f.write("</tr>\n")
 
-        key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator", "transaction_hash"]
+        key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator"]
         for event in events:
             if event.tokens < GRT_SIZE * 10**18:
                 continue
@@ -768,12 +764,6 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
                     link = f'<a href="https://thegraph.com/explorer/profile/{value}" target="_blank">{display_name}</a>'
                     value = f'<span style="font-size: 0.85em;">{link}</span>'
-                
-                if key == "transaction_hash":
-                    if value:
-                        value = f'<a href="https://arbiscan.io/tx/{value}" target="_blank"><span style="font-size: 0.85em;">view</span></a>'
-                    else:
-                        value = '<span style="font-size: 0.85em; color: #888;">N/A</span>'
                 
                 f.write(f"<td>{value}</td>")
 
