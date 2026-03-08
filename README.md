@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.2.1** — Social sharing card (og:image), VPS deploy fixes, footer version resolved, nginx permissions guide.
+> **v1.4.2** — ENS lookups fixed, delegation top-up detection, tooltips on event types, social card improved.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -124,6 +124,30 @@ python3 fetch_delegators_metrics.py
 ---
 
 ## 📋 Changelog
+
+### v1.4.2
+- Added tooltips on event type labels in the table (hover to see definition of New Delegation / Top-up / Undelegation)
+- Added tooltips on filter buttons with the same explanations
+- Added `cursor: help` style on event type cells to hint that hovering shows info
+
+### v1.4.1
+- Fixed ENS lookups broken by `[api-key]` placeholder in `.env`
+- `ENS_API_KEY` now holds just the key (not a full URL), falling back to `GRAPH_API_KEY` when not set
+- `ENS_SUBGRAPH_URL` is now constructed consistently with other subgraph URLs
+- Removed stale `global ENS_SUBGRAPH_URL` and `None` guard in `fetch_ens_name`
+
+### v1.4.0
+- Distinguished **New Delegation** (first-time stake) from **Top-up** (increase to existing position) using `createdAt` vs `lastDelegatedAt`
+- Top-up rows show a tooltip explaining the amount is total stake, not delta
+- Stats panel: renamed to "New Delegations", added "Top-up Events" count card, clarified Net label
+- Added "➕ Top-ups" filter button
+- Bumped version to 1.4.0
+
+### v1.3.0
+- Regenerated `social-card.jpeg` at correct 1200×630px with CTA button
+- Updated `og:title` and `twitter:title` to optimal length (52 chars)
+- Updated `og:description` and `twitter:description` to optimal length (140 chars)
+- Changed "Generated on" line: removed version suffix, updated cadence to "every 24 hours"
 
 ### v1.2.1
 - Added `social-card.jpeg` (1200×630) for rich social sharing previews on X, LinkedIn, etc.

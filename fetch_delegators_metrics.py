@@ -9,7 +9,7 @@ from typing import List
 
 # v1.2.1 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.4.1"
+DASHBOARD_VERSION = "1.4.2"
 
 
 # Function that writes in the log file
@@ -714,9 +714,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ New Delegations</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="Topups" onclick="filterByFlag('Topups')">➕ Top-ups</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegations</a>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')" title="First-time delegation from a delegator to an indexer. Amount shown is the exact GRT delegated.">✅ New Delegations</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Topups" onclick="filterByFlag('Topups')" title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added.">➕ Top-ups</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')" title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal.">❌ Undelegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
@@ -758,14 +758,14 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 if key == "event_type":
                     if value == "delegation":
                         label = "✅ New Delegation"
-                        tooltip = ""
+                        tooltip = ' title="First-time delegation from a delegator to an indexer. Amount shown is the exact GRT delegated."'
                     elif value == "topup":
                         label = "➕ Top-up"
-                        tooltip = ' title="Amount shown is the total current stake — the exact top-up delta is not available from this data source"'
+                        tooltip = ' title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added."'
                     else:
                         label = "❌ Undelegation"
-                        tooltip = ""
-                    value = f'<span style="font-size: 0.85em;"{tooltip}>{label}</span>'
+                        tooltip = ' title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal."'
+                    value = f'<span style="font-size: 0.85em; cursor: help;"{tooltip}>{label}</span>'
 
                 if key in ("indexer", "delegator"):
                     ens_name = fetch_ens_name(value)
