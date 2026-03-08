@@ -36,7 +36,7 @@ API_KEY = os.getenv("GRAPH_API_KEY")
 if not API_KEY:
     raise EnvironmentError("GRAPH_API_KEY is not set. Add it to your .env file.")
 ENS_API_KEY = os.getenv("ENS_API_KEY", API_KEY)  # falls back to GRAPH_API_KEY if not set
-TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 5000)) # Default number of transaction to return
+TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 1000)) # Default number of transaction to return
 GRT_SIZE = int(os.getenv("GRT_SIZE", 10000)) # Excluding GRT under 10000
 
 # Load ENS cache file path
@@ -100,6 +100,8 @@ def _save_ens_cache() -> None:
         log_message(f"⚠️ Failed to save ENS cache: {e}")
 
 def fetch_ens_name(address: str) -> str:
+    if not address:
+        return ""
     headers = {"Content-Type": "application/json"}
     address = address.lower()
 
@@ -119,7 +121,7 @@ def fetch_ens_name(address: str) -> str:
     }
 
     try:
-        response = requests.post(ENS_SUBGRAPH_URL, headers=headers, json=payload)
+        response = requests.post(ENS_SUBGRAPH_URL, headers=headers, json=payload, timeout=30)
         response.raise_for_status()
         result = response.json()
         domains = result.get("data", {}).get("domains", [])
@@ -165,20 +167,34 @@ class DelegationFetcher:
         self.subgraph_url = SUBGRAPH_URL
 
     def run_query(self, query: str) -> dict:
-        response = requests.post(self.subgraph_url, json={"query": query})
-        response.raise_for_status()
-        payload = response.json()
+        try:
+            response = requests.post(self.subgraph_url, json={"query": query}, timeout=30)
+            response.raise_for_status()
+        except requests.RequestException as e:
+            log_message(f"⚠️ HTTP request to subgraph failed: {e}")
+            raise
+        try:
+            payload = response.json()
+        except json.JSONDecodeError as e:
+            log_message(f"⚠️ Subgraph returned non-JSON response (status {response.status_code}): {response.text[:200]}")
+            raise RuntimeError(f"Subgraph returned non-JSON response: {e}") from e
         if "data" not in payload or payload["data"] is None:
             errors = payload.get("errors", payload)
+            log_message(f"⚠️ Subgraph query error: {errors}")
             raise RuntimeError(f"Subgraph query failed: {errors}")
         return payload["data"]
 
     def _paginate(self, entity: str, order_field: str, extra_where: str, fields: str, limit: int) -> list:
         """Fetch up to `limit` records ordered by `order_field` DESC (most recent first).
         Uses a composite cursor (timestamp_lte + id_lt) to avoid skipping records that
-        share the same timestamp at a page boundary."""
+        share the same timestamp at a page boundary.
+
+        Note: the new subgraph uses string IDs of the form `txHash-logIndex`. Lexicographic
+        id_lt comparison can be ambiguous for log indices ≥ 10 (e.g. "-10" sorts before "-9").
+        A seen-ID set is maintained to deduplicate any records that slip through the cursor."""
         PAGE_SIZE = 1000
         results = []
+        seen_ids: set = set()
         last_ts = None
         last_id = None
 
@@ -208,7 +224,10 @@ class DelegationFetcher:
             page = data["items"]
             if not page:
                 break
-            results.extend(page)
+            for record in page:
+                if record["id"] not in seen_ids:
+                    seen_ids.add(record["id"])
+                    results.append(record)
             last_ts = page[-1][order_field]
             last_id = page[-1]["id"]
             if len(page) < batch:
@@ -241,16 +260,22 @@ class DelegationFetcher:
                 tx_hash=e.get("txHash", ""),
             ))
 
-        return sorted(events, key=lambda e: e.block_timestamp, reverse=True)
+        # _paginate already returns records DESC by timestamp — no re-sort needed
+        return events
 
 
 # FUNCTION SECTION
 
+_avatar_cache: dict = {}  # in-memory cache keyed by lowercase address
 
 def fetch_indexer_avatar(address):
+    addr = address.lower()
+    if addr in _avatar_cache:
+        return _avatar_cache[addr]
+
     queryAvatar = f'''
     {{
-        indexers(where: {{ id: "{address.lower()}" }}) {{
+        indexers(where: {{ id: "{addr}" }}) {{
             account {{
                 metadata {{
                     image
@@ -261,16 +286,18 @@ def fetch_indexer_avatar(address):
     '''
 
     try:
-        response = requests.post(AVATAR_SUBGRAPH_URL, json={"query": queryAvatar})
+        response = requests.post(AVATAR_SUBGRAPH_URL, json={"query": queryAvatar}, timeout=30)
         response.raise_for_status()
         result = response.json()
 
         if not result or "data" not in result or result["data"] is None:
             log_message(f"⚠️ Unexpected avatar response structure:\n{json.dumps(result, indent=2)}")
+            _avatar_cache[addr] = ""
             return ""
 
         indexers = result["data"].get("indexers", [])
         if not indexers:
+            _avatar_cache[addr] = ""
             return ""
 
         account = indexers[0].get("account", {})
@@ -278,13 +305,16 @@ def fetch_indexer_avatar(address):
 
         if metadata is None:
             log_message(f"ℹ️ No metadata found for address {address}")
+            _avatar_cache[addr] = ""
             return ""
 
-        image = metadata.get("image", "")
-        return image if image else ""
+        image = metadata.get("image", "") or ""
+        _avatar_cache[addr] = image
+        return image
 
     except requests.RequestException as e:
         log_message(f"⚠️ Failed to fetch indexer avatar for address {address}: {e}")
+        _avatar_cache[addr] = ""
         return ""
     
     
@@ -659,8 +689,10 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         """)
 
         
-        total_delegated = sum(e.tokens for e in events if e.event_type == "delegation") // 10**18
-        total_undelegated = sum(e.tokens for e in events if e.event_type == "undelegation") // 10**18
+        grt_threshold = GRT_SIZE * 10**18
+        # Stats use the same GRT threshold as the table (withdrawals are always counted regardless)
+        total_delegated = sum(e.tokens for e in events if e.event_type == "delegation" and e.tokens >= grt_threshold) // 10**18
+        total_undelegated = sum(e.tokens for e in events if e.event_type == "undelegation" and e.tokens >= grt_threshold) // 10**18
         total_withdrawals = sum(1 for e in events if e.event_type == "withdrawal")
         net = total_delegated - total_undelegated
         
@@ -724,7 +756,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
         key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator", "tx_hash"]
         for event in events:
-            if event.tokens < GRT_SIZE * 10**18:
+            # Always show withdrawals regardless of amount; they may have tokens=0 in Horizon protocol
+            if event.event_type != "withdrawal" and event.tokens < GRT_SIZE * 10**18:
                 continue
             f.write("<tr>")
             data = event.to_dict()
@@ -750,6 +783,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     value = f'<span style="font-size: 0.85em; cursor: help;"{tooltip}>{label}</span>'
 
                 if key in ("indexer", "delegator"):
+                    if not value:
+                        f.write("<td><span style='opacity:0.4;font-size:0.8em;'>—</span></td>")
+                        continue
                     ens_name = fetch_ens_name(value)
                     display_name = ens_name if ens_name else value
 
