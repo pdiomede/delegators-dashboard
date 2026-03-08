@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.0.0** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type.
+> **v2.0.1** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -13,11 +13,13 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 
 ## 📌 Features
 
-- Live dashboards for the most recent delegation/undelegation events on **Arbitrum**
+- Live dashboard for the most recent delegation, undelegation, and withdrawal events on **Arbitrum**
+- **Exact GRT amounts** per transaction — powered by the custom [`graph-delegation-events`](./subgraph/README.md) subgraph
+- **Tx column** — transaction hash per row, linked to [Arbiscan](https://arbiscan.io)
 - ENS name resolution for delegator and indexer addresses
 - Avatar integration for indexers (via subgraph metadata)
 - Light/dark mode with theme toggle
-- Filtering by event type and GRT thresholds
+- Filtering by event type (Delegations / Undelegations / Withdrawals) and GRT thresholds
 - **Paginated table** — 50 rows per page, integrated with all filters and search
 - CSV download of all listed events
 - Clean, responsive layout with semantic HTML5
@@ -40,7 +42,8 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 │   ├── 📜 delegators.csv            # Generated CSV export
 │   ├── 📜 index.html                # Generated HTML dashboard
 │   └── 📜 social-card.jpeg          # Social sharing card (og:image) — deployed once
-└── 📂 subgraph/                     # Custom subgraph (graph-delegation-events) — in development
+└── 📂 subgraph/                     # Custom subgraph (graph-delegation-events) — deployed on The Graph Network
+    ├── 📜 README.md                 # Subgraph docs: schema, events, deploy instructions
     ├── 📜 schema.graphql            # DelegationEvent entity schema
     ├── 📜 subgraph.yaml             # Manifest: L2 staking contract on Arbitrum
     ├── 📜 package.json              # Graph CLI scripts
@@ -65,61 +68,33 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 
 ## 🧩 Custom Subgraph — `graph-delegation-events`
 
-> **Status:** In development. Located in the `subgraph/` folder.
+> **Status:** Deployed on The Graph Network. Source code in [`./subgraph/`](./subgraph/).  
+> Full documentation → **[subgraph/README.md](./subgraph/README.md)**
 
-**`graph-delegation-events`** is a purpose-built subgraph for indexing delegation-side staking activity from The Graph Network's staking contract on Arbitrum One. Its objective is to provide an **event-level record** of delegation and undelegation flows, capturing the **exact token delta** for each on-chain action rather than the latest aggregate stake state.
+**`graph-delegation-events`** is a purpose-built subgraph for indexing delegation-side staking activity from The Graph Network's staking contract on Arbitrum One. It is the primary data source for this dashboard since **v2.0.0**.
 
-Unlike state-based entities such as `delegatedStakes` — which only expose the current balance of a delegator-indexer position — this subgraph models the underlying staking events directly. That makes it possible to reconstruct precise delegation history, including incremental stake increases, partial undelegations, and timestamped transaction-level activity for each delegator-indexer relationship.
+Its objective is to provide an **event-level record** of delegation and undelegation flows, capturing the **exact GRT delta** for each on-chain transaction rather than the latest aggregate stake state. Unlike state-based entities such as `delegatedStakes` — which only expose the current balance of a delegator-indexer position — this subgraph models the underlying staking events directly. That makes it possible to show precise GRT amounts for every delegation, top-up, undelegation, and withdrawal.
 
-### Why it's needed
-
-The current data source (`Graph Analytics Arbitrum`) stores the **current state** of each delegation position. When a delegator tops up an existing stake, the subgraph updates the total — so the dashboard can detect that a top-up occurred, but cannot determine how much was added in that specific transaction. The custom subgraph solves this by indexing raw on-chain events.
+It supports both **legacy** (pre-Horizon) and **Horizon** (post-Dec 2025) event formats.
 
 ### What it indexes
 
-| Event | Type | Description |
+| Era | Contract Event | `eventType` |
 |---|---|---|
-| `StakeDelegated` | `delegation` | Legacy delegation (pre-Horizon) |
-| `StakeDelegatedLocked` | `undelegation` | Legacy undelegation lock |
-| `StakeDelegatedWithdrawn` | `withdrawal` | Legacy withdrawal after unbonding |
-| `TokensDelegated` | `delegation` | Horizon delegation (post Dec 2025) |
-| `TokensUndelegated` | `undelegation` | Horizon undelegation |
-| `DelegatedTokensWithdrawn` | `withdrawal` | Horizon withdrawal |
-
-### Schema
-
-```graphql
-type DelegationEvent @entity(immutable: true) {
-  id: ID!
-  eventType: String!    # "delegation", "undelegation", or "withdrawal"
-  indexer: Bytes!
-  delegator: Bytes!
-  verifier: Bytes       # data service address (Horizon only)
-  tokens: BigInt!       # exact delta in wei ← the key field
-  shares: BigInt
-  lockedUntil: BigInt   # legacy undelegations only
-  isHorizon: Boolean!
-  timestamp: BigInt!
-  blockNumber: BigInt!
-  txHash: Bytes!
-}
-```
+| Legacy | `StakeDelegated` | `delegation` |
+| Legacy | `StakeDelegatedLocked` | `undelegation` |
+| Legacy | `StakeDelegatedWithdrawn` | `withdrawal` |
+| Horizon | `TokensDelegated` | `delegation` |
+| Horizon | `TokensUndelegated` | `undelegation` |
+| Horizon | `DelegatedTokensWithdrawn` | `withdrawal` |
 
 ### Contract
 
 - **Network:** Arbitrum One
-- **Address:** `0x00669A4CF01450B64E8A2A20E9b1FCB71E61eF03`
-- **Start block:** `42440000`
+- **Address:** [`0x00669A4CF01450B64E8A2A20E9b1FCB71E61eF03`](https://arbiscan.io/address/0x00669A4CF01450B64E8A2A20E9b1FCB71E61eF03)
+- **Start block:** `42,440,000`
 
-### Deploy (Subgraph Studio)
-
-```bash
-cd subgraph
-npm install
-npm run codegen
-npm run build
-npm run deploy
-```
+For the full schema, example queries, and deploy instructions, see **[subgraph/README.md](./subgraph/README.md)**.
 
 ---
 
@@ -150,11 +125,15 @@ cd delegators-dashboard
 # Get yours at: https://thegraph.com/studio/apikeys/
 GRAPH_API_KEY=[api-key]
 
+# Subgraph ID for the custom graph-delegation-events subgraph (required)
+# Find it in Subgraph Studio or The Graph Explorer
+GRAPH_DELEGATION_EVENTS=[subgraph-id]
+
 # Optional: separate API key for ENS subgraph queries (falls back to GRAPH_API_KEY)
 # ENS_API_KEY=[api-key]
 
 # Records to fetch (gateway caps each page at 1000; pagination is automatic)
-TRANSACTION_COUNT=5000
+TRANSACTION_COUNT=1000
 
 # Filter out delegations below this GRT amount
 GRT_SIZE=10000
@@ -183,12 +162,12 @@ python3 fetch_delegators_metrics.py
 ## 🛡️ Notes
 
 - `.env` and `.DS_Store` are excluded via `.gitignore`
-- ENS names are cached locally in `ens_cache.json` for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`). Delete the file to force a full refresh.
-- The dashboard uses the **Graph Analytics Arbitrum** subgraph for delegation data — individual transaction hashes are not available in this subgraph (Tx column removed)
-- ENS names are cached in memory during a run and persisted to `ens_cache.json`; a corrupt cache file is handled gracefully (auto-reset to empty)
+- `GRAPH_DELEGATION_EVENTS` must be set in `.env` — the script raises a clear error on startup if missing or still set to the placeholder value
+- Since v2.0.0, delegation data comes from the **custom `graph-delegation-events` subgraph** (see [`subgraph/README.md`](./subgraph/README.md)), which exposes exact per-transaction GRT amounts and transaction hashes
+- ENS names are cached locally in `ens_cache.json` for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`); a corrupt cache file is handled gracefully (auto-reset to empty)
 - The Graph gateway caps `first` at **1000 per query**; the script automatically paginates using a timestamp cursor, always fetching the most recently active records first
 - `run_delegators_vps.sh` is a VPS-specific variant that also copies the generated reports into the nginx web root (`/var/www/graphtools.pro/delegators/`)
-- If `ENS_API_KEY` is missing from `.env`, ENS lookups are silently skipped (addresses shown as-is) rather than crashing
+- If `ENS_API_KEY` is not set in `.env`, it silently falls back to `GRAPH_API_KEY`
 
 ---
 
