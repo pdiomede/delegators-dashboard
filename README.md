@@ -173,6 +173,18 @@ python3 fetch_delegators_metrics.py
 
 ## 📋 Changelog
 
+### v2.0.1
+- Fixed `block_datetime` in CSV export serialised as `str(datetime)` instead of ISO 8601 via `.isoformat()`
+- Added `encoding='utf-8'` to both HTML and CSV file writers (fixes emoji corruption on non-UTF-8 platforms)
+- Fixed unescaped `&` in `<title>` and `<meta>` OG/Twitter tags — now correctly `&amp;`
+- Fixed `GRT_SIZE * 10**18` recomputed on every table row — now uses pre-computed `grt_threshold`
+- Removed `global` declarations in `fetch_events()` and `fetch_metrics()` (only reads, not writes)
+- Removed noisy ENS cache-hit log line (was firing ~2000 times per run)
+- `fetch_ens_name`: expired cached names now returned as fallback when live re-fetch fails (network error)
+- `_paginate`: mid-pagination exceptions no longer crash the script — partial results are returned with a log warning
+- `generate_delegators_to_html`: added `✅ Saved HTML dashboard` success log to match CSV step
+- `TRANSACTION_COUNT` / `GRT_SIZE` invalid `.env` values now raise `EnvironmentError` with a clear message instead of a bare `ValueError`
+
 ### v2.0.0 ⭐ Major release
 - **Switched data source** from `delegatedStakes` (state-based) to the custom `graph-delegation-events` subgraph (event-based)
 - **Exact GRT amounts** for every event — delegations, top-ups, and undelegations all show the precise delta per transaction, not the total stake
