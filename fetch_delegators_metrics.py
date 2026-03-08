@@ -790,7 +790,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         f.write("""
             <div class="controls-container">
                 <div class="search-and-button">
-                    <input type="text" id="searchBox" placeholder="Search Indexers ..." style="padding: 5px; width: 300px;" />
+                    <input type="text" id="searchBox" placeholder="Search Indexers or Delegators ..." style="padding: 5px; width: 300px;" />
                     <button class="download-button" onclick="downloadCSV()">Download CSV</button>
                 </div>
                 <div class="filter-container">
@@ -807,9 +807,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     </div>
                     <div class="filter-bar" data-filter-type="grt">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a class="filter-button" href="javascript:void(0)" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 > 1M GRT</a>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="50000" onclick="filterByGRT('50000')">💰 ≥ 50,000 GRT</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="100000" onclick="filterByGRT('100000')">💰💰 ≥ 100,000 GRT</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="1000000" onclick="filterByGRT('1000000')">💰💰💰 ≥ 1M GRT</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByGRT('All')">🧹 Clear Filter</a>
                     </div>
                 </div>
@@ -970,11 +970,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                                 (currentFlagFilter === "Undelegations" && eventType === "undelegation");
 
                             const grtAmount = parseInt(row.dataset.grt, 10) || 0;
-                            const grtMatch = !grtFilterValid || currentGRTFilter === "All" || (!isNaN(grtAmount) && grtAmount > grtThreshold);
+                            const grtMatch = !grtFilterValid || currentGRTFilter === "All" || (!isNaN(grtAmount) && grtAmount >= grtThreshold);
 
                             const idxCell = row.cells[3];
+                            const delCell = row.cells[4];
                             const idxText = idxCell ? idxCell.textContent.toLowerCase() : "";
-                            const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
+                            const delText = delCell ? delCell.textContent.toLowerCase() : "";
+                            const searchMatch = currentSearch === "" || idxText.includes(currentSearch) || delText.includes(currentSearch);
 
                             return daysMatch && flagMatch && grtMatch && searchMatch;
                         });
@@ -1034,7 +1036,31 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         container.innerHTML = html;
                     }
 
+                    function updateSummaryCards() {
+                        const days = parseInt(currentDaysFilter, 10);
+                        if (isNaN(days) || (days !== 30 && days !== 90)) return;
+                        const cutoffTs = Math.floor(Date.now() / 1000) - (days * 24 * 60 * 60);
+                        let totalDelegated = 0, totalUndelegated = 0;
+                        getAllRows().forEach(row => {
+                            const rowTs = parseInt(row.dataset.ts, 10);
+                            if (isNaN(rowTs) || rowTs < cutoffTs) return;
+                            const grt = parseInt(row.dataset.grt, 10) || 0;
+                            const eventType = (row.dataset.eventType || "").toLowerCase();
+                            if (eventType === "delegation") totalDelegated += grt;
+                            else if (eventType === "undelegation") totalUndelegated += grt;
+                        });
+                        const net = totalDelegated - totalUndelegated;
+                        const netColor = net >= 0 ? "limegreen" : "crimson";
+                        const elDelegated = document.getElementById("total-delegated");
+                        const elUndelegated = document.getElementById("total-undelegated");
+                        const elNet = document.getElementById("net-amount");
+                        if (elDelegated) elDelegated.textContent = totalDelegated.toLocaleString() + " GRT";
+                        if (elUndelegated) elUndelegated.textContent = totalUndelegated.toLocaleString() + " GRT";
+                        if (elNet) { elNet.textContent = net.toLocaleString() + " GRT"; elNet.style.color = netColor; }
+                    }
+
                     function applyFiltersAndRender() {
+                        updateSummaryCards();
                         renderPage(1);
                         document.querySelectorAll('.filter-bar[data-filter-type="days"] .filter-button').forEach(btn => {
                             btn.classList.toggle('active-filter', btn.dataset.filter === currentDaysFilter);

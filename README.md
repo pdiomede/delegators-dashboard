@@ -2,8 +2,6 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.1.1** — Time-range filter (LAST 30 DAYS / LAST 90 DAYS). Summary cards show fixed 90-day totals; table and CSV respect filters. Paths resolved relative to script dir. Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars.
-
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
 
@@ -174,51 +172,7 @@ python3 fetch_delegators_metrics.py
 
 ## 📋 Changelog
 
-> Full history in [CHANGELOG.md](./CHANGELOG.md).
-
-### v2.1.1 (latest)
-- **Summary cards fixed** — Total Delegated, Undelegated, Net show 90-day totals and no longer change with filters
-- **Path resolution** — Reports, logs, and ENS cache use script directory; script works when run from any cwd
-- **Filter robustness** — Data attributes for event type/GRT; validation for filter inputs; search trim
-- **Bug fixes** — `fetch_indexer_avatar` when account is null; `int(tokens)` ValueError; `fetch_ens_name` return None; `toggleTheme` null check
-
-### v2.1.0
-- **Time-range filter** — LAST 30 DAYS (default) / LAST 90 DAYS
-- Backend always fetches last 90 days; client-side filter controls table view
-- CSV download respects all filters (time range, event type, GRT, search)
-- Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars
-- 10 bug fixes: ENS cache KeyError, HTML injection, CSV column order, and more
-
-### v2.0.2
-- **Track only delegations and undelegations** — Withdrawals excluded from subgraph query, stats panel, and filter bar
-- **Configurable update cadence** — `UPDATE_CADENCE_HOURS` in `.env` controls the "updated every N hours" text in the header (default: 8)
-
-### v2.0.1
-- **10 reliability & observability fixes (round 3):** `encoding='utf-8'` added to log file, ENS cache read/write, and HTML/CSV writers; avatar cache no longer poisoned by transient network errors; `JSONDecodeError` now caught in both `fetch_ens_name` and `fetch_indexer_avatar`; `fetch_events()` logs start and loaded-count; `_paginate` progress log moved after deduplication (accurate unique count); `<table>` wrapped with semantic `<thead>` / `<tbody>`; `TRANSACTION_COUNT = 0` raises a clear startup error; warning logged when subgraph returns 0 events
-- **10 data safety & correctness fixes (round 4):** `GRT_SIZE < 0` raises a clear startup error; `data.get("items") or []` replaces hard key access in `_paginate`; null `tokens` / `timestamp` fields from the subgraph now skip the event with a warning instead of crashing; unknown `eventType` values render as `❓` with a tooltip instead of being silently misclassified as withdrawals; JS GRT filter no longer hides 0-token withdrawal rows (consistent with Python server-side); `fetch_indexer_avatar` gains the same `None`/empty address guard as `fetch_ens_name`; `timestamp` ("Generated on") computed at HTML write time instead of module load; `<body>` class `"dark-mode"` removed (no matching CSS rule; dark mode comes from `:root` defaults)
-
-### v2.0.1
-- Fixed `block_datetime` in CSV export serialised as `str(datetime)` instead of ISO 8601 via `.isoformat()`
-- Added `encoding='utf-8'` to both HTML and CSV file writers
-- Fixed unescaped `&` in `<title>` and `<meta>` OG/Twitter tags — now correctly `&amp;`
-- Fixed `GRT_SIZE * 10**18` recomputed on every table row — now uses pre-computed `grt_threshold`
-- Removed `global` declarations in `fetch_events()` and `fetch_metrics()`
-- Removed noisy ENS cache-hit log line (~2 000 lines per 1 000-event run)
-- `fetch_ens_name`: stale cached name returned as fallback on network error
-- `_paginate`: mid-pagination exceptions return partial results instead of crashing
-- `generate_delegators_to_html`: added `✅ Saved HTML dashboard` success log
-- `TRANSACTION_COUNT` / `GRT_SIZE` invalid values raise `EnvironmentError` with a clear message
-
-### v2.0.0 ⭐ Major release
-- **Switched data source** to custom `graph-delegation-events` subgraph (event-based, exact GRT deltas)
-- **Exact GRT amounts** per transaction for all event types
-- **New "Tx" column** — transaction hash as Arbiscan link
-- **New "Withdrawal" event type** (`🔓 Withdrawal`)
-- Stats panel and filter bar updated to reflect new event model
-- Requires `GRAPH_DELEGATION_EVENTS` in `.env`
-
-### v1.4.x — v1.0.8
-See [CHANGELOG.md](./CHANGELOG.md) for full history.
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ---
 
