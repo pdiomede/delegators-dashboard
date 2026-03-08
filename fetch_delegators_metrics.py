@@ -9,7 +9,7 @@ from typing import List
 
 # v1.2.1 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.4.0"
+DASHBOARD_VERSION = "1.4.1"
 
 
 # Function that writes in the log file
@@ -35,9 +35,7 @@ load_dotenv()
 API_KEY = os.getenv("GRAPH_API_KEY")
 if not API_KEY:
     raise EnvironmentError("GRAPH_API_KEY is not set. Add it to your .env file.")
-ENS_API_KEY = os.getenv("ENS_API_KEY")
-if not ENS_API_KEY:
-    log_message("⚠️ ENS_API_KEY is not set. ENS lookups will be disabled.")
+ENS_API_KEY = os.getenv("ENS_API_KEY", API_KEY)  # falls back to GRAPH_API_KEY if not set
 TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 5000)) # Default number of transaction to return
 GRT_SIZE = int(os.getenv("GRT_SIZE", 10000)) # Excluding GRT under 10000
 
@@ -56,8 +54,8 @@ except ValueError:
     log_message("⚠️ ENS_CACHE_EXPIRY_HOURS is not a valid integer — using default: 24h")
 
 # List of all used subgraphs
-SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz"       # Graph Analytics Arbitrum
-ENS_SUBGRAPH_URL = ENS_API_KEY
+SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz"           # Graph Analytics Arbitrum
+ENS_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{ENS_API_KEY}/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH"  # ENS Mainnet
 AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"   # Graph Network Arbitrum
 
 
@@ -99,9 +97,6 @@ def _save_ens_cache() -> None:
         log_message(f"⚠️ Failed to save ENS cache: {e}")
 
 def fetch_ens_name(address: str) -> str:
-    global ENS_SUBGRAPH_URL
-    if not ENS_SUBGRAPH_URL:
-        return ""
     headers = {"Content-Type": "application/json"}
     address = address.lower()
 
