@@ -9,7 +9,7 @@ from typing import List
 
 # v1.2.1 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.4.2"
+DASHBOARD_VERSION = "1.4.3"
 
 
 # Function that writes in the log file
@@ -715,7 +715,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
                         <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')" title="First-time delegation from a delegator to an indexer. Amount shown is the exact GRT delegated.">✅ New Delegations</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="Topups" onclick="filterByFlag('Topups')" title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added.">➕ Top-ups</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Topups" onclick="filterByFlag('Topups')" title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added."><span style="display:inline-block;background:#f0a500;color:#000;border-radius:4px;padding:0px 5px;font-size:0.8em;font-weight:bold;margin-right:4px;">+</span>Top-ups</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')" title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal.">❌ Undelegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
@@ -757,13 +757,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
                 if key == "event_type":
                     if value == "delegation":
-                        label = "✅ New Delegation"
+                        label = '✅ New Delegation'
                         tooltip = ' title="First-time delegation from a delegator to an indexer. Amount shown is the exact GRT delegated."'
                     elif value == "topup":
-                        label = "➕ Top-up"
+                        label = '<span style="display:inline-block;background:#f0a500;color:#000;border-radius:4px;padding:1px 5px;font-size:0.8em;font-weight:bold;margin-right:4px;">+</span>Top-up'
                         tooltip = ' title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added."'
                     else:
-                        label = "❌ Undelegation"
+                        label = '❌ Undelegation'
                         tooltip = ' title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal."'
                     value = f'<span style="font-size: 0.85em; cursor: help;"{tooltip}>{label}</span>'
 
@@ -835,7 +835,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                             if (!eventCell || !grtCell) return false;
 
                             const isDelegation   = eventCell.textContent.includes("✅ New Delegation");
-                            const isTopup        = eventCell.textContent.includes("➕ Top-up");
+                            const isTopup        = eventCell.textContent.includes("Top-up");
                             const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
                             const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""));
                             const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
