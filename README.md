@@ -172,7 +172,7 @@ python3 fetch_delegators_metrics.py
 
 ## 📋 Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for release history.
+[CHANGELOG.md](CHANGELOG.md)
 
 ---
 
