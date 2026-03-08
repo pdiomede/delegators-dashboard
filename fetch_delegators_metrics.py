@@ -36,8 +36,14 @@ API_KEY = os.getenv("GRAPH_API_KEY")
 if not API_KEY:
     raise EnvironmentError("GRAPH_API_KEY is not set. Add it to your .env file.")
 ENS_API_KEY = os.getenv("ENS_API_KEY", API_KEY)  # falls back to GRAPH_API_KEY if not set
-TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 1000)) # Default number of transaction to return
-GRT_SIZE = int(os.getenv("GRT_SIZE", 10000)) # Excluding GRT under 10000
+try:
+    TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 1000))
+except ValueError:
+    raise EnvironmentError("TRANSACTION_COUNT in .env must be a plain integer (e.g. 1000).")
+try:
+    GRT_SIZE = int(os.getenv("GRT_SIZE", 10000))
+except ValueError:
+    raise EnvironmentError("GRT_SIZE in .env must be a plain integer (e.g. 10000).")
 
 # Load ENS cache file path
 ENS_CACHE_FILE = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
@@ -112,7 +118,6 @@ def fetch_ens_name(address: str) -> str:
     if record:
         last_updated = datetime.fromisoformat(record["timestamp"]).astimezone(timezone.utc)
         if datetime.now(timezone.utc) - last_updated < timedelta(hours=ENS_CACHE_EXPIRY_HOURS):
-            log_message(f"🧠 Using cached ENS for {address}: {record['ens'] or 'no ENS'}")
             return record["ens"]
 
     payload = {
@@ -138,6 +143,10 @@ def fetch_ens_name(address: str) -> str:
 
     except requests.RequestException as e:
         log_message(f"⚠️ ENS lookup failed for {address}: {e}")
+        # Return the stale cached value rather than an empty string if available
+        if record and record.get("ens"):
+            log_message(f"↩️ Using stale cached ENS for {address}: {record['ens']}")
+            return record["ens"]
         return ""
 
 
@@ -220,7 +229,11 @@ class DelegationFetcher:
               }}
             }}
             '''
-            data = self.run_query(query)
+            try:
+                data = self.run_query(query)
+            except (RuntimeError, requests.RequestException) as e:
+                log_message(f"⚠️ Pagination interrupted after {len(results)} records: {e}. Using partial results.")
+                break
             page = data["items"]
             if not page:
                 break
@@ -236,8 +249,6 @@ class DelegationFetcher:
         return results
 
     def fetch_events(self) -> List[DelegationEvent]:
-
-        global TRANSACTION_COUNT
 
         fields = "eventType indexer delegator tokens txHash timestamp"
 
@@ -320,7 +331,6 @@ def fetch_indexer_avatar(address):
     
 # Returns all the data about last delegations and undelegations
 def fetch_metrics():
-    global DELEGATION_EVENTS_URL, TRANSACTION_COUNT
     fetcher = DelegationFetcher(DELEGATION_EVENTS_URL)
     events = fetcher.fetch_events()
     return events
@@ -336,11 +346,15 @@ def generate_delegators_to_csv(events: List[DelegationEvent]):
         log_message("⚠️ No events to write to CSV.")
         return
 
-    with open(csv_path, mode='w', newline='') as file:
+    with open(csv_path, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=events[0].to_dict().keys())
         writer.writeheader()
         for event in events:
-            writer.writerow(event.to_dict())
+            row = event.to_dict()
+            # datetime objects aren't CSV-serialisable; convert to ISO 8601 string
+            if isinstance(row.get("block_datetime"), datetime):
+                row["block_datetime"] = row["block_datetime"].isoformat()
+            writer.writerow(row)
 
     log_message(f"✅ Saved CSV file: {csv_path}")
 # End Function 'generate_delegators_to_csv'
@@ -357,7 +371,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
     filename = "index.html"
     html_path = os.path.join(report_dir, filename)
 
-    with open(html_path, mode='w') as f:
+    with open(html_path, mode='w', encoding='utf-8') as f:
         f.write("""
             <!DOCTYPE html>
             <html lang="en">
@@ -368,18 +382,18 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <meta name="description" content="Track real-time delegation and undelegation activity on The Graph Network with Graph Tools Pro's Delegators Activity Log, featuring detailed transaction data.">
                 <meta name="robots" content="index, follow">
 
-                <meta property="og:title" content="Graph Tools Pro: Delegators Activity Log & Analytics">
+                <meta property="og:title" content="Graph Tools Pro: Delegators Activity Log &amp; Analytics">
                 <meta property="og:description" content="Track live delegation and undelegation activity on The Graph Network (Arbitrum). ENS names, indexer avatars, filters, CSV export and more.">
                 <meta property="og:url" content="https://graphtools.pro/delegators/">
                 <meta property="og:type" content="website">
                 <meta property="og:image" content="https://graphtools.pro/delegators/social-card.jpeg">
                 
                 <meta name="twitter:card" content="summary_large_image">
-                <meta name="twitter:title" content="Graph Tools Pro: Delegators Activity Log & Analytics">
+                <meta name="twitter:title" content="Graph Tools Pro: Delegators Activity Log &amp; Analytics">
                 <meta name="twitter:description" content="Track live delegation and undelegation activity on The Graph Network (Arbitrum). ENS names, indexer avatars, filters, CSV export and more.">
                 <meta name="twitter:image" content="https://graphtools.pro/delegators/social-card.jpeg">
                 
-                <title>Graph Tools Pro: Delegators Activity Log & Analytics</title>
+                <title>Graph Tools Pro: Delegators Activity Log &amp; Analytics</title>
                 <link rel="canonical" href="https://graphtools.pro/delegators/">
                 <link rel="icon" type="image/x-icon" href="https://graphtools.pro/favicon.ico">
               
@@ -757,7 +771,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator", "tx_hash"]
         for event in events:
             # Always show withdrawals regardless of amount; they may have tokens=0 in Horizon protocol
-            if event.event_type != "withdrawal" and event.tokens < GRT_SIZE * 10**18:
+            if event.event_type != "withdrawal" and event.tokens < grt_threshold:
                 continue
             f.write("<tr>")
             data = event.to_dict()
@@ -953,6 +967,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             </body>
             </html>
         """)
+
+
+    log_message(f"✅ Saved HTML dashboard: {html_path}")
 
 
 if __name__ == "__main__":
