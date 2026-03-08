@@ -5,7 +5,33 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [2.0.2] — 2026-03-08 (latest)
+## [2.1.0] — 2026-03-08 (latest)
+
+### Added
+
+- **Time-range filter** — New filter bar: LAST 30 DAYS (default) | LAST 90 DAYS. Backend always fetches last 90 days; client-side filter controls which events are shown.
+- **Dynamic summary cards** — Total Delegated, Total Undelegated, and Net now update when filters change (time range, event type, GRT, search).
+- **Filtered CSV download** — Download CSV now exports only the currently filtered rows instead of the full dataset.
+
+### Changed
+
+- **Removed `TRANSACTION_COUNT` and `DAYS_BACK`** — Backend always fetches last 90 days (up to 100,000 events). Time range is controlled solely by the client-side filter.
+- **`UPDATE_CADENCE_HOURS=0`** — Header now shows "updated on every run" instead of "0 hours".
+
+### Fixed
+
+- **ENS cache KeyError** — `record["timestamp"]` could raise when cache record lacked a timestamp; now uses `record.get("timestamp")` with fallback.
+- **`fromisoformat` on `Z` suffix** — Older Python versions fail on ISO strings ending in `Z`; now normalizes to `+00:00` before parsing.
+- **HTML injection** — Escaped `display_name`, `avatar_url`, `tx_hash`, and unknown event types before inserting into HTML.
+- **CSV column order** — Replaced `dict.keys()` with explicit `CSV_FIELDNAMES` for consistent column order across Python versions.
+- **`filterByDays` invalid input** — Invalid values (e.g. `"invalid"`) no longer produce NaN cutoff; only `"30"` and `"90"` are accepted.
+- **`tx_hash` truncation** — Short strings no longer produce overlapping/weird output; truncation only when `len > 20`.
+- **`queryAvatar` injection** — Rejects addresses containing `"`, `\`, or newlines before building GraphQL query.
+- **Download CSV** — Now respects all active filters (time range, event type, GRT, search) and extracts full tx hash from link href.
+
+---
+
+## [2.0.2] — 2026-03-08
 
 ### Changed
 

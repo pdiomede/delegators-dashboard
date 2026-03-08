@@ -1,3 +1,4 @@
+import html as html_module
 import os
 import json
 import csv
@@ -7,9 +8,9 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v2.0.2 / 08-Mar-2026
+# v2.1.0 / 08-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "2.0.2"
+DASHBOARD_VERSION = "2.1.0"
 
 
 # Function that writes in the log file
@@ -36,12 +37,6 @@ API_KEY = os.getenv("GRAPH_API_KEY")
 if not API_KEY:
     raise EnvironmentError("GRAPH_API_KEY is not set. Add it to your .env file.")
 ENS_API_KEY = os.getenv("ENS_API_KEY", API_KEY)  # falls back to GRAPH_API_KEY if not set
-try:
-    TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 1000))
-except ValueError:
-    raise EnvironmentError("TRANSACTION_COUNT in .env must be a plain integer (e.g. 1000).")
-if TRANSACTION_COUNT <= 0:
-    raise EnvironmentError(f"TRANSACTION_COUNT must be greater than 0 (got {TRANSACTION_COUNT}).")
 try:
     GRT_SIZE = int(os.getenv("GRT_SIZE", 10000))
 except ValueError:
@@ -120,9 +115,15 @@ def fetch_ens_name(address: str) -> str:
     # Check cache and freshness
     record = ens_cache.get(address)
     if record:
-        last_updated = datetime.fromisoformat(record["timestamp"]).astimezone(timezone.utc)
-        if datetime.now(timezone.utc) - last_updated < timedelta(hours=ENS_CACHE_EXPIRY_HOURS):
-            return record["ens"]
+        ts_raw = record.get("timestamp")
+        if ts_raw:
+            ts_str = ts_raw.replace("Z", "+00:00") if isinstance(ts_raw, str) else ts_raw
+            try:
+                last_updated = datetime.fromisoformat(ts_str).astimezone(timezone.utc)
+                if datetime.now(timezone.utc) - last_updated < timedelta(hours=ENS_CACHE_EXPIRY_HOURS):
+                    return record.get("ens", "")
+            except (ValueError, TypeError):
+                pass  # invalid timestamp — treat as stale, re-fetch
 
     payload = {
         "query": queryENS,
@@ -262,16 +263,21 @@ class DelegationFetcher:
 
     def fetch_events(self) -> List[DelegationEvent]:
 
-        log_message(f"⏳ Fetching up to {TRANSACTION_COUNT:,} delegation events from subgraph...")
+        FETCH_DAYS = 90
+        cutoff = int((datetime.now(timezone.utc) - timedelta(days=FETCH_DAYS)).timestamp())
+        extra_where = f'eventType_in: ["delegation", "undelegation"], timestamp_gte: {cutoff}'
+        limit = 100_000
+
+        log_message(f"⏳ Fetching all delegation events from last {FETCH_DAYS} days (GRT ≥ {GRT_SIZE:,})...")
 
         fields = "eventType indexer delegator tokens txHash timestamp"
 
         raw_events = self._paginate(
             entity="delegationEvents",
             order_field="timestamp",
-            extra_where='eventType_in: ["delegation", "undelegation"]',
+            extra_where=extra_where,
             fields=fields,
-            limit=TRANSACTION_COUNT,
+            limit=limit,
         )
 
         if not raw_events:
@@ -312,6 +318,9 @@ def fetch_indexer_avatar(address):
     if addr in _avatar_cache:
         return _avatar_cache[addr]
 
+    # Use variable to avoid GraphQL injection if address ever contained quotes
+    if '"' in addr or '\\' in addr or '\n' in addr:
+        return ""
     queryAvatar = f'''
     {{
         indexers(where: {{ id: "{addr}" }}) {{
@@ -370,6 +379,10 @@ def fetch_metrics():
 # End Function 'fetch_metrics'
 
 
+# Explicit column order for CSV (dict.keys() order can vary across Python versions)
+CSV_FIELDNAMES = ["event_type", "tokens", "block_datetime", "block_timestamp", "indexer", "delegator", "tx_hash"]
+
+
 # Returns all the data in a CSV file
 def generate_delegators_to_csv(events: List[DelegationEvent]):
     filename = "delegators.csv"
@@ -380,7 +393,7 @@ def generate_delegators_to_csv(events: List[DelegationEvent]):
         return
 
     with open(csv_path, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=events[0].to_dict().keys())
+        writer = csv.DictWriter(file, fieldnames=CSV_FIELDNAMES, extrasaction="ignore")
         writer.writeheader()
         for event in events:
             row = event.to_dict()
@@ -403,6 +416,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
     # Capture the timestamp right before writing so it reflects actual generation time
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    cadence_display = "on every run" if UPDATE_CADENCE_HOURS == 0 else f"every {UPDATE_CADENCE_HOURS} hours"
 
     filename = "index.html"
     html_path = os.path.join(report_dir, filename)
@@ -714,11 +728,12 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         
                
         # Header with breadcrumb and toggle
+        breadcrumb_sub = f"last 90 days fetched, GRT ≥ {GRT_SIZE:,}"
         f.write(f"""
             <div class="header-container">
                 <div class="breadcrumb" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; font-size: 0.85em; letter-spacing: 0.3px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">
                     <a href="https://graphtools.pro" class="home-link" style="text-decoration: none;">🏠 Home</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;
-                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[last {TRANSACTION_COUNT:,} transactions, excluding under {GRT_SIZE:,} GRT]</span></span>    
+                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[{breadcrumb_sub}]</span></span>    
                 </div>
                 <div class="toggle-container">
                     <label class="toggle-switch">
@@ -733,7 +748,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div style="text-align: center;">    
                 <h1 style="margin-bottom: 4px;">Delegators Activity Log</h1>
                 <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 0; margin-bottom: 30px;">
-                    Generated on: {timestamp} - (updated every {UPDATE_CADENCE_HOURS} hours)
+                    Generated on: {timestamp} - (updated {cadence_display})
                 </div>
             </div>
         """)
@@ -747,18 +762,18 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         net_color = "limegreen" if net >= 0 else "crimson"
 
         f.write(f"""
-            <div style="display: flex; gap: 20px; margin-bottom: 30px;">
+            <div id="summary-cards" style="display: flex; gap: 20px; margin-bottom: 30px;">
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Total Delegated</div>
-                    <div style="font-size: 2em; font-weight: bold; color: limegreen;">{total_delegated:,} GRT</div>
+                    <div id="total-delegated" style="font-size: 2em; font-weight: bold; color: limegreen;">{total_delegated:,} GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Total Undelegated</div>
-                    <div style="font-size: 2em; font-weight: bold; color: crimson;">{total_undelegated:,} GRT</div>
+                    <div id="total-undelegated" style="font-size: 2em; font-weight: bold; color: crimson;">{total_undelegated:,} GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Net</div>
-                    <div style="font-size: 2em; font-weight: bold; color: {net_color};">{net:,} GRT</div>
+                    <div id="net-amount" style="font-size: 2em; font-weight: bold; color: {net_color};">{net:,} GRT</div>
                 </div>
             </div>
         """)
@@ -770,13 +785,18 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     <button class="download-button" onclick="downloadCSV()">Download CSV</button>
                 </div>
                 <div class="filter-container">
-                    <div class="filter-bar">
+                    <div class="filter-bar" data-filter-type="days">
+                        <strong style="margin-left: 16px;">Time range:</strong>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="30" onclick="filterByDays('30')">LAST 30 DAYS</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="90" onclick="filterByDays('90')">LAST 90 DAYS</a>
+                    </div>
+                    <div class="filter-bar" data-filter-type="event">
                         <strong style="margin-left: 16px;">Filter for:</strong>
                         <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')" title="GRT delegated to an indexer. Amount shown is the exact delta per transaction.">✅ Delegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')" title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal.">❌ Undelegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
-                    <div class="filter-bar">
+                    <div class="filter-bar" data-filter-type="grt">
                         <strong style="margin-left: 16px;">Filter for:</strong>
                         <a class="filter-button" href="javascript:void(0)" data-filter="50000" onclick="filterByGRT('50000')">💰 > 50,000 GRT</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="100000" onclick="filterByGRT('100000')">💰💰 > 100,000 GRT</a>
@@ -801,7 +821,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         for event in events:
             if event.tokens < grt_threshold:
                 continue
-            f.write("<tr>")
+            f.write(f'<tr data-ts="{event.block_timestamp}">')
             data = event.to_dict()
             for key in key_order:
                 value = data.get(key)
@@ -823,8 +843,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         label = '🔓 Withdrawal'
                         tooltip = ' title="Tokens withdrawn after the unbonding period has elapsed."'
                     else:
-                        label = f'❓ {value or "unknown"}'
-                        tooltip = f' title="Unrecognised event type: {value}. The subgraph schema may have changed."'
+                        safe_val = html_module.escape(str(value or "unknown"), quote=True)
+                        label = f'❓ {safe_val}'
+                        tooltip = f' title="Unrecognised event type: {safe_val}. The subgraph schema may have changed."'
                     value = f'<span style="font-size: 0.85em; cursor: help;"{tooltip}>{label}</span>'
 
                 if key in ("indexer", "delegator"):
@@ -833,19 +854,26 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         continue
                     ens_name = fetch_ens_name(value)
                     display_name = ens_name if ens_name else value
+                    safe_display = html_module.escape(display_name)
+                    safe_value = html_module.escape(value, quote=True)
 
                     if key == "indexer":
                         avatar_url = fetch_indexer_avatar(value)
                         if avatar_url:
-                            display_name = f'<img src="{avatar_url}" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">{display_name}'
+                            safe_avatar = html_module.escape(avatar_url, quote=True)
+                            display_name = f'<img src="{safe_avatar}" alt="avatar" style="height:20px;vertical-align:middle;margin-right:5px;">{safe_display}'
+                        else:
+                            display_name = safe_display
 
-                    link = f'<a href="https://thegraph.com/explorer/profile/{value}" target="_blank">{display_name}</a>'
+                    link = f'<a href="https://thegraph.com/explorer/profile/{safe_value}" target="_blank">{display_name}</a>'
                     value = f'<span style="font-size: 0.85em;">{link}</span>'
 
                 if key == "tx_hash":
                     if value:
-                        short = value[:8] + "…" + value[-6:]
-                        value = f'<a href="https://arbiscan.io/tx/{value}" target="_blank" style="font-size:0.8em;font-family:monospace;" title="{value}">{short}</a>'
+                        safe_tx = html_module.escape(value, quote=True)
+                        short = value if len(value) <= 20 else value[:8] + "…" + value[-6:]
+                        safe_short = html_module.escape(short)
+                        value = f'<a href="https://arbiscan.io/tx/{safe_tx}" target="_blank" style="font-size:0.8em;font-family:monospace;" title="{safe_tx}">{safe_short}</a>'
                     else:
                         value = '<span style="opacity:0.4;font-size:0.8em;">—</span>'
 
@@ -874,6 +902,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <script>
                     const ROWS_PER_PAGE = 50;
                     let currentPage = 1;
+                    let currentDaysFilter = "30";
                     let currentFlagFilter = "All";
                     let currentGRTFilter = "All";
                     let currentSearch = "";
@@ -885,12 +914,30 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     }
 
                     function downloadCSV() {
+                        const rows = getFilteredRows();
+                        const headers = ["Event", "GRT", "Date", "Indexer", "Delegator", "Tx"];
+                        let csv = headers.join(",") + "\\n";
+                        rows.forEach(row => {
+                            const cells = Array.from(row.cells).slice(0, 6);
+                            const vals = cells.map((c, i) => {
+                                let t = (c && c.textContent) ? c.textContent.trim() : "";
+                                if (i === 5 && c) {
+                                    const a = c.querySelector('a[href*="arbiscan.io/tx/"]');
+                                    if (a) t = (a.getAttribute("href") || "").split("/tx/").pop() || t;
+                                }
+                                return '"' + t.replace(/"/g, '""') + '"';
+                            });
+                            csv += vals.join(",") + "\\n";
+                        });
+                        const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+                        const url = URL.createObjectURL(blob);
                         const link = document.createElement('a');
-                        link.href = 'delegators.csv';
+                        link.href = url;
                         link.download = 'delegators.csv';
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
                     }
 
                     function getAllRows() {
@@ -898,24 +945,30 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     }
 
                     function getFilteredRows() {
+                        const days = parseInt(currentDaysFilter, 10);
+                        if (isNaN(days) || (days !== 30 && days !== 90)) return getAllRows();
+                        const cutoffTs = Math.floor(Date.now() / 1000) - (days * 24 * 60 * 60);
                         return getAllRows().filter(row => {
                             const eventCell = row.cells[0];
                             const grtCell   = row.cells[1];
                             const idxCell   = row.cells[3];
                             if (!eventCell || !grtCell) return false;
 
+                            const rowTs = parseInt(row.dataset.ts, 10);
+                            const daysMatch = !isNaN(rowTs) && rowTs >= cutoffTs;
+
                             const isDelegation   = eventCell.textContent.includes("✅ Delegation");
                             const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
-                            const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""));
+                            const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""), 10);
                             const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
 
                             const flagMatch   = currentFlagFilter === "All" ||
                                                 (currentFlagFilter === "Delegations"   && isDelegation) ||
                                                 (currentFlagFilter === "Undelegations" && isUndelegation);
-                            const grtMatch    = currentGRTFilter === "All" || grtAmount > parseInt(currentGRTFilter);
+                            const grtMatch    = currentGRTFilter === "All" || (!isNaN(grtAmount) && grtAmount > parseInt(currentGRTFilter, 10));
                             const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
 
-                            return flagMatch && grtMatch && searchMatch;
+                            return daysMatch && flagMatch && grtMatch && searchMatch;
                         });
                     }
 
@@ -972,16 +1025,44 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         container.innerHTML = html;
                     }
 
+                    function updateSummaryFromFilteredRows() {
+                        const rows = getFilteredRows();
+                        let delegated = 0, undelegated = 0;
+                        rows.forEach(row => {
+                            const eventCell = row.cells[0];
+                            const grtCell = row.cells[1];
+                            if (!eventCell || !grtCell) return;
+                            const grt = parseInt(grtCell.textContent.replace(/,/g, ""), 10) || 0;
+                            if (eventCell.textContent.includes("✅ Delegation")) delegated += grt;
+                            else if (eventCell.textContent.includes("❌ Undelegation")) undelegated += grt;
+                        });
+                        const net = delegated - undelegated;
+                        const netEl = document.getElementById("net-amount");
+                        if (document.getElementById("total-delegated")) document.getElementById("total-delegated").textContent = delegated.toLocaleString() + " GRT";
+                        if (document.getElementById("total-undelegated")) document.getElementById("total-undelegated").textContent = undelegated.toLocaleString() + " GRT";
+                        if (netEl) {
+                            netEl.textContent = net.toLocaleString() + " GRT";
+                            netEl.style.color = net >= 0 ? "limegreen" : "crimson";
+                        }
+                    }
+
                     function applyFiltersAndRender() {
                         renderPage(1);
-                        document.querySelectorAll('.filter-bar:first-of-type .filter-button').forEach(btn => {
+                        updateSummaryFromFilteredRows();
+                        document.querySelectorAll('.filter-bar[data-filter-type="days"] .filter-button').forEach(btn => {
+                            btn.classList.toggle('active-filter', btn.dataset.filter === currentDaysFilter);
+                        });
+                        document.querySelectorAll('.filter-bar[data-filter-type="event"] .filter-button').forEach(btn => {
                             btn.classList.toggle('active-filter', btn.dataset.filter !== "All" && btn.dataset.filter === currentFlagFilter);
                         });
-                        document.querySelectorAll('.filter-bar:last-of-type .filter-button').forEach(btn => {
+                        document.querySelectorAll('.filter-bar[data-filter-type="grt"] .filter-button').forEach(btn => {
                             btn.classList.toggle('active-filter', btn.dataset.filter !== "All" && btn.dataset.filter === currentGRTFilter);
                         });
                     }
 
+                    function filterByDays(days) {
+                        if (days === "30" || days === "90") { currentDaysFilter = days; applyFiltersAndRender(); }
+                    }
                     function filterByFlag(flag) { currentFlagFilter = flag; applyFiltersAndRender(); }
                     function filterByGRT(flag)  { currentGRTFilter  = flag; applyFiltersAndRender(); }
 
@@ -991,7 +1072,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     });
 
                     // Initial render
-                    renderPage(1);
+                    applyFiltersAndRender();
                 </script>
             </body>
             </html>

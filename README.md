@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.0.2** — Custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links. Tracks delegations and undelegations only (withdrawals excluded). Configurable update cadence in header.
+> **v2.1.0** — Time-range filter (LAST 30 DAYS / LAST 90 DAYS). Backend always fetches last 90 days; client-side filter defaults to 30 days. Summary cards and CSV download respect filters. Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -19,9 +19,10 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 - ENS name resolution for delegator and indexer addresses
 - Avatar integration for indexers (via subgraph metadata)
 - Light/dark mode with theme toggle
+- **Time-range filter** — LAST 30 DAYS (default) / LAST 90 DAYS
 - Filtering by event type (Delegations / Undelegations) and GRT thresholds
 - **Paginated table** — 50 rows per page, integrated with all filters and search
-- CSV download of all listed events
+- CSV download — respects current filters (time range, event type, GRT, search)
 - Clean, responsive layout with semantic HTML5
 - Fully client-side (static file based, no backend needed)
 - Social sharing card (og:image / twitter:card) for X, LinkedIn and other platforms
@@ -132,9 +133,6 @@ GRAPH_DELEGATION_EVENTS=[subgraph-id]
 # Optional: separate API key for ENS subgraph queries (falls back to GRAPH_API_KEY)
 # ENS_API_KEY=[api-key]
 
-# Records to fetch (gateway caps each page at 1000; pagination is automatic)
-TRANSACTION_COUNT=1000
-
 # Filter out delegations below this GRT amount
 GRT_SIZE=10000
 
@@ -168,7 +166,7 @@ python3 fetch_delegators_metrics.py
 - `GRAPH_DELEGATION_EVENTS` must be set in `.env` — the script raises a clear error on startup if missing or still set to the placeholder value
 - Since v2.0.0, delegation data comes from the **custom `graph-delegation-events` subgraph** (see [`subgraph/README.md`](./subgraph/README.md)), which exposes exact per-transaction GRT amounts and transaction hashes
 - ENS names are cached locally in `ens_cache.json` for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`); a corrupt cache file is handled gracefully (auto-reset to empty)
-- The Graph gateway caps `first` at **1000 per query**; the script automatically paginates using a timestamp cursor, always fetching the most recently active records first
+- The script fetches all delegation events from the **last 90 days** (up to 100,000 records); the Graph gateway caps `first` at 1000 per query, so pagination is automatic
 - `run_delegators_vps.sh` is a VPS-specific variant that also copies the generated reports into the nginx web root (`/var/www/graphtools.pro/delegators/`)
 - If `ENS_API_KEY` is not set in `.env`, it silently falls back to `GRAPH_API_KEY`
 
@@ -178,7 +176,15 @@ python3 fetch_delegators_metrics.py
 
 > Full history in [CHANGELOG.md](./CHANGELOG.md).
 
-### v2.0.2 (latest)
+### v2.1.0 (latest)
+- **Time-range filter** — LAST 30 DAYS (default) / LAST 90 DAYS
+- Backend always fetches last 90 days; client-side filter controls view
+- Summary cards (Total Delegated, Undelegated, Net) update when filters change
+- CSV download respects all filters (time range, event type, GRT, search)
+- Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars
+- 10 bug fixes: ENS cache KeyError, HTML injection, CSV column order, and more
+
+### v2.0.2
 - **Track only delegations and undelegations** — Withdrawals excluded from subgraph query, stats panel, and filter bar
 - **Configurable update cadence** — `UPDATE_CADENCE_HOURS` in `.env` controls the "updated every N hours" text in the header (default: 8)
 
