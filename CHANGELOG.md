@@ -5,7 +5,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [2.0.2] — 2026-03-08
+## [2.0.1] — 2026-03-08 (latest)
 
 ### Bug fixes — round 3 (reliability & observability)
 
@@ -32,10 +32,6 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **`_paginate` progress log reported inflated count before deduplication** — (companion fix to round-3 item above); the log was also emitting *before* the dedup loop during this round's refactor; log now appears after the loop with the accurate unique total
 - **`timestamp` ("Generated on") computed at module load, not at HTML write time** — the module-level `timestamp = datetime.now(…)` was evaluated once when the script started; after a long run (hundreds of ENS/avatar lookups), the printed timestamp could be many minutes stale by the time the HTML was actually written; `timestamp` is now computed inside `generate_delegators_to_html()` immediately before writing
 - **`<body class="dark-mode">` referenced a non-existent CSS class** — dark styling comes from `:root` CSS variable defaults, not a `.dark-mode` rule (which was never defined); the class was vestigial, semantically wrong, and would confuse future CSS changes; changed to `<body>` with no class; dark mode remains the default via `:root`, and `.light-mode` overrides it on toggle
-
----
-
-## [2.0.1] — 2026-03-08
 
 ### Bug fixes — round 2 (general)
 

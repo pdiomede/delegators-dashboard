@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.0.2** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type. Three rounds of 10 bug fixes each for reliability, data safety, and correctness.
+> **v2.0.1** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type. Three rounds of 10 bug fixes each for reliability, data safety, and correctness.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -175,7 +175,7 @@ python3 fetch_delegators_metrics.py
 
 > Full history in [CHANGELOG.md](./CHANGELOG.md).
 
-### v2.0.2
+### v2.0.1 (latest)
 - **10 reliability & observability fixes (round 3):** `encoding='utf-8'` added to log file, ENS cache read/write, and HTML/CSV writers; avatar cache no longer poisoned by transient network errors; `JSONDecodeError` now caught in both `fetch_ens_name` and `fetch_indexer_avatar`; `fetch_events()` logs start and loaded-count; `_paginate` progress log moved after deduplication (accurate unique count); `<table>` wrapped with semantic `<thead>` / `<tbody>`; `TRANSACTION_COUNT = 0` raises a clear startup error; warning logged when subgraph returns 0 events
 - **10 data safety & correctness fixes (round 4):** `GRT_SIZE < 0` raises a clear startup error; `data.get("items") or []` replaces hard key access in `_paginate`; null `tokens` / `timestamp` fields from the subgraph now skip the event with a warning instead of crashing; unknown `eventType` values render as `❓` with a tooltip instead of being silently misclassified as withdrawals; JS GRT filter no longer hides 0-token withdrawal rows (consistent with Python server-side); `fetch_indexer_avatar` gains the same `None`/empty address guard as `fetch_ens_name`; `timestamp` ("Generated on") computed at HTML write time instead of module load; `<body>` class `"dark-mode"` removed (no matching CSS rule; dark mode comes from `:root` defaults)
 
