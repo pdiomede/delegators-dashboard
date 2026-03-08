@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: L2Staking
+    network: arbitrum-one
+    source:
+      address: "0x00669A4CF01450B64E8A2A20E9b1FCB71E61eF03"
+      abi: L2Staking
+      startBlock: 42440000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - DelegationEvent
+      abis:
+        - name: L2Staking
+          file: ./abis/L2Staking.json
+      eventHandlers:
+        # Legacy events (pre-Horizon)
+        - event: StakeDelegated(indexed address,indexed address,uint256,uint256)
+          handler: handleStakeDelegated
+        - event: StakeDelegatedLocked(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleStakeDelegatedLocked
+        - event: StakeDelegatedWithdrawn(indexed address,indexed address,uint256)
+          handler: handleStakeDelegatedWithdrawn
+        # Horizon events (post Dec 11, 2025)
+        - event: TokensDelegated(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTokensDelegated
+        - event: TokensUndelegated(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTokensUndelegated
+        - event: DelegatedTokensWithdrawn(indexed address,indexed address,indexed address,uint256)
+          handler: handleDelegatedTokensWithdrawn
+      file: ./src/mapping.ts

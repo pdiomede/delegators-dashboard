@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.4.2** — ENS lookups fixed, delegation top-up detection, tooltips on event types, social card improved.
+> **v1.4.3** — ENS lookups fixed, delegation top-up detection, tooltips on event types, custom subgraph in development.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -36,10 +36,18 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 ├── 📜 requirements.txt              # Python dependencies
 ├── 📜 .env                          # API keys and config (excluded via .gitignore)
 ├── 📂 logs/                         # Auto-generated log files
-└── 📂 reports/
-    ├── 📜 delegators.csv            # Generated CSV export
-    ├── 📜 index.html                # Generated HTML dashboard
-    └── 📜 social-card.jpeg          # Social sharing card (og:image) — deployed once
+├── 📂 reports/
+│   ├── 📜 delegators.csv            # Generated CSV export
+│   ├── 📜 index.html                # Generated HTML dashboard
+│   └── 📜 social-card.jpeg          # Social sharing card (og:image) — deployed once
+└── 📂 subgraph/                     # Custom subgraph (graph-delegation-events) — in development
+    ├── 📜 schema.graphql            # DelegationEvent entity schema
+    ├── 📜 subgraph.yaml             # Manifest: L2 staking contract on Arbitrum
+    ├── 📜 package.json              # Graph CLI scripts
+    ├── 📂 abis/
+    │   └── 📜 L2Staking.json        # ABI for the Graph L2 staking contract
+    └── 📂 src/
+        └── 📜 mapping.ts            # AssemblyScript event handlers
 ```
 
 ---
@@ -48,9 +56,70 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 
 | Role | Subgraph | ID | Auth |
 |---|---|---|---|
-| Delegation events | Graph Analytics Arbitrum | `AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz` | `GRAPH_API_KEY` |
+| Delegation events (current) | Graph Analytics Arbitrum | `AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz` | `GRAPH_API_KEY` |
 | Indexer metadata/avatars | Graph Network Arbitrum | `DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp` | `GRAPH_API_KEY` |
-| ENS names | ENS Subgraph | `5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH` | `ENS_API_KEY` (full URL) |
+| ENS names | ENS Subgraph | `5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH` | `ENS_API_KEY` |
+| Delegation events (future) | graph-delegation-events *(in development)* | — | `GRAPH_API_KEY` |
+
+---
+
+## 🧩 Custom Subgraph — `graph-delegation-events`
+
+> **Status:** In development. Located in the `subgraph/` folder.
+
+**`graph-delegation-events`** is a purpose-built subgraph for indexing delegation-side staking activity from The Graph Network's staking contract on Arbitrum One. Its objective is to provide an **event-level record** of delegation and undelegation flows, capturing the **exact token delta** for each on-chain action rather than the latest aggregate stake state.
+
+Unlike state-based entities such as `delegatedStakes` — which only expose the current balance of a delegator-indexer position — this subgraph models the underlying staking events directly. That makes it possible to reconstruct precise delegation history, including incremental stake increases, partial undelegations, and timestamped transaction-level activity for each delegator-indexer relationship.
+
+### Why it's needed
+
+The current data source (`Graph Analytics Arbitrum`) stores the **current state** of each delegation position. When a delegator tops up an existing stake, the subgraph updates the total — so the dashboard can detect that a top-up occurred, but cannot determine how much was added in that specific transaction. The custom subgraph solves this by indexing raw on-chain events.
+
+### What it indexes
+
+| Event | Type | Description |
+|---|---|---|
+| `StakeDelegated` | `delegation` | Legacy delegation (pre-Horizon) |
+| `StakeDelegatedLocked` | `undelegation` | Legacy undelegation lock |
+| `StakeDelegatedWithdrawn` | `withdrawal` | Legacy withdrawal after unbonding |
+| `TokensDelegated` | `delegation` | Horizon delegation (post Dec 2025) |
+| `TokensUndelegated` | `undelegation` | Horizon undelegation |
+| `DelegatedTokensWithdrawn` | `withdrawal` | Horizon withdrawal |
+
+### Schema
+
+```graphql
+type DelegationEvent @entity(immutable: true) {
+  id: ID!
+  eventType: String!    # "delegation", "undelegation", or "withdrawal"
+  indexer: Bytes!
+  delegator: Bytes!
+  verifier: Bytes       # data service address (Horizon only)
+  tokens: BigInt!       # exact delta in wei ← the key field
+  shares: BigInt
+  lockedUntil: BigInt   # legacy undelegations only
+  isHorizon: Boolean!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  txHash: Bytes!
+}
+```
+
+### Contract
+
+- **Network:** Arbitrum One
+- **Address:** `0x00669A4CF01450B64E8A2A20E9b1FCB71E61eF03`
+- **Start block:** `42440000`
+
+### Deploy (Subgraph Studio)
+
+```bash
+cd subgraph
+npm install
+npm run codegen
+npm run build
+npm run deploy
+```
 
 ---
 
@@ -77,12 +146,12 @@ cd delegators-dashboard
 
 2. Create a `.env` file:
 ```bash
-# API key for The Graph gateway (used for delegation + avatar subgraphs)
+# API key for The Graph gateway (used for all subgraph queries)
 # Get yours at: https://thegraph.com/studio/apikeys/
 GRAPH_API_KEY=[api-key]
 
-# Full ENS subgraph URL with its own dedicated API key embedded
-ENS_API_KEY=https://gateway.thegraph.com/api/[api-key]/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH
+# Optional: separate API key for ENS subgraph queries (falls back to GRAPH_API_KEY)
+# ENS_API_KEY=[api-key]
 
 # Records to fetch (gateway caps each page at 1000; pagination is automatic)
 TRANSACTION_COUNT=5000
@@ -124,6 +193,11 @@ python3 fetch_delegators_metrics.py
 ---
 
 ## 📋 Changelog
+
+### v1.4.3
+- Replaced invisible `➕` emoji on top-up rows with a styled amber `[+]` badge (visible on both dark and light mode)
+- Same badge applied to the Top-ups filter button
+- Updated JS filter match from `"➕ Top-up"` to `"Top-up"` to align with new label
 
 ### v1.4.2
 - Added tooltips on event type labels in the table (hover to see definition of New Delegation / Top-up / Undelegation)

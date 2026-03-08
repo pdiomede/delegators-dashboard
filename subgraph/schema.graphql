@@ -1,0 +1,14 @@
+type DelegationEvent @entity(immutable: true) {
+  id: ID!
+  eventType: String!       # "delegation", "undelegation", or "withdrawal"
+  indexer: Bytes!           # indexer (legacy) or serviceProvider (Horizon)
+  delegator: Bytes!
+  verifier: Bytes           # data service address (Horizon only, null for legacy)
+  tokens: BigInt!           # exact delta (GRT amount in wei)
+  shares: BigInt            # pool shares (null for withdrawals)
+  lockedUntil: BigInt       # lock epoch (legacy undelegations only)
+  isHorizon: Boolean!       # true if from Horizon event, false if legacy
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  txHash: Bytes!
+}

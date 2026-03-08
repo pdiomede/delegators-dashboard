@@ -1,0 +1,19 @@
+{
+  "name": "graph-delegation-events",
+  "version": "0.1.0",
+  "author": "Paolo Diomede",
+  "license": "MIT",
+  "description": "Indexes StakeDelegated, StakeDelegatedLocked, and StakeDelegatedWithdrawn events from The Graph L2 Staking contract on Arbitrum",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy graph-delegation-events",
+    "create-local": "graph create --node http://localhost:8020/ graph-delegation-events",
+    "remove-local": "graph remove --node http://localhost:8020/ graph-delegation-events",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 graph-delegation-events"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.93.2",
+    "@graphprotocol/graph-ts": "^0.35.1"
+  }
+}
