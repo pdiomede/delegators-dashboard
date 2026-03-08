@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.0.1** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type.
+> **v2.0.2** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type. Three rounds of 10 bug fixes each for reliability, data safety, and correctness.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -173,107 +173,34 @@ python3 fetch_delegators_metrics.py
 
 ## 📋 Changelog
 
+> Full history in [CHANGELOG.md](./CHANGELOG.md).
+
+### v2.0.2
+- **10 reliability & observability fixes (round 3):** `encoding='utf-8'` added to log file, ENS cache read/write, and HTML/CSV writers; avatar cache no longer poisoned by transient network errors; `JSONDecodeError` now caught in both `fetch_ens_name` and `fetch_indexer_avatar`; `fetch_events()` logs start and loaded-count; `_paginate` progress log moved after deduplication (accurate unique count); `<table>` wrapped with semantic `<thead>` / `<tbody>`; `TRANSACTION_COUNT = 0` raises a clear startup error; warning logged when subgraph returns 0 events
+- **10 data safety & correctness fixes (round 4):** `GRT_SIZE < 0` raises a clear startup error; `data.get("items") or []` replaces hard key access in `_paginate`; null `tokens` / `timestamp` fields from the subgraph now skip the event with a warning instead of crashing; unknown `eventType` values render as `❓` with a tooltip instead of being silently misclassified as withdrawals; JS GRT filter no longer hides 0-token withdrawal rows (consistent with Python server-side); `fetch_indexer_avatar` gains the same `None`/empty address guard as `fetch_ens_name`; `timestamp` ("Generated on") computed at HTML write time instead of module load; `<body>` class `"dark-mode"` removed (no matching CSS rule; dark mode comes from `:root` defaults)
+
 ### v2.0.1
 - Fixed `block_datetime` in CSV export serialised as `str(datetime)` instead of ISO 8601 via `.isoformat()`
-- Added `encoding='utf-8'` to both HTML and CSV file writers (fixes emoji corruption on non-UTF-8 platforms)
+- Added `encoding='utf-8'` to both HTML and CSV file writers
 - Fixed unescaped `&` in `<title>` and `<meta>` OG/Twitter tags — now correctly `&amp;`
 - Fixed `GRT_SIZE * 10**18` recomputed on every table row — now uses pre-computed `grt_threshold`
-- Removed `global` declarations in `fetch_events()` and `fetch_metrics()` (only reads, not writes)
-- Removed noisy ENS cache-hit log line (was firing ~2000 times per run)
-- `fetch_ens_name`: expired cached names now returned as fallback when live re-fetch fails (network error)
-- `_paginate`: mid-pagination exceptions no longer crash the script — partial results are returned with a log warning
-- `generate_delegators_to_html`: added `✅ Saved HTML dashboard` success log to match CSV step
-- `TRANSACTION_COUNT` / `GRT_SIZE` invalid `.env` values now raise `EnvironmentError` with a clear message instead of a bare `ValueError`
+- Removed `global` declarations in `fetch_events()` and `fetch_metrics()`
+- Removed noisy ENS cache-hit log line (~2 000 lines per 1 000-event run)
+- `fetch_ens_name`: stale cached name returned as fallback on network error
+- `_paginate`: mid-pagination exceptions return partial results instead of crashing
+- `generate_delegators_to_html`: added `✅ Saved HTML dashboard` success log
+- `TRANSACTION_COUNT` / `GRT_SIZE` invalid values raise `EnvironmentError` with a clear message
 
 ### v2.0.0 ⭐ Major release
-- **Switched data source** from `delegatedStakes` (state-based) to the custom `graph-delegation-events` subgraph (event-based)
-- **Exact GRT amounts** for every event — delegations, top-ups, and undelegations all show the precise delta per transaction, not the total stake
-- **New "Tx" column** — each row now shows the transaction hash (truncated) as a clickable link to Arbiscan
-- **New "Withdrawal" event type** (`🔓 Withdrawal`) — tokens withdrawn after the unbonding period, previously not tracked
-- **Removed top-up distinction** — no longer needed since every row is a true on-chain transaction with an exact amount
-- **Stats panel** — "Top-up Events" card replaced with "Withdrawals" count; "Total Delegated" now reflects all delegation transactions accurately
-- **Filter bar** — "New Delegations" and "Top-ups" replaced with single "✅ Delegations" filter; "🔓 Withdrawals" filter added
-- Breadcrumb now shows correct transaction count (no longer doubled)
-- Requires `GRAPH_DELEGATION_EVENTS` in `.env` (custom subgraph ID)
+- **Switched data source** to custom `graph-delegation-events` subgraph (event-based, exact GRT deltas)
+- **Exact GRT amounts** per transaction for all event types
+- **New "Tx" column** — transaction hash as Arbiscan link
+- **New "Withdrawal" event type** (`🔓 Withdrawal`)
+- Stats panel and filter bar updated to reflect new event model
+- Requires `GRAPH_DELEGATION_EVENTS` in `.env`
 
-### v1.4.3
-- Replaced invisible `➕` emoji on top-up rows with a styled amber `[+]` badge (visible on both dark and light mode)
-- Same badge applied to the Top-ups filter button
-- Updated JS filter match from `"➕ Top-up"` to `"Top-up"` to align with new label
-
-### v1.4.2
-- Added tooltips on event type labels in the table (hover to see definition of New Delegation / Top-up / Undelegation)
-- Added tooltips on filter buttons with the same explanations
-- Added `cursor: help` style on event type cells to hint that hovering shows info
-
-### v1.4.1
-- Fixed ENS lookups broken by `[api-key]` placeholder in `.env`
-- `ENS_API_KEY` now holds just the key (not a full URL), falling back to `GRAPH_API_KEY` when not set
-- `ENS_SUBGRAPH_URL` is now constructed consistently with other subgraph URLs
-- Removed stale `global ENS_SUBGRAPH_URL` and `None` guard in `fetch_ens_name`
-
-### v1.4.0
-- Distinguished **New Delegation** (first-time stake) from **Top-up** (increase to existing position) using `createdAt` vs `lastDelegatedAt`
-- Top-up rows show a tooltip explaining the amount is total stake, not delta
-- Stats panel: renamed to "New Delegations", added "Top-up Events" count card, clarified Net label
-- Added "➕ Top-ups" filter button
-- Bumped version to 1.4.0
-
-### v1.3.0
-- Regenerated `social-card.jpeg` at correct 1200×630px with CTA button
-- Updated `og:title` and `twitter:title` to optimal length (52 chars)
-- Updated `og:description` and `twitter:description` to optimal length (140 chars)
-- Changed "Generated on" line: removed version suffix, updated cadence to "every 24 hours"
-
-### v1.2.1
-- Added `social-card.jpeg` (1200×630) for rich social sharing previews on X, LinkedIn, etc.
-- Updated `og:image` and `twitter:image` meta tags to point to the new card
-- Fixed footer version not rendering (`{DASHBOARD_VERSION}` was inside a non-f-string)
-- Fixed `run_delegators_vps.sh`: `social-card.jpeg` now only copied on first deploy (skipped if already present)
-- Fixed `run_delegators_vps.sh`: `chown paolo:www-data` applied consistently to all deployed files
-
-### v1.2.0
-- Removed Tx column (transaction hashes unavailable from the Analytics subgraph)
-- Refactored footer: `©Year Graph Tools Pro  |  Delegators Dashboard vX.X.X  |  Author: Paolo Diomede  |  View on GitHub`; version pulled dynamically from `DASHBOARD_VERSION`
-- Fixed `tokens: float` → `int` in `DelegationEvent` (float loses precision on large wei values)
-- Fixed favicon MIME type: `image/png` → `image/x-icon` for `.ico` file
-- Fixed filter link `href="#"` causing page-top scroll on click → `javascript:void(0)`
-- Fixed `run_query` not guarding against `payload["data"]` being `None`
-- Replaced per-call cache file I/O in `fetch_ens_name` with a module-level in-memory dict (loaded once, saved on update)
-- Protected ENS cache JSON load against corrupt/empty file (`JSONDecodeError` → graceful reset)
-- Narrowed `fetch_indexer_avatar` exception catch from bare `Exception` to `requests.RequestException`
-- Removed unnecessary `global` declarations in `generate_delegators_to_csv` and `generate_delegators_to_html`
-- Fixed `window.scrollTo` firing on initial page load (added `_initialLoad` flag)
-- Fixed `_paginate` timestamp boundary — switched from `_lt` to composite `_lte + id_lt` cursor to avoid skipping records that share a boundary timestamp
-- Bumped version to 1.2.0
-
-### v1.1.0
-- Added table pagination: 50 rows per page with first/prev/page-numbers/next/last controls
-- Pagination is fully integrated with event type filter, GRT filter, and search box
-- Fixed data freshness: records now fetched ordered by `lastDelegatedAt`/`lastUndelegatedAt` DESC so the most recent activity always appears first (previously oldest records were shown)
-- Updated footer: author credit for Paolo Diomede with link, GitHub repo link with icon
-- Bumped version to 1.1.0
-
-### v1.0.9
-- Fixed `log_message` being called before `log_file` was defined (latent `NameError`)
-- Fixed typo `TRANSCATION_COUNT` → `TRANSACTION_COUNT` in `fetch_metrics()`
-- Fixed missing `<tr>` opening tag in HTML table header (malformed HTML)
-- Fixed `ENS_SUBGRAPH_URL` being `None` when `ENS_API_KEY` is missing — now skips gracefully
-- Fixed `generate_delegators_to_csv` crashing with `IndexError` on empty event list
-- Fixed JS filter: `"Delegation"` was incorrectly matching rows labelled `"Undelegation"`
-- Removed dead code: `fetch_ens_name2` (duplicate of `fetch_ens_name`, never called)
-- Fixed ENS cache timestamp comparison using `.astimezone()` instead of `.replace(tzinfo=)`
-- Added empty-event guard in `generate_delegators_to_html`
-- Removed unused `order_by` parameter from `_paginate()`
-
-### v1.0.8
-- Migrated to Arbitrum subgraphs (Graph Analytics + Graph Network)
-- Added `id_gt` cursor pagination — `TRANSACTION_COUNT` can safely exceed 1000
-- Added explicit `RuntimeError` when subgraph returns errors instead of data
-- Added `EnvironmentError` guard if `GRAPH_API_KEY` is missing
-- Added `run_delegators_vps.sh` for VPS deployment to nginx
-- ENS lookup now uses dedicated `ENS_API_KEY` URL from `.env`
-- Thousands separator on transaction count in dashboard header
+### v1.4.x — v1.0.8
+See [CHANGELOG.md](./CHANGELOG.md) for full history.
 
 ---
 

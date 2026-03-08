@@ -7,16 +7,16 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v2.0.1 / 08-Mar-2026
+# v2.0.2 / 08-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "2.0.1"
+DASHBOARD_VERSION = "2.0.2"
 
 
 # Function that writes in the log file
 def log_message(message):
     timestamped = f"[{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}] {message}"
     print(timestamped)
-    with open(log_file, "a") as log:
+    with open(log_file, "a", encoding='utf-8') as log:
         log.write(timestamped + "\n")
 # End Function 'log_message'
 
@@ -40,10 +40,14 @@ try:
     TRANSACTION_COUNT = int(os.getenv("TRANSACTION_COUNT", 1000))
 except ValueError:
     raise EnvironmentError("TRANSACTION_COUNT in .env must be a plain integer (e.g. 1000).")
+if TRANSACTION_COUNT <= 0:
+    raise EnvironmentError(f"TRANSACTION_COUNT must be greater than 0 (got {TRANSACTION_COUNT}).")
 try:
     GRT_SIZE = int(os.getenv("GRT_SIZE", 10000))
 except ValueError:
     raise EnvironmentError("GRT_SIZE in .env must be a plain integer (e.g. 10000).")
+if GRT_SIZE < 0:
+    raise EnvironmentError(f"GRT_SIZE must be 0 or greater (got {GRT_SIZE}).")
 
 # Load ENS cache file path
 ENS_CACHE_FILE = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
@@ -68,10 +72,6 @@ ENS_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{ENS_API_KEY}/subgraphs/id
 AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"   # Graph Network Arbitrum
 
 
-# Get data to be used in the log and report files
-timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-
-
 # GraphQL query to retrieve ENS
 queryENS = """
     query GetEnsName($address: String!) {
@@ -91,7 +91,7 @@ def _load_ens_cache() -> dict:
         return _ens_cache
     if os.path.exists(ENS_CACHE_FILE):
         try:
-            with open(ENS_CACHE_FILE, "r") as f:
+            with open(ENS_CACHE_FILE, "r", encoding='utf-8') as f:
                 _ens_cache = json.load(f)
         except (json.JSONDecodeError, IOError):
             log_message("⚠️ ENS cache file is corrupt or unreadable — starting with empty cache.")
@@ -100,7 +100,7 @@ def _load_ens_cache() -> dict:
 
 def _save_ens_cache() -> None:
     try:
-        with open(ENS_CACHE_FILE, "w") as f:
+        with open(ENS_CACHE_FILE, "w", encoding='utf-8') as f:
             json.dump(_ens_cache, f, indent=2)
     except IOError as e:
         log_message(f"⚠️ Failed to save ENS cache: {e}")
@@ -128,7 +128,14 @@ def fetch_ens_name(address: str) -> str:
     try:
         response = requests.post(ENS_SUBGRAPH_URL, headers=headers, json=payload, timeout=30)
         response.raise_for_status()
-        result = response.json()
+        try:
+            result = response.json()
+        except json.JSONDecodeError:
+            log_message(f"⚠️ ENS subgraph returned non-JSON (status {response.status_code}) for {address}")
+            if record and record.get("ens"):
+                log_message(f"↩️ Using stale cached ENS for {address}: {record['ens']}")
+                return record["ens"]
+            return ""
         domains = result.get("data", {}).get("domains", [])
 
         ens_name = domains[0]["name"] if domains and "name" in domains[0] else ""
@@ -234,13 +241,14 @@ class DelegationFetcher:
             except (RuntimeError, requests.RequestException) as e:
                 log_message(f"⚠️ Pagination interrupted after {len(results)} records: {e}. Using partial results.")
                 break
-            page = data["items"]
+            page = data.get("items") or []
             if not page:
                 break
             for record in page:
                 if record["id"] not in seen_ids:
                     seen_ids.add(record["id"])
                     results.append(record)
+            log_message(f"📄 Page fetched: {len(page)} records (unique total so far: {len(results)})")
             last_ts = page[-1][order_field]
             last_id = page[-1]["id"]
             if len(page) < batch:
@@ -249,6 +257,8 @@ class DelegationFetcher:
         return results
 
     def fetch_events(self) -> List[DelegationEvent]:
+
+        log_message(f"⏳ Fetching up to {TRANSACTION_COUNT:,} delegation events from subgraph...")
 
         fields = "eventType indexer delegator tokens txHash timestamp"
 
@@ -260,17 +270,29 @@ class DelegationFetcher:
             limit=TRANSACTION_COUNT,
         )
 
+        if not raw_events:
+            log_message("⚠️ Subgraph returned 0 events — the subgraph may be empty, still syncing, or the query failed silently.")
+
         events = []
         for e in raw_events:
+            raw_tokens = e.get("tokens")
+            raw_ts     = e.get("timestamp")
+            if raw_tokens is None:
+                log_message(f"⚠️ Skipping event with null tokens (id={e.get('id', '?')})")
+                continue
+            if raw_ts is None:
+                log_message(f"⚠️ Skipping event with null timestamp (id={e.get('id', '?')})")
+                continue
             events.append(DelegationEvent(
-                indexer=e["indexer"],
-                tokens=int(e["tokens"]),
-                delegator=e["delegator"],
-                block_timestamp=int(e["timestamp"]),
-                event_type=e["eventType"],
+                indexer=e.get("indexer", ""),
+                tokens=int(raw_tokens),
+                delegator=e.get("delegator", ""),
+                block_timestamp=int(raw_ts),
+                event_type=e.get("eventType", ""),
                 tx_hash=e.get("txHash", ""),
             ))
 
+        log_message(f"✅ Loaded {len(events):,} delegation events.")
         # _paginate already returns records DESC by timestamp — no re-sort needed
         return events
 
@@ -280,6 +302,8 @@ class DelegationFetcher:
 _avatar_cache: dict = {}  # in-memory cache keyed by lowercase address
 
 def fetch_indexer_avatar(address):
+    if not address:
+        return ""
     addr = address.lower()
     if addr in _avatar_cache:
         return _avatar_cache[addr]
@@ -299,7 +323,12 @@ def fetch_indexer_avatar(address):
     try:
         response = requests.post(AVATAR_SUBGRAPH_URL, json={"query": queryAvatar}, timeout=30)
         response.raise_for_status()
-        result = response.json()
+        try:
+            result = response.json()
+        except json.JSONDecodeError:
+            log_message(f"⚠️ Avatar subgraph returned non-JSON (status {response.status_code}) for {addr}")
+            # Do NOT cache — transient gateway error; will retry on next run
+            return ""
 
         if not result or "data" not in result or result["data"] is None:
             log_message(f"⚠️ Unexpected avatar response structure:\n{json.dumps(result, indent=2)}")
@@ -325,7 +354,7 @@ def fetch_indexer_avatar(address):
 
     except requests.RequestException as e:
         log_message(f"⚠️ Failed to fetch indexer avatar for address {address}: {e}")
-        _avatar_cache[addr] = ""
+        # Do NOT cache — transient failure; the next run should retry
         return ""
     
     
@@ -367,6 +396,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
     if not events:
         log_message("⚠️ No events to render in HTML dashboard.")
         return
+
+    # Capture the timestamp right before writing so it reflects actual generation time
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     filename = "index.html"
     html_path = os.path.join(report_dir, filename)
@@ -673,7 +705,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
 
             </head>
-            <body class="dark-mode">
+            <body>
         """)
         
                
@@ -763,10 +795,10 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         """)
         
         headers = ["Event", "GRT", "Date", "Indexer", "Delegator", "Tx"]
-        f.write("<tr>")
+        f.write("<thead><tr>")
         for header in headers:
             f.write(f"<th>{header}</th>")
-        f.write("</tr>\n")
+        f.write("</tr></thead>\n<tbody>\n")
 
         key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator", "tx_hash"]
         for event in events:
@@ -791,9 +823,12 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     elif value == "undelegation":
                         label = '❌ Undelegation'
                         tooltip = ' title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal."'
-                    else:
+                    elif value == "withdrawal":
                         label = '🔓 Withdrawal'
                         tooltip = ' title="Tokens withdrawn after the unbonding period has elapsed."'
+                    else:
+                        label = f'❓ {value or "unknown"}'
+                        tooltip = f' title="Unrecognised event type: {value}. The subgraph schema may have changed."'
                     value = f'<span style="font-size: 0.85em; cursor: help;"{tooltip}>{label}</span>'
 
                 if key in ("indexer", "delegator"):
@@ -822,7 +857,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
             f.write("</tr>\n")
         
-        f.write("""</table>
+        f.write("""</tbody></table>
 
                 <div id="pagination" class="pagination-bar"></div>
 
@@ -863,7 +898,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     }
 
                     function getAllRows() {
-                        return Array.from(document.querySelectorAll("table tr")).slice(1);
+                        return Array.from(document.querySelectorAll("table tbody tr"));
                     }
 
                     function getFilteredRows() {
@@ -883,7 +918,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                                                 (currentFlagFilter === "Delegations"   && isDelegation) ||
                                                 (currentFlagFilter === "Undelegations" && isUndelegation) ||
                                                 (currentFlagFilter === "Withdrawals"   && isWithdrawal);
-                            const grtMatch    = currentGRTFilter === "All" || grtAmount > parseInt(currentGRTFilter);
+                            // Withdrawals are always shown regardless of GRT filter (they may have tokens=0)
+                            const grtMatch    = currentGRTFilter === "All" || isWithdrawal || grtAmount > parseInt(currentGRTFilter);
                             const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
 
                             return flagMatch && grtMatch && searchMatch;

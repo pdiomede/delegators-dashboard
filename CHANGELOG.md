@@ -5,6 +5,36 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2.0.2] — 2026-03-08
+
+### Bug fixes — round 3 (reliability & observability)
+
+- **`log_message` missing `encoding='utf-8'`** — the log file was opened without an explicit encoding; emoji characters in log lines (`⚠️ ✅ 🔍 ↩️`) could raise `UnicodeEncodeError` on non-UTF-8 systems (common on Windows)
+- **ENS cache file encoding** — both `open(ENS_CACHE_FILE, "r")` and `open(ENS_CACHE_FILE, "w")` lacked `encoding='utf-8'`; internationalized ENS names could corrupt the cache on non-UTF-8 platforms
+- **Avatar cache poisoned by transient network errors** — `fetch_indexer_avatar()` stored `""` in `_avatar_cache` on `requests.RequestException`; a one-off network hiccup at startup permanently suppressed every avatar for the entire run; the `except` branch no longer writes to the cache
+- **`fetch_indexer_avatar` crashed on non-JSON avatar response** — only `requests.RequestException` was caught; a gateway HTML error page would raise an unhandled `json.JSONDecodeError`; added inner `try/except json.JSONDecodeError` with a clear log message; non-JSON responses are not cached
+- **`fetch_ens_name` crashed on non-JSON ENS response** — same gap: a non-JSON body from the ENS gateway raised an unhandled `JSONDecodeError`; added inner `try/except json.JSONDecodeError` with stale-cache fallback, matching the existing `RequestException` handler
+- **`fetch_events()` was completely silent** — the main subgraph fetch can take 10–30 s and produced no log output; added `⏳ Fetching up to N events…` at start and `✅ Loaded N events.` on completion
+- **`_paginate` progress log pre-dated deduplication** — the `📄 Page fetched` message reported `len(results) + len(page)` *before* the `seen_ids` deduplication loop, so duplicate records inflated the reported total; log now fires after deduplication with the true unique count
+- **HTML `<table>` missing `<thead>` / `<tbody>`** — the header `<tr>` was written directly into `<table>` without a `<thead>` wrapper; CSS `position:sticky` on header rows cannot work without `<thead>`; screen readers misbehave; the JS `getAllRows()` relied on a fragile `.slice(1)` to skip the header; added `<thead>` / `<tbody>`, updated `getAllRows()` to `querySelectorAll("table tbody tr")`
+- **`TRANSACTION_COUNT = 0` produced a silent empty dashboard** — `while len(results) < limit` exits immediately when `limit = 0`; the only feedback was a confusing "No events to write" message far downstream; added `if TRANSACTION_COUNT <= 0: raise EnvironmentError(…)` at startup
+- **`fetch_events()` gave no warning when subgraph returned 0 events** — there was no way to distinguish "subgraph is genuinely empty" from "pagination failed silently"; added `⚠️ Subgraph returned 0 events — subgraph may be empty, still syncing, or the query failed silently.`
+
+### Bug fixes — round 4 (data safety & correctness)
+
+- **`GRT_SIZE` not validated `>= 0`** — a negative value (e.g. `GRT_SIZE=-1`) made `grt_threshold` negative, causing every event to pass the size filter and flood the table regardless of delegation amount; added `if GRT_SIZE < 0: raise EnvironmentError(…)` at startup
+- **`data["items"]` hard key access in `_paginate`** — if the subgraph ever returns a response without an `"items"` key (unexpected schema change, partial error), the script crashed with `KeyError`; changed to `data.get("items") or []`, which falls through to the existing `if not page: break` guard
+- **`int(e["tokens"])` crashed on `null` subgraph field** — if the subgraph returned `null` for `tokens`, `int(None)` raised `TypeError` and aborted the entire fetch; events with null tokens are now skipped individually with a `⚠️` log
+- **`int(e["timestamp"])` crashed on `null` subgraph field** — same gap: a null `timestamp` field raised `TypeError` during `DelegationEvent` construction; null-timestamp events are now skipped individually with a `⚠️` log
+- **Bare `else` silently misclassified unknown event types as withdrawals** — the HTML event-type renderer used `else` to catch `"withdrawal"`, so any new `eventType` value from a subgraph schema update would silently render as `🔓 Withdrawal`; replaced with explicit `elif value == "withdrawal"` and a new `else` branch that renders `❓ {value}` with a tooltip warning
+- **JavaScript GRT filter hid 0-token withdrawal rows** — the client-side `grtMatch` applied the GRT threshold to every row; withdrawal events may legitimately have `tokens = 0` (Horizon protocol), causing them to disappear when a GRT amount filter was active; this was inconsistent with the Python server-side logic that always includes withdrawals; added `|| isWithdrawal` to the `grtMatch` expression
+- **`fetch_indexer_avatar` had no `None`/empty address guard** — unlike `fetch_ens_name`, which had `if not address: return ""` at the top, `fetch_indexer_avatar` called `address.lower()` unconditionally; a null `indexer` field from the subgraph would cause `AttributeError: 'NoneType' object has no attribute 'lower'`; guard added
+- **`_paginate` progress log reported inflated count before deduplication** — (companion fix to round-3 item above); the log was also emitting *before* the dedup loop during this round's refactor; log now appears after the loop with the accurate unique total
+- **`timestamp` ("Generated on") computed at module load, not at HTML write time** — the module-level `timestamp = datetime.now(…)` was evaluated once when the script started; after a long run (hundreds of ENS/avatar lookups), the printed timestamp could be many minutes stale by the time the HTML was actually written; `timestamp` is now computed inside `generate_delegators_to_html()` immediately before writing
+- **`<body class="dark-mode">` referenced a non-existent CSS class** — dark styling comes from `:root` CSS variable defaults, not a `.dark-mode` rule (which was never defined); the class was vestigial, semantically wrong, and would confuse future CSS changes; changed to `<body>` with no class; dark mode remains the default via `:root`, and `.light-mode` overrides it on toggle
+
+---
+
 ## [2.0.1] — 2026-03-08
 
 ### Bug fixes — round 2 (general)
