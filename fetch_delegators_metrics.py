@@ -9,7 +9,7 @@ from typing import List
 
 # v1.2.1 / 07-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.3.0"
+DASHBOARD_VERSION = "1.4.0"
 
 
 # Function that writes in the log file
@@ -220,7 +220,7 @@ class DelegationFetcher:
 
         global TRANSACTION_COUNT
 
-        delegation_fields = "indexer { id } delegator { id } stakedTokens lastDelegatedAt"
+        delegation_fields = "indexer { id } delegator { id } stakedTokens lastDelegatedAt createdAt"
         undelegation_fields = "indexer { id } delegator { id } lockedTokens lastUndelegatedAt"
 
         raw_delegations = self._paginate(
@@ -242,12 +242,17 @@ class DelegationFetcher:
         events = []
 
         for d in raw_delegations:
+            created_at = int(d["createdAt"])
+            last_delegated_at = int(d["lastDelegatedAt"])
+            # If the position was created before the last delegation it's a top-up,
+            # not a brand-new stake — the stakedTokens value is the total, not the delta.
+            is_topup = created_at < last_delegated_at
             events.append(DelegationEvent(
                 indexer=d["indexer"]["id"],
                 tokens=int(d["stakedTokens"]),
                 delegator=d["delegator"]["id"],
-                block_timestamp=int(d["lastDelegatedAt"]),
-                event_type="delegation"
+                block_timestamp=last_delegated_at,
+                event_type="topup" if is_topup else "delegation"
             ))
 
         for u in raw_undelegations:
@@ -671,7 +676,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div style="text-align: center;">    
                 <h1 style="margin-bottom: 4px;">Delegators Activity Log</h1>
                 <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 0; margin-bottom: 30px;">
-                    Generated on: {timestamp} - (updated every hour) - v{DASHBOARD_VERSION}
+                    Generated on: {timestamp} - (updated every 24 hours)
                 </div>
             </div>
         """)
@@ -679,6 +684,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         
         total_delegated = sum(e.tokens for e in events if e.event_type == "delegation") // 10**18
         total_undelegated = sum(e.tokens for e in events if e.event_type == "undelegation") // 10**18
+        total_topups = sum(1 for e in events if e.event_type == "topup")
         net = total_delegated - total_undelegated
         
         net_color = "limegreen" if net >= 0 else "crimson"
@@ -686,7 +692,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         f.write(f"""
             <div style="display: flex; gap: 20px; margin-bottom: 30px;">
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.2em; color: var(--text-color);">Total Delegated</div>
+                    <div style="font-size: 1.2em; color: var(--text-color);">New Delegations</div>
                     <div style="font-size: 2em; font-weight: bold; color: limegreen;">{total_delegated:,} GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
@@ -694,7 +700,11 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     <div style="font-size: 2em; font-weight: bold; color: crimson;">{total_undelegated:,} GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.2em; color: var(--text-color);">Net</div>
+                    <div style="font-size: 1.2em; color: var(--text-color);" title="Top-ups are increases to existing delegation positions. The exact delta is unavailable from this data source.">Top-up Events ℹ️</div>
+                    <div style="font-size: 2em; font-weight: bold; color: #f0a500;">{total_topups:,}</div>
+                </div>
+                <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 1.2em; color: var(--text-color);">Net (new delegations only)</div>
                     <div style="font-size: 2em; font-weight: bold; color: {net_color};">{net:,} GRT</div>
                 </div>
             </div>
@@ -709,8 +719,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ Delegations</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegation</a>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')">✅ New Delegations</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Topups" onclick="filterByFlag('Topups')">➕ Top-ups</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')">❌ Undelegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
@@ -750,8 +761,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     value = f"{int(value) // 10**18:,}"
 
                 if key == "event_type":
-                    label = "✅ Delegation" if value == "delegation" else "❌ Undelegation"
-                    value = f'<span style="font-size: 0.85em;">{label}</span>'
+                    if value == "delegation":
+                        label = "✅ New Delegation"
+                        tooltip = ""
+                    elif value == "topup":
+                        label = "➕ Top-up"
+                        tooltip = ' title="Amount shown is the total current stake — the exact top-up delta is not available from this data source"'
+                    else:
+                        label = "❌ Undelegation"
+                        tooltip = ""
+                    value = f'<span style="font-size: 0.85em;"{tooltip}>{label}</span>'
 
                 if key in ("indexer", "delegator"):
                     ens_name = fetch_ens_name(value)
@@ -820,13 +839,15 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                             const idxCell   = row.cells[3];
                             if (!eventCell || !grtCell) return false;
 
-                            const isDelegation   = eventCell.textContent.includes("✅ Delegation");
+                            const isDelegation   = eventCell.textContent.includes("✅ New Delegation");
+                            const isTopup        = eventCell.textContent.includes("➕ Top-up");
                             const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
                             const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""));
                             const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
 
                             const flagMatch   = currentFlagFilter === "All" ||
                                                 (currentFlagFilter === "Delegations"   && isDelegation) ||
+                                                (currentFlagFilter === "Topups"        && isTopup) ||
                                                 (currentFlagFilter === "Undelegations" && isUndelegation);
                             const grtMatch    = currentGRTFilter === "All" || grtAmount > parseInt(currentGRTFilter);
                             const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
