@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v2.0.1 / 08-Mar-2026
+# v2.0.2 / 08-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "2.0.1"
+DASHBOARD_VERSION = "2.0.2"
 
 
 # Function that writes in the log file
@@ -48,6 +48,10 @@ except ValueError:
     raise EnvironmentError("GRT_SIZE in .env must be a plain integer (e.g. 10000).")
 if GRT_SIZE < 0:
     raise EnvironmentError(f"GRT_SIZE must be 0 or greater (got {GRT_SIZE}).")
+try:
+    UPDATE_CADENCE_HOURS = int(os.getenv("UPDATE_CADENCE_HOURS", 8))
+except ValueError:
+    UPDATE_CADENCE_HOURS = 8
 
 # Load ENS cache file path
 ENS_CACHE_FILE = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
@@ -265,7 +269,7 @@ class DelegationFetcher:
         raw_events = self._paginate(
             entity="delegationEvents",
             order_field="timestamp",
-            extra_where="",
+            extra_where='eventType_in: ["delegation", "undelegation"]',
             fields=fields,
             limit=TRANSACTION_COUNT,
         )
@@ -729,19 +733,17 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div style="text-align: center;">    
                 <h1 style="margin-bottom: 4px;">Delegators Activity Log</h1>
                 <div style="text-align: center; font-size: 0.8em; color: var(--text-color); margin-top: 0; margin-bottom: 30px;">
-                    Generated on: {timestamp} - (updated every 24 hours)
+                    Generated on: {timestamp} - (updated every {UPDATE_CADENCE_HOURS} hours)
                 </div>
             </div>
         """)
 
         
         grt_threshold = GRT_SIZE * 10**18
-        # Stats use the same GRT threshold as the table (withdrawals are always counted regardless)
-        total_delegated = sum(e.tokens for e in events if e.event_type == "delegation" and e.tokens >= grt_threshold) // 10**18
+        total_delegated   = sum(e.tokens for e in events if e.event_type == "delegation"   and e.tokens >= grt_threshold) // 10**18
         total_undelegated = sum(e.tokens for e in events if e.event_type == "undelegation" and e.tokens >= grt_threshold) // 10**18
-        total_withdrawals = sum(1 for e in events if e.event_type == "withdrawal")
         net = total_delegated - total_undelegated
-        
+
         net_color = "limegreen" if net >= 0 else "crimson"
 
         f.write(f"""
@@ -753,10 +755,6 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Total Undelegated</div>
                     <div style="font-size: 2em; font-weight: bold; color: crimson;">{total_undelegated:,} GRT</div>
-                </div>
-                <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.2em; color: var(--text-color);" title="Tokens withdrawn after the unbonding period has elapsed.">Withdrawals 🔓</div>
-                    <div style="font-size: 2em; font-weight: bold; color: #80bfff;">{total_withdrawals:,}</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
                     <div style="font-size: 1.2em; color: var(--text-color);">Net</div>
@@ -776,7 +774,6 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         <strong style="margin-left: 16px;">Filter for:</strong>
                         <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')" title="GRT delegated to an indexer. Amount shown is the exact delta per transaction.">✅ Delegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')" title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal.">❌ Undelegations</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="Withdrawals" onclick="filterByFlag('Withdrawals')" title="Tokens withdrawn after the unbonding period has elapsed.">🔓 Withdrawals</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
@@ -802,8 +799,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
         key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator", "tx_hash"]
         for event in events:
-            # Always show withdrawals regardless of amount; they may have tokens=0 in Horizon protocol
-            if event.event_type != "withdrawal" and event.tokens < grt_threshold:
+            if event.tokens < grt_threshold:
                 continue
             f.write("<tr>")
             data = event.to_dict()
@@ -910,16 +906,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
                             const isDelegation   = eventCell.textContent.includes("✅ Delegation");
                             const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
-                            const isWithdrawal   = eventCell.textContent.includes("🔓 Withdrawal");
                             const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""));
                             const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
 
                             const flagMatch   = currentFlagFilter === "All" ||
                                                 (currentFlagFilter === "Delegations"   && isDelegation) ||
-                                                (currentFlagFilter === "Undelegations" && isUndelegation) ||
-                                                (currentFlagFilter === "Withdrawals"   && isWithdrawal);
-                            // Withdrawals are always shown regardless of GRT filter (they may have tokens=0)
-                            const grtMatch    = currentGRTFilter === "All" || isWithdrawal || grtAmount > parseInt(currentGRTFilter);
+                                                (currentFlagFilter === "Undelegations" && isUndelegation);
+                            const grtMatch    = currentGRTFilter === "All" || grtAmount > parseInt(currentGRTFilter);
                             const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
 
                             return flagMatch && grtMatch && searchMatch;

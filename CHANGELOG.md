@@ -5,7 +5,16 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [2.0.1] — 2026-03-08 (latest)
+## [2.0.2] — 2026-03-08 (latest)
+
+### Changed
+
+- **Track only delegations and undelegations** — Withdrawals are no longer fetched or displayed; subgraph query now uses `eventType_in: ["delegation", "undelegation"]` so withdrawals never consume the `TRANSACTION_COUNT` quota. Stats panel reduced to 3 cards (Total Delegated, Total Undelegated, Net); Withdrawals card and filter button removed. Table loop and JS filter simplified accordingly.
+- **Configurable update cadence in header** — The "Generated on" line now shows "updated every N hours" where N is read from `UPDATE_CADENCE_HOURS` in `.env` (default: 8). Add `UPDATE_CADENCE_HOURS=8` (or 24, etc.) to match your cron schedule.
+
+---
+
+## [2.0.1] — 2026-03-08
 
 ### Bug fixes — round 3 (reliability & observability)
 

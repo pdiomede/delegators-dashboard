@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.0.1** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type. Three rounds of 10 bug fixes each for reliability, data safety, and correctness.
+> **v2.0.2** — Custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links. Tracks delegations and undelegations only (withdrawals excluded). Configurable update cadence in header.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -13,13 +13,13 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 
 ## 📌 Features
 
-- Live dashboard for the most recent delegation, undelegation, and withdrawal events on **Arbitrum**
+- Live dashboard for the most recent delegation and undelegation events on **Arbitrum** (withdrawals excluded)
 - **Exact GRT amounts** per transaction — powered by the custom [`graph-delegation-events`](./subgraph/README.md) subgraph
 - **Tx column** — transaction hash per row, linked to [Arbiscan](https://arbiscan.io)
 - ENS name resolution for delegator and indexer addresses
 - Avatar integration for indexers (via subgraph metadata)
 - Light/dark mode with theme toggle
-- Filtering by event type (Delegations / Undelegations / Withdrawals) and GRT thresholds
+- Filtering by event type (Delegations / Undelegations) and GRT thresholds
 - **Paginated table** — 50 rows per page, integrated with all filters and search
 - CSV download of all listed events
 - Clean, responsive layout with semantic HTML5
@@ -138,6 +138,9 @@ TRANSACTION_COUNT=1000
 # Filter out delegations below this GRT amount
 GRT_SIZE=10000
 
+# Update cadence shown in the dashboard header (e.g. "updated every 8 hours")
+UPDATE_CADENCE_HOURS=8
+
 # ENS cache file path (relative to script dir); delete to force a full refresh
 ENS_CACHE_FILE=ens_cache.json
 
@@ -175,7 +178,11 @@ python3 fetch_delegators_metrics.py
 
 > Full history in [CHANGELOG.md](./CHANGELOG.md).
 
-### v2.0.1 (latest)
+### v2.0.2 (latest)
+- **Track only delegations and undelegations** — Withdrawals excluded from subgraph query, stats panel, and filter bar
+- **Configurable update cadence** — `UPDATE_CADENCE_HOURS` in `.env` controls the "updated every N hours" text in the header (default: 8)
+
+### v2.0.1
 - **10 reliability & observability fixes (round 3):** `encoding='utf-8'` added to log file, ENS cache read/write, and HTML/CSV writers; avatar cache no longer poisoned by transient network errors; `JSONDecodeError` now caught in both `fetch_ens_name` and `fetch_indexer_avatar`; `fetch_events()` logs start and loaded-count; `_paginate` progress log moved after deduplication (accurate unique count); `<table>` wrapped with semantic `<thead>` / `<tbody>`; `TRANSACTION_COUNT = 0` raises a clear startup error; warning logged when subgraph returns 0 events
 - **10 data safety & correctness fixes (round 4):** `GRT_SIZE < 0` raises a clear startup error; `data.get("items") or []` replaces hard key access in `_paginate`; null `tokens` / `timestamp` fields from the subgraph now skip the event with a warning instead of crashing; unknown `eventType` values render as `❓` with a tooltip instead of being silently misclassified as withdrawals; JS GRT filter no longer hides 0-token withdrawal rows (consistent with Python server-side); `fetch_indexer_avatar` gains the same `None`/empty address guard as `fetch_ens_name`; `timestamp` ("Generated on") computed at HTML write time instead of module load; `<body>` class `"dark-mode"` removed (no matching CSS rule; dark mode comes from `:root` defaults)
 
