@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v1.4.3** — ENS lookups fixed, delegation top-up detection, tooltips on event types, custom subgraph in development.
+> **v2.0.0** — Switched to custom `graph-delegation-events` subgraph: exact per-transaction GRT amounts, Tx hash column with Arbiscan links, withdrawal event type.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -56,10 +56,10 @@ It highlights recent activity by delegators, indexed by timestamp, indexer, toke
 
 | Role | Subgraph | ID | Auth |
 |---|---|---|---|
-| Delegation events (current) | Graph Analytics Arbitrum | `AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz` | `GRAPH_API_KEY` |
+| Delegation events ✅ | graph-delegation-events *(custom)* | `GRAPH_DELEGATION_EVENTS` env var | `GRAPH_API_KEY` |
 | Indexer metadata/avatars | Graph Network Arbitrum | `DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp` | `GRAPH_API_KEY` |
 | ENS names | ENS Subgraph | `5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH` | `ENS_API_KEY` |
-| Delegation events (future) | graph-delegation-events *(in development)* | — | `GRAPH_API_KEY` |
+| Delegation events *(retired)* | Graph Analytics Arbitrum | `AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz` | — |
 
 ---
 
@@ -193,6 +193,17 @@ python3 fetch_delegators_metrics.py
 ---
 
 ## 📋 Changelog
+
+### v2.0.0 ⭐ Major release
+- **Switched data source** from `delegatedStakes` (state-based) to the custom `graph-delegation-events` subgraph (event-based)
+- **Exact GRT amounts** for every event — delegations, top-ups, and undelegations all show the precise delta per transaction, not the total stake
+- **New "Tx" column** — each row now shows the transaction hash (truncated) as a clickable link to Arbiscan
+- **New "Withdrawal" event type** (`🔓 Withdrawal`) — tokens withdrawn after the unbonding period, previously not tracked
+- **Removed top-up distinction** — no longer needed since every row is a true on-chain transaction with an exact amount
+- **Stats panel** — "Top-up Events" card replaced with "Withdrawals" count; "Total Delegated" now reflects all delegation transactions accurately
+- **Filter bar** — "New Delegations" and "Top-ups" replaced with single "✅ Delegations" filter; "🔓 Withdrawals" filter added
+- Breadcrumb now shows correct transaction count (no longer doubled)
+- Requires `GRAPH_DELEGATION_EVENTS` in `.env` (custom subgraph ID)
 
 ### v1.4.3
 - Replaced invisible `➕` emoji on top-up rows with a styled amber `[+]` badge (visible on both dark and light mode)

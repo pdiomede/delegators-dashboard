@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v1.2.1 / 07-Mar-2026
+# v2.0.0 / 08-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "1.4.3"
+DASHBOARD_VERSION = "2.0.0"
 
 
 # Function that writes in the log file
@@ -54,7 +54,10 @@ except ValueError:
     log_message("⚠️ ENS_CACHE_EXPIRY_HOURS is not a valid integer — using default: 24h")
 
 # List of all used subgraphs
-SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/AgV4u2z1BFZKSj4Go1AdQswUGW2FcAtnPhifd4V7NLVz"           # Graph Analytics Arbitrum
+DELEGATION_EVENTS_SUBGRAPH_ID = os.getenv("GRAPH_DELEGATION_EVENTS")
+if not DELEGATION_EVENTS_SUBGRAPH_ID or DELEGATION_EVENTS_SUBGRAPH_ID == "<subgraph_id>":
+    raise EnvironmentError("GRAPH_DELEGATION_EVENTS is not set. Add the subgraph ID to your .env file.")
+DELEGATION_EVENTS_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{DELEGATION_EVENTS_SUBGRAPH_ID}"  # graph-delegation-events (Arbitrum)
 ENS_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{ENS_API_KEY}/subgraphs/id/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH"  # ENS Mainnet
 AVATAR_SUBGRAPH_URL = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp"   # Graph Network Arbitrum
 
@@ -142,7 +145,8 @@ class DelegationEvent:
     tokens: int
     delegator: str
     block_timestamp: int
-    event_type: str  # 'delegation' or 'undelegation'
+    event_type: str   # 'delegation', 'undelegation', or 'withdrawal'
+    tx_hash: str = ""
 
     def to_dict(self):
         return {
@@ -152,6 +156,7 @@ class DelegationEvent:
             "block_timestamp": self.block_timestamp,
             "block_datetime": datetime.fromtimestamp(self.block_timestamp, tz=timezone.utc),
             "event_type": self.event_type,
+            "tx_hash": self.tx_hash,
         }
 
 
@@ -215,48 +220,25 @@ class DelegationFetcher:
 
         global TRANSACTION_COUNT
 
-        delegation_fields = "indexer { id } delegator { id } stakedTokens lastDelegatedAt createdAt"
-        undelegation_fields = "indexer { id } delegator { id } lockedTokens lastUndelegatedAt"
+        fields = "eventType indexer delegator tokens txHash timestamp"
 
-        raw_delegations = self._paginate(
-            entity="delegatedStakes",
-            order_field="lastDelegatedAt",
-            extra_where="lastDelegatedAt_gt: 0",
-            fields=delegation_fields,
-            limit=TRANSACTION_COUNT,
-        )
-
-        raw_undelegations = self._paginate(
-            entity="delegatedStakes",
-            order_field="lastUndelegatedAt",
-            extra_where="lastUndelegatedAt_gt: 0",
-            fields=undelegation_fields,
+        raw_events = self._paginate(
+            entity="delegationEvents",
+            order_field="timestamp",
+            extra_where="",
+            fields=fields,
             limit=TRANSACTION_COUNT,
         )
 
         events = []
-
-        for d in raw_delegations:
-            created_at = int(d["createdAt"])
-            last_delegated_at = int(d["lastDelegatedAt"])
-            # If the position was created before the last delegation it's a top-up,
-            # not a brand-new stake — the stakedTokens value is the total, not the delta.
-            is_topup = created_at < last_delegated_at
+        for e in raw_events:
             events.append(DelegationEvent(
-                indexer=d["indexer"]["id"],
-                tokens=int(d["stakedTokens"]),
-                delegator=d["delegator"]["id"],
-                block_timestamp=last_delegated_at,
-                event_type="topup" if is_topup else "delegation"
-            ))
-
-        for u in raw_undelegations:
-            events.append(DelegationEvent(
-                indexer=u["indexer"]["id"],
-                tokens=int(u["lockedTokens"]),
-                delegator=u["delegator"]["id"],
-                block_timestamp=int(u["lastUndelegatedAt"]),
-                event_type="undelegation"
+                indexer=e["indexer"],
+                tokens=int(e["tokens"]),
+                delegator=e["delegator"],
+                block_timestamp=int(e["timestamp"]),
+                event_type=e["eventType"],
+                tx_hash=e.get("txHash", ""),
             ))
 
         return sorted(events, key=lambda e: e.block_timestamp, reverse=True)
@@ -308,8 +290,8 @@ def fetch_indexer_avatar(address):
     
 # Returns all the data about last delegations and undelegations
 def fetch_metrics():
-    global SUBGRAPH_URL, TRANSACTION_COUNT
-    fetcher = DelegationFetcher(SUBGRAPH_URL)
+    global DELEGATION_EVENTS_URL, TRANSACTION_COUNT
+    fetcher = DelegationFetcher(DELEGATION_EVENTS_URL)
     events = fetcher.fetch_events()
     return events
 # End Function 'fetch_metrics'
@@ -656,7 +638,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             <div class="header-container">
                 <div class="breadcrumb" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; font-size: 0.85em; letter-spacing: 0.3px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">
                     <a href="https://graphtools.pro" class="home-link" style="text-decoration: none;">🏠 Home</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;
-                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[last {TRANSACTION_COUNT * 2:,} transactions, excluding under {GRT_SIZE:,} GRT]</span></span>    
+                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[last {TRANSACTION_COUNT:,} transactions, excluding under {GRT_SIZE:,} GRT]</span></span>    
                 </div>
                 <div class="toggle-container">
                     <label class="toggle-switch">
@@ -679,7 +661,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         
         total_delegated = sum(e.tokens for e in events if e.event_type == "delegation") // 10**18
         total_undelegated = sum(e.tokens for e in events if e.event_type == "undelegation") // 10**18
-        total_topups = sum(1 for e in events if e.event_type == "topup")
+        total_withdrawals = sum(1 for e in events if e.event_type == "withdrawal")
         net = total_delegated - total_undelegated
         
         net_color = "limegreen" if net >= 0 else "crimson"
@@ -687,7 +669,7 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         f.write(f"""
             <div style="display: flex; gap: 20px; margin-bottom: 30px;">
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.2em; color: var(--text-color);">New Delegations</div>
+                    <div style="font-size: 1.2em; color: var(--text-color);">Total Delegated</div>
                     <div style="font-size: 2em; font-weight: bold; color: limegreen;">{total_delegated:,} GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
@@ -695,11 +677,11 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                     <div style="font-size: 2em; font-weight: bold; color: crimson;">{total_undelegated:,} GRT</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.2em; color: var(--text-color);" title="Top-ups are increases to existing delegation positions. The exact delta is unavailable from this data source.">Top-up Events ℹ️</div>
-                    <div style="font-size: 2em; font-weight: bold; color: #f0a500;">{total_topups:,}</div>
+                    <div style="font-size: 1.2em; color: var(--text-color);" title="Tokens withdrawn after the unbonding period has elapsed.">Withdrawals 🔓</div>
+                    <div style="font-size: 2em; font-weight: bold; color: #80bfff;">{total_withdrawals:,}</div>
                 </div>
                 <div style="flex: 1; background: var(--table-bg); padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.2em; color: var(--text-color);">Net (new delegations only)</div>
+                    <div style="font-size: 1.2em; color: var(--text-color);">Net</div>
                     <div style="font-size: 2em; font-weight: bold; color: {net_color};">{net:,} GRT</div>
                 </div>
             </div>
@@ -714,9 +696,9 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                 <div class="filter-container">
                     <div class="filter-bar">
                         <strong style="margin-left: 16px;">Filter for:</strong>
-                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')" title="First-time delegation from a delegator to an indexer. Amount shown is the exact GRT delegated.">✅ New Delegations</a>
-                        | <a class="filter-button" href="javascript:void(0)" data-filter="Topups" onclick="filterByFlag('Topups')" title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added."><span style="display:inline-block;background:#f0a500;color:#000;border-radius:4px;padding:0px 5px;font-size:0.8em;font-weight:bold;margin-right:4px;">+</span>Top-ups</a>
+                        <a class="filter-button" href="javascript:void(0)" data-filter="Delegations" onclick="filterByFlag('Delegations')" title="GRT delegated to an indexer. Amount shown is the exact delta per transaction.">✅ Delegations</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="Undelegations" onclick="filterByFlag('Undelegations')" title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal.">❌ Undelegations</a>
+                        | <a class="filter-button" href="javascript:void(0)" data-filter="Withdrawals" onclick="filterByFlag('Withdrawals')" title="Tokens withdrawn after the unbonding period has elapsed.">🔓 Withdrawals</a>
                         | <a class="filter-button" href="javascript:void(0)" data-filter="All" onclick="filterByFlag('All')">🧹 Clear Filter</a>
                     </div>
                     <div class="filter-bar">
@@ -734,13 +716,13 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
             <table>
         """)
         
-        headers = ["Event", "GRT", "Date", "Indexer", "Delegator"]
+        headers = ["Event", "GRT", "Date", "Indexer", "Delegator", "Tx"]
         f.write("<tr>")
         for header in headers:
             f.write(f"<th>{header}</th>")
         f.write("</tr>\n")
 
-        key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator"]
+        key_order = ["event_type", "tokens", "block_datetime", "indexer", "delegator", "tx_hash"]
         for event in events:
             if event.tokens < GRT_SIZE * 10**18:
                 continue
@@ -757,14 +739,14 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
                 if key == "event_type":
                     if value == "delegation":
-                        label = '✅ New Delegation'
-                        tooltip = ' title="First-time delegation from a delegator to an indexer. Amount shown is the exact GRT delegated."'
-                    elif value == "topup":
-                        label = '<span style="display:inline-block;background:#f0a500;color:#000;border-radius:4px;padding:1px 5px;font-size:0.8em;font-weight:bold;margin-right:4px;">+</span>Top-up'
-                        tooltip = ' title="Addition to an existing delegation position. Amount shown is the total current stake, not the delta added."'
-                    else:
+                        label = '✅ Delegation'
+                        tooltip = ' title="GRT delegated to an indexer. Amount shown is the exact delta for this transaction."'
+                    elif value == "undelegation":
                         label = '❌ Undelegation'
                         tooltip = ' title="Tokens locked for undelegation from an indexer. Subject to a ~28-day unbonding period before withdrawal."'
+                    else:
+                        label = '🔓 Withdrawal'
+                        tooltip = ' title="Tokens withdrawn after the unbonding period has elapsed."'
                     value = f'<span style="font-size: 0.85em; cursor: help;"{tooltip}>{label}</span>'
 
                 if key in ("indexer", "delegator"):
@@ -778,7 +760,14 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
                     link = f'<a href="https://thegraph.com/explorer/profile/{value}" target="_blank">{display_name}</a>'
                     value = f'<span style="font-size: 0.85em;">{link}</span>'
-                
+
+                if key == "tx_hash":
+                    if value:
+                        short = value[:8] + "…" + value[-6:]
+                        value = f'<a href="https://arbiscan.io/tx/{value}" target="_blank" style="font-size:0.8em;font-family:monospace;" title="{value}">{short}</a>'
+                    else:
+                        value = '<span style="opacity:0.4;font-size:0.8em;">—</span>'
+
                 f.write(f"<td>{value}</td>")
 
             f.write("</tr>\n")
@@ -834,16 +823,16 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                             const idxCell   = row.cells[3];
                             if (!eventCell || !grtCell) return false;
 
-                            const isDelegation   = eventCell.textContent.includes("✅ New Delegation");
-                            const isTopup        = eventCell.textContent.includes("Top-up");
+                            const isDelegation   = eventCell.textContent.includes("✅ Delegation");
                             const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
+                            const isWithdrawal   = eventCell.textContent.includes("🔓 Withdrawal");
                             const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""));
                             const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
 
                             const flagMatch   = currentFlagFilter === "All" ||
                                                 (currentFlagFilter === "Delegations"   && isDelegation) ||
-                                                (currentFlagFilter === "Topups"        && isTopup) ||
-                                                (currentFlagFilter === "Undelegations" && isUndelegation);
+                                                (currentFlagFilter === "Undelegations" && isUndelegation) ||
+                                                (currentFlagFilter === "Withdrawals"   && isWithdrawal);
                             const grtMatch    = currentGRTFilter === "All" || grtAmount > parseInt(currentGRTFilter);
                             const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
 
