@@ -8,9 +8,12 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 from typing import List
 
-# v2.1.0 / 08-Mar-2026
+# v2.1.1 / 08-Mar-2026
 # Author: Paolo Diomede
-DASHBOARD_VERSION = "2.1.0"
+DASHBOARD_VERSION = "2.1.1"
+
+# Resolve paths relative to script directory so the script works when run from any cwd
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Function that writes in the log file
@@ -23,11 +26,11 @@ def log_message(message):
 
 
 # Create REPORTS directory if it doesn't exist
-report_dir = "reports"
+report_dir = os.path.join(SCRIPT_DIR, "reports")
 os.makedirs(report_dir, exist_ok=True)
 
 # Create LOGS directory if it doesn't exist (must be before any log_message calls)
-log_dir = "logs"
+log_dir = os.path.join(SCRIPT_DIR, "logs")
 os.makedirs(log_dir, exist_ok=True)
 log_file = os.path.join(log_dir, f"metrics_log_{datetime.now(timezone.utc).strftime('%Y-%m-%d')}.txt")
 
@@ -48,8 +51,9 @@ try:
 except ValueError:
     UPDATE_CADENCE_HOURS = 8
 
-# Load ENS cache file path
-ENS_CACHE_FILE = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
+# Load ENS cache file path (relative to script dir unless absolute path given)
+_ens_cache_path = os.getenv("ENS_CACHE_FILE", "ens_cache.json")
+ENS_CACHE_FILE = _ens_cache_path if os.path.isabs(_ens_cache_path) else os.path.join(SCRIPT_DIR, _ens_cache_path)
 if not os.getenv("ENS_CACHE_FILE"):
     log_message("⚠️ ENS_CACHE_FILE not set in .env — using default: 'ens_cache.json'")
 
@@ -121,7 +125,7 @@ def fetch_ens_name(address: str) -> str:
             try:
                 last_updated = datetime.fromisoformat(ts_str).astimezone(timezone.utc)
                 if datetime.now(timezone.utc) - last_updated < timedelta(hours=ENS_CACHE_EXPIRY_HOURS):
-                    return record.get("ens", "")
+                    return record.get("ens") or ""
             except (ValueError, TypeError):
                 pass  # invalid timestamp — treat as stale, re-fetch
 
@@ -139,7 +143,7 @@ def fetch_ens_name(address: str) -> str:
             log_message(f"⚠️ ENS subgraph returned non-JSON (status {response.status_code}) for {address}")
             if record and record.get("ens"):
                 log_message(f"↩️ Using stale cached ENS for {address}: {record['ens']}")
-                return record["ens"]
+                return record.get("ens") or ""
             return ""
         domains = result.get("data", {}).get("domains", [])
 
@@ -158,7 +162,7 @@ def fetch_ens_name(address: str) -> str:
         # Return the stale cached value rather than an empty string if available
         if record and record.get("ens"):
             log_message(f"↩️ Using stale cached ENS for {address}: {record['ens']}")
-            return record["ens"]
+            return record.get("ens") or ""
         return ""
 
 
@@ -293,11 +297,17 @@ class DelegationFetcher:
             if raw_ts is None:
                 log_message(f"⚠️ Skipping event with null timestamp (id={e.get('id', '?')})")
                 continue
+            try:
+                tokens_int = int(raw_tokens)
+                ts_int = int(raw_ts)
+            except (ValueError, TypeError):
+                log_message(f"⚠️ Skipping event with invalid tokens/timestamp (id={e.get('id', '?')})")
+                continue
             events.append(DelegationEvent(
-                indexer=e.get("indexer", ""),
-                tokens=int(raw_tokens),
-                delegator=e.get("delegator", ""),
-                block_timestamp=int(raw_ts),
+                indexer=e.get("indexer") or "",
+                delegator=e.get("delegator") or "",
+                tokens=tokens_int,
+                block_timestamp=ts_int,
                 event_type=e.get("eventType", ""),
                 tx_hash=e.get("txHash", ""),
             ))
@@ -353,7 +363,7 @@ def fetch_indexer_avatar(address):
             _avatar_cache[addr] = ""
             return ""
 
-        account = indexers[0].get("account", {})
+        account = indexers[0].get("account") or {}
         metadata = account.get("metadata")
 
         if metadata is None:
@@ -728,12 +738,11 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         
                
         # Header with breadcrumb and toggle
-        breadcrumb_sub = f"last 90 days fetched, GRT ≥ {GRT_SIZE:,}"
         f.write(f"""
             <div class="header-container">
                 <div class="breadcrumb" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; font-size: 0.85em; letter-spacing: 0.3px; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">
                     <a href="https://graphtools.pro" class="home-link" style="text-decoration: none;">🏠 Home</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;
-                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[{breadcrumb_sub}]</span></span>    
+                    <span class="current-page-title">📊 Delegators Activity Log <span style="font-size: 0.85em; color: var(--text-color);">&nbsp;&nbsp;[excluding under {GRT_SIZE:,} GRT]</span></span>    
                 </div>
                 <div class="toggle-container">
                     <label class="toggle-switch">
@@ -821,7 +830,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
         for event in events:
             if event.tokens < grt_threshold:
                 continue
-            f.write(f'<tr data-ts="{event.block_timestamp}">')
+            grt_display = int(event.tokens) // 10**18
+            f.write(f'<tr data-ts="{event.block_timestamp}" data-event-type="{event.event_type}" data-grt="{grt_display}">')
             data = event.to_dict()
             for key in key_order:
                 value = data.get(key)
@@ -909,8 +919,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
 
                     function toggleTheme() {
                         document.body.classList.toggle('light-mode');
-                        document.getElementById('toggle-icon').textContent =
-                            document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+                        const icon = document.getElementById('toggle-icon');
+                        if (icon) icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
                     }
 
                     function downloadCSV() {
@@ -948,24 +958,22 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         const days = parseInt(currentDaysFilter, 10);
                         if (isNaN(days) || (days !== 30 && days !== 90)) return getAllRows();
                         const cutoffTs = Math.floor(Date.now() / 1000) - (days * 24 * 60 * 60);
+                        const grtThreshold = currentGRTFilter === "All" ? 0 : parseInt(currentGRTFilter, 10);
+                        const grtFilterValid = currentGRTFilter === "All" || (!isNaN(grtThreshold) && grtThreshold > 0);
                         return getAllRows().filter(row => {
-                            const eventCell = row.cells[0];
-                            const grtCell   = row.cells[1];
-                            const idxCell   = row.cells[3];
-                            if (!eventCell || !grtCell) return false;
-
                             const rowTs = parseInt(row.dataset.ts, 10);
                             const daysMatch = !isNaN(rowTs) && rowTs >= cutoffTs;
 
-                            const isDelegation   = eventCell.textContent.includes("✅ Delegation");
-                            const isUndelegation = eventCell.textContent.includes("❌ Undelegation");
-                            const grtAmount      = parseInt(grtCell.textContent.replace(/,/g, ""), 10);
-                            const idxText        = idxCell ? idxCell.textContent.toLowerCase() : "";
+                            const eventType = (row.dataset.eventType || "").toLowerCase();
+                            const flagMatch = currentFlagFilter === "All" ||
+                                (currentFlagFilter === "Delegations"   && eventType === "delegation") ||
+                                (currentFlagFilter === "Undelegations" && eventType === "undelegation");
 
-                            const flagMatch   = currentFlagFilter === "All" ||
-                                                (currentFlagFilter === "Delegations"   && isDelegation) ||
-                                                (currentFlagFilter === "Undelegations" && isUndelegation);
-                            const grtMatch    = currentGRTFilter === "All" || (!isNaN(grtAmount) && grtAmount > parseInt(currentGRTFilter, 10));
+                            const grtAmount = parseInt(row.dataset.grt, 10) || 0;
+                            const grtMatch = !grtFilterValid || currentGRTFilter === "All" || (!isNaN(grtAmount) && grtAmount > grtThreshold);
+
+                            const idxCell = row.cells[3];
+                            const idxText = idxCell ? idxCell.textContent.toLowerCase() : "";
                             const searchMatch = currentSearch === "" || idxText.includes(currentSearch);
 
                             return daysMatch && flagMatch && grtMatch && searchMatch;
@@ -997,7 +1005,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         const start = total === 0 ? 0 : (page - 1) * ROWS_PER_PAGE + 1;
                         const end   = Math.min(page * ROWS_PER_PAGE, total);
 
-                        let html = `<span class="page-info">Showing ${start}–${end} of ${total} results</span>`;
+                        const daysLabel = "last " + currentDaysFilter + " days";
+                        let html = `<span class="page-info">Showing ${start}–${end} of ${total} results <span style="opacity:0.8;">(${daysLabel})</span></span>`;
                         html += `<div class="page-buttons">`;
                         html += `<button onclick="renderPage(1)" ${page===1?"disabled":""}>«</button>`;
                         html += `<button onclick="renderPage(${page-1})" ${page===1?"disabled":""}>‹</button>`;
@@ -1025,30 +1034,8 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         container.innerHTML = html;
                     }
 
-                    function updateSummaryFromFilteredRows() {
-                        const rows = getFilteredRows();
-                        let delegated = 0, undelegated = 0;
-                        rows.forEach(row => {
-                            const eventCell = row.cells[0];
-                            const grtCell = row.cells[1];
-                            if (!eventCell || !grtCell) return;
-                            const grt = parseInt(grtCell.textContent.replace(/,/g, ""), 10) || 0;
-                            if (eventCell.textContent.includes("✅ Delegation")) delegated += grt;
-                            else if (eventCell.textContent.includes("❌ Undelegation")) undelegated += grt;
-                        });
-                        const net = delegated - undelegated;
-                        const netEl = document.getElementById("net-amount");
-                        if (document.getElementById("total-delegated")) document.getElementById("total-delegated").textContent = delegated.toLocaleString() + " GRT";
-                        if (document.getElementById("total-undelegated")) document.getElementById("total-undelegated").textContent = undelegated.toLocaleString() + " GRT";
-                        if (netEl) {
-                            netEl.textContent = net.toLocaleString() + " GRT";
-                            netEl.style.color = net >= 0 ? "limegreen" : "crimson";
-                        }
-                    }
-
                     function applyFiltersAndRender() {
                         renderPage(1);
-                        updateSummaryFromFilteredRows();
                         document.querySelectorAll('.filter-bar[data-filter-type="days"] .filter-button').forEach(btn => {
                             btn.classList.toggle('active-filter', btn.dataset.filter === currentDaysFilter);
                         });
@@ -1060,16 +1047,28 @@ def generate_delegators_to_html(events: List[DelegationEvent]):
                         });
                     }
 
-                    function filterByDays(days) {
-                        if (days === "30" || days === "90") { currentDaysFilter = days; applyFiltersAndRender(); }
-                    }
-                    function filterByFlag(flag) { currentFlagFilter = flag; applyFiltersAndRender(); }
-                    function filterByGRT(flag)  { currentGRTFilter  = flag; applyFiltersAndRender(); }
+                    const VALID_DAYS = ["30", "90"];
+                    const VALID_FLAGS = ["Delegations", "Undelegations", "All"];
+                    const VALID_GRT = ["50000", "100000", "1000000", "All"];
 
-                    document.getElementById("searchBox").addEventListener("input", function () {
-                        currentSearch = this.value.toLowerCase();
-                        applyFiltersAndRender();
-                    });
+                    function filterByDays(days) {
+                        const d = String(days);
+                        if (VALID_DAYS.includes(d)) { currentDaysFilter = d; applyFiltersAndRender(); }
+                    }
+                    function filterByFlag(flag) {
+                        if (VALID_FLAGS.includes(flag)) { currentFlagFilter = flag; applyFiltersAndRender(); }
+                    }
+                    function filterByGRT(val) {
+                        if (VALID_GRT.includes(val)) { currentGRTFilter = val; applyFiltersAndRender(); }
+                    }
+
+                    const searchBox = document.getElementById("searchBox");
+                    if (searchBox) {
+                        searchBox.addEventListener("input", function () {
+                            currentSearch = (this.value || "").trim().toLowerCase();
+                            applyFiltersAndRender();
+                        });
+                    }
 
                     // Initial render
                     applyFiltersAndRender();

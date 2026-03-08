@@ -5,12 +5,29 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [2.1.0] — 2026-03-08 (latest)
+## [2.1.1] — 2026-03-08 (latest)
+
+### Changed
+
+- **Summary cards fixed** — Total Delegated, Total Undelegated, and Net now show the full 90-day totals and no longer change when filters are applied. The table and CSV download still respect filters.
+- **Path resolution** — `report_dir`, `log_dir`, and `ENS_CACHE_FILE` are now resolved relative to the script directory. The script works correctly when run from any working directory (e.g. cron, different folders). Absolute paths in `ENS_CACHE_FILE` are preserved.
+- **Breadcrumb** — Simplified to `[excluding under X GRT]` only.
+
+### Fixed
+
+- **`fetch_indexer_avatar` when account is null** — `indexers[0].get("account", {})` returned `None` when the subgraph had `account: null`; now uses `or {}` to avoid `AttributeError`.
+- **`int(raw_tokens)` / `int(raw_ts)` ValueError** — Subgraph may return floats or invalid strings; now caught with `try/except` and events are skipped with a warning instead of crashing.
+- **`fetch_ens_name` return None** — When cache had `"ens": null`, `record.get("ens", "")` returned `None`; now uses `record.get("ens") or ""` to always return a string.
+- **`toggleTheme` null check** — Added guard for missing `toggle-icon` element to prevent crash.
+- **Filter robustness** — Rows use `data-event-type` and `data-grt` attributes for reliable filtering; filter functions validate input; search input is trimmed.
+
+---
+
+## [2.1.0] — 2026-03-08
 
 ### Added
 
 - **Time-range filter** — New filter bar: LAST 30 DAYS (default) | LAST 90 DAYS. Backend always fetches last 90 days; client-side filter controls which events are shown.
-- **Dynamic summary cards** — Total Delegated, Total Undelegated, and Net now update when filters change (time range, event type, GRT, search).
 - **Filtered CSV download** — Download CSV now exports only the currently filtered rows instead of the full dataset.
 
 ### Changed

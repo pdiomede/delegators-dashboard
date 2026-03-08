@@ -2,7 +2,7 @@
 This project generates an interactive HTML dashboard to monitor live **delegation** and **undelegation** activity on [The Graph Network](https://thegraph.com/).  
 It highlights recent activity by delegators, indexed by timestamp, indexer, token amount, and event type.
 
-> **v2.1.0** — Time-range filter (LAST 30 DAYS / LAST 90 DAYS). Backend always fetches last 90 days; client-side filter defaults to 30 days. Summary cards and CSV download respect filters. Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars.
+> **v2.1.1** — Time-range filter (LAST 30 DAYS / LAST 90 DAYS). Summary cards show fixed 90-day totals; table and CSV respect filters. Paths resolved relative to script dir. Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars.
 
 **Live Dashboard:**  
 🔗 [graphtools.pro/delegators](https://graphtools.pro/delegators/)
@@ -139,7 +139,7 @@ GRT_SIZE=10000
 # Update cadence shown in the dashboard header (e.g. "updated every 8 hours")
 UPDATE_CADENCE_HOURS=8
 
-# ENS cache file path (relative to script dir); delete to force a full refresh
+# ENS cache file path (relative to script dir unless absolute); delete to force a full refresh
 ENS_CACHE_FILE=ens_cache.json
 
 # Hours before a cached ENS name is re-fetched (0 = always refresh; 168 = weekly)
@@ -165,7 +165,7 @@ python3 fetch_delegators_metrics.py
 - `.env` and `.DS_Store` are excluded via `.gitignore`
 - `GRAPH_DELEGATION_EVENTS` must be set in `.env` — the script raises a clear error on startup if missing or still set to the placeholder value
 - Since v2.0.0, delegation data comes from the **custom `graph-delegation-events` subgraph** (see [`subgraph/README.md`](./subgraph/README.md)), which exposes exact per-transaction GRT amounts and transaction hashes
-- ENS names are cached locally in `ens_cache.json` for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`); a corrupt cache file is handled gracefully (auto-reset to empty)
+- ENS names are cached locally (default: `ens_cache.json` in script dir) for performance (configurable TTL via `ENS_CACHE_EXPIRY_HOURS`); a corrupt cache file is handled gracefully (auto-reset to empty)
 - The script fetches all delegation events from the **last 90 days** (up to 100,000 records); the Graph gateway caps `first` at 1000 per query, so pagination is automatic
 - `run_delegators_vps.sh` is a VPS-specific variant that also copies the generated reports into the nginx web root (`/var/www/graphtools.pro/delegators/`)
 - If `ENS_API_KEY` is not set in `.env`, it silently falls back to `GRAPH_API_KEY`
@@ -176,10 +176,15 @@ python3 fetch_delegators_metrics.py
 
 > Full history in [CHANGELOG.md](./CHANGELOG.md).
 
-### v2.1.0 (latest)
+### v2.1.1 (latest)
+- **Summary cards fixed** — Total Delegated, Undelegated, Net show 90-day totals and no longer change with filters
+- **Path resolution** — Reports, logs, and ENS cache use script directory; script works when run from any cwd
+- **Filter robustness** — Data attributes for event type/GRT; validation for filter inputs; search trim
+- **Bug fixes** — `fetch_indexer_avatar` when account is null; `int(tokens)` ValueError; `fetch_ens_name` return None; `toggleTheme` null check
+
+### v2.1.0
 - **Time-range filter** — LAST 30 DAYS (default) / LAST 90 DAYS
-- Backend always fetches last 90 days; client-side filter controls view
-- Summary cards (Total Delegated, Undelegated, Net) update when filters change
+- Backend always fetches last 90 days; client-side filter controls table view
 - CSV download respects all filters (time range, event type, GRT, search)
 - Removed `TRANSACTION_COUNT` and `DAYS_BACK` env vars
 - 10 bug fixes: ENS cache KeyError, HTML injection, CSV column order, and more
